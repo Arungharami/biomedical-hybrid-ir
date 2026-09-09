@@ -35,7 +35,7 @@ export default function Nav() {
           <span className="hidden text-sm sm:inline">Hybrid Biomedical IR</span>
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center gap-1 overflow-x-auto text-sm lg:flex">
+        <nav className="hidden min-w-0 flex-1 items-center justify-start gap-1 overflow-x-auto text-sm lg:flex">
           {LINKS.map((link) => {
             const active = pathname === link.href;
             return (
