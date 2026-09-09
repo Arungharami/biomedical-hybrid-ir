@@ -1,17 +1,27 @@
 """NFCorpus ingestion from Hugging Face (BeIR/nfcorpus).
 
-The canonical BeIR NFCorpus release on Hugging Face is split across three
-dataset repos:
-  - ``BeIR/nfcorpus``            (config "corpus")  -> documents
-  - ``BeIR/nfcorpus``            (config "queries")  -> queries
-  - ``BeIR/nfcorpus-qrels``      (splits "train"/"dev"/"test") -> relevance judgments
+The canonical BeIR NFCorpus release on Hugging Face is split across two
+dataset repos, verified empirically against the live Hugging Face Hub
+(not assumed from documentation summaries):
+  - ``BeIR/nfcorpus``            (configs "corpus", "queries") -> documents, queries
+  - ``BeIR/nfcorpus-qrels``      (splits "train"/"validation"/"test", single
+    "default" config) -> relevance judgments
 
-This module downloads and caches all three, and normalizes them into plain
+Two things worth noting because they contradict what a naive reading of the
+BeIR docs might suggest:
+  1. The qrels HF split is literally named "validation", not "dev". This
+     project's configs/spec use "dev" as the internal name for the
+     tuning split (Section 4 - data leakage rule); ``DEV_SPLIT_HF_NAME``
+     below maps our internal "dev" to the dataset's real "validation" split.
+  2. NFCorpus relevance judgments are GRADED (observed scores include 0, 1,
+     2), not binary -- confirmed by inspecting real rows (e.g. score=2).
+
+This module downloads and caches both, and normalizes them into plain
 Python dict-of-dicts structures (the standard BEIR in-memory format):
 
     corpus  = {doc_id:   {"title": str, "text": str}}
     queries = {query_id: str}
-    qrels   = {split: {query_id: {doc_id: int_relevance}}}
+    qrels   = {split: {query_id: {doc_id: int_relevance}}}   # split in {"train","dev","test"}
 
 All IDs are used exactly as supplied by the dataset -- nothing is renumbered
 or fabricated.
@@ -29,6 +39,9 @@ from .utils import REPO_ROOT
 DATASET_NAME = "BeIR/nfcorpus"
 QRELS_DATASET_NAME = "BeIR/nfcorpus-qrels"
 SPLITS = ("train", "dev", "test")
+# Maps our internal split name -> the actual split name on the HF Hub.
+DEV_SPLIT_HF_NAME = "validation"
+HF_SPLIT_NAME = {"train": "train", "dev": DEV_SPLIT_HF_NAME, "test": "test"}
 
 
 @dataclass
@@ -79,8 +92,9 @@ def load_nfcorpus(
 
     qrels: dict[str, dict[str, dict[str, int]]] = {}
     for split in splits:
+        hf_split = HF_SPLIT_NAME.get(split, split)
         try:
-            qrels_ds = load_dataset(QRELS_DATASET_NAME, split=split, cache_dir=cache_dir)
+            qrels_ds = load_dataset(QRELS_DATASET_NAME, split=hf_split, cache_dir=cache_dir)
         except Exception as e:  # dataset/split may not exist -- document, don't fabricate
             qrels[split] = {}
             qrels.setdefault("_load_errors", {})[split] = str(e)

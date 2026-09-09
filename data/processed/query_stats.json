@@ -1,0 +1,53 @@
+{
+  "num_queries_total": 3237,
+  "query_word_count": {
+    "min": 1,
+    "max": 18,
+    "mean": 3.32,
+    "median": 2,
+    "n": 3237
+  },
+  "by_split": {
+    "train": {
+      "num_queries_with_qrels": 2590,
+      "relevant_docs_per_query": {
+        "min": 1,
+        "max": 1363,
+        "mean": 42.69,
+        "median": 18.0,
+        "n": 2590
+      },
+      "relevance_label_distribution": {
+        "1": 110575
+      }
+    },
+    "dev": {
+      "num_queries_with_qrels": 324,
+      "relevant_docs_per_query": {
+        "min": 1,
+        "max": 919,
+        "mean": 35.14,
+        "median": 18.5,
+        "n": 324
+      },
+      "relevance_label_distribution": {
+        "1": 10864,
+        "2": 521
+      }
+    },
+    "test": {
+      "num_queries_with_qrels": 323,
+      "relevant_docs_per_query": {
+        "min": 1,
+        "max": 475,
+        "mean": 38.19,
+        "median": 16,
+        "n": 323
+      },
+      "relevance_label_distribution": {
+        "1": 11758,
+        "2": 576
+      }
+    }
+  }
+}

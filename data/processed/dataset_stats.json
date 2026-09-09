@@ -1,0 +1,63 @@
+{
+  "provenance": {
+    "hf_dataset": "BeIR/nfcorpus",
+    "hf_qrels_dataset": "BeIR/nfcorpus-qrels",
+    "corpus_config": "corpus",
+    "queries_config": "queries",
+    "splits_requested": [
+      "train",
+      "dev",
+      "test"
+    ],
+    "corpus_size": 3633,
+    "query_count": 3237,
+    "qrel_counts": {
+      "train": 2590,
+      "dev": 324,
+      "test": 323
+    },
+    "raw_corpus_row_count": 3633,
+    "raw_query_row_count": 3237,
+    "duplicate_corpus_ids": {},
+    "duplicate_query_ids": {}
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "stats": {
+      "corpus_size": 3633,
+      "query_count": 3237,
+      "qrel_counts": {
+        "train": 2590,
+        "dev": 324,
+        "test": 323
+      },
+      "empty_documents": 0,
+      "empty_queries": 0,
+      "duplicate_document_ids": 0,
+      "duplicate_query_ids": 0,
+      "missing_doc_references_in_qrels": 0,
+      "missing_query_references_in_qrels": 0,
+      "split_overlaps": {}
+    }
+  },
+  "corpus_size": 3633,
+  "query_count": 3237,
+  "qrel_counts": {
+    "train": 2590,
+    "dev": 324,
+    "test": 323
+  },
+  "splits": {
+    "train": {
+      "role": "development (not used for final evaluation)"
+    },
+    "dev": {
+      "role": "parameter tuning / model selection only"
+    },
+    "test": {
+      "role": "final evaluation only - never used for tuning"
+    }
+  }
+}

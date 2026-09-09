@@ -1,0 +1,19 @@
+{
+  "num_documents": 3633,
+  "documents_with_nonempty_title": 3633,
+  "title_word_count": {
+    "min": 1,
+    "max": 34,
+    "mean": 12.79,
+    "median": 13,
+    "n": 3633
+  },
+  "body_word_count": {
+    "min": 13,
+    "max": 1460,
+    "mean": 220.98,
+    "median": 224,
+    "n": 3633
+  },
+  "approx_vocabulary_size": 66399
+}
