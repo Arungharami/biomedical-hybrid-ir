@@ -1,0 +1,52 @@
+{
+  "model": "tfidf",
+  "config_path": "configs/tfidf.yaml",
+  "parameters": {
+    "tfidf": {
+      "sublinear_tf": true,
+      "norm": "l2",
+      "smooth_idf": true,
+      "use_idf": true,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "min_df": 1,
+      "max_df": 1.0,
+      "top_k": 100
+    },
+    "lexical_preprocessing": {
+      "unicode_normalize": "NFKC",
+      "lowercase": true,
+      "strip_punctuation": true,
+      "remove_stopwords": false,
+      "tokenizer": "regex",
+      "min_token_len": 1
+    }
+  },
+  "split": "test",
+  "num_queries_evaluated": 323,
+  "dropped_queries_not_in_qrels": [],
+  "metrics": {
+    "P@1": 0.42724458204334365,
+    "P@5": 0.2860681114551087,
+    "P@10": 0.21671826625387028,
+    "Recall@10": 0.1529122039036005,
+    "Recall@20": 0.1762352941704794,
+    "Recall@50": 0.2117204485888063,
+    "Recall@100": 0.23717554511862657,
+    "nDCG@5": 0.336584948320183,
+    "nDCG@10": 0.3050301124234175,
+    "nDCG@20": 0.2803341493057147,
+    "MRR": 0.5102274104376875,
+    "MRR@10": 0.5061772077251953,
+    "MAP": 0.13716535275587025,
+    "MAP@100": 0.13716535275587025
+  },
+  "timing": {
+    "fit_seconds": 0.3124,
+    "retrieve_seconds": 1.1727,
+    "total_seconds": 1.4851,
+    "latency_ms_per_query": 3.6307
+  }
+}

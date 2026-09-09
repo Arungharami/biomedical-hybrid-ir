@@ -1,0 +1,46 @@
+{
+  "experiment_id": "exp-bm25-001",
+  "timestamp": "2026-09-09T16:10:45.458705+00:00",
+  "git_commit": "3e0d3492a89d147d5237628509986ccc98e55fe0",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "bm25",
+  "model_revision": null,
+  "parameters": {
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75,
+      "top_k": 100
+    },
+    "lexical_preprocessing": {
+      "unicode_normalize": "NFKC",
+      "lowercase": true,
+      "strip_punctuation": true,
+      "remove_stopwords": false,
+      "tokenizer": "regex",
+      "min_token_len": 1
+    }
+  },
+  "seed": 42,
+  "device": "cpu",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 0.9378,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "top_k": 100
+}

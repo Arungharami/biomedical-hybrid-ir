@@ -1,0 +1,54 @@
+{
+  "experiment_id": "exp-tfidf-001",
+  "timestamp": "2026-09-09T16:10:37.506693+00:00",
+  "git_commit": "3e0d3492a89d147d5237628509986ccc98e55fe0",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "tfidf",
+  "model_revision": null,
+  "parameters": {
+    "tfidf": {
+      "sublinear_tf": true,
+      "norm": "l2",
+      "smooth_idf": true,
+      "use_idf": true,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "min_df": 1,
+      "max_df": 1.0,
+      "top_k": 100
+    },
+    "lexical_preprocessing": {
+      "unicode_normalize": "NFKC",
+      "lowercase": true,
+      "strip_punctuation": true,
+      "remove_stopwords": false,
+      "tokenizer": "regex",
+      "min_token_len": 1
+    }
+  },
+  "seed": 42,
+  "device": "cpu",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 1.4851,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "top_k": 100
+}
