@@ -1,0 +1,68 @@
+{
+  "experiment_id": "exp-evaluate-all-001",
+  "timestamp": "2026-09-09T17:29:04.182552+00:00",
+  "git_commit": "a6b61fe17b023ce82ec5f8d9e542429d466c406a",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "statistical_analysis",
+  "model_revision": null,
+  "parameters": {
+    "method": "paired_bootstrap",
+    "n_resamples": 10000,
+    "comparisons": [
+      [
+        "tfidf",
+        "bm25"
+      ],
+      [
+        "bm25",
+        "bge"
+      ],
+      [
+        "bm25",
+        "medcpt"
+      ],
+      [
+        "bge",
+        "medcpt"
+      ],
+      [
+        "medcpt",
+        "hybrid_rrf"
+      ],
+      [
+        "hybrid_rrf",
+        "hybrid_reranked"
+      ]
+    ],
+    "metrics": [
+      "P@10",
+      "Recall@100",
+      "MAP",
+      "MRR@10",
+      "nDCG@10"
+    ]
+  },
+  "seed": 42,
+  "device": "cpu",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 1.1485,
+  "status": "complete",
+  "n_comparisons_run": 30,
+  "n_significant_at_0.05": 16
+}

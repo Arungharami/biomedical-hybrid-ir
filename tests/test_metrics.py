@@ -12,6 +12,7 @@ import pytrec_eval
 from biomedical_ir.evaluation import (
     average_precision,
     evaluate_run,
+    load_run_json,
     load_trec_run,
     mean_average_precision,
     mean_ndcg_at_k,
@@ -257,3 +258,22 @@ class TestTrecRunIO:
         path = save_run_json(run, tmp_path / "run.json")
         reloaded = json.loads(path.read_text())
         assert reloaded["q1"][0] == ["d1", 3.0]
+
+    def test_load_run_json_roundtrip(self, tmp_path):
+        run = {"q1": [("d1", 3.0), ("d2", 1.5)], "q2": [("d3", 0.9)]}
+        path = save_run_json(run, tmp_path / "run.json")
+        loaded = load_run_json(path)
+        assert loaded["q1"] == [("d1", 3.0), ("d2", 1.5)]
+        assert loaded["q2"] == [("d3", 0.9)]
+
+    def test_load_run_json_preserves_empty_query(self, tmp_path):
+        # Unlike load_trec_run, an empty result list must survive the
+        # roundtrip -- required for paired statistical testing, where every
+        # model's per-query array must cover the same query ID set (see
+        # biomedical_ir.statistics and results/metrics/bm25.json's 25
+        # zero-result queries).
+        run = {"q1": [("d1", 1.0)], "q2": []}
+        path = save_run_json(run, tmp_path / "run.json")
+        loaded = load_run_json(path)
+        assert set(loaded.keys()) == {"q1", "q2"}
+        assert loaded["q2"] == []
