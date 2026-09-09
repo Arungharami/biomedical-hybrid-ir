@@ -129,8 +129,8 @@ status and verification details.
 | M8 | Error analysis | ✅ Complete |
 | M9 | Colab notebooks | ✅ Complete |
 | M10 | Paper artifacts (figures, BibTeX) | ✅ Complete |
-| M11 | Next.js research portal | ⚪ Pending |
-| M12 | Vercel deployment | ⚪ Pending |
+| M11 | Next.js research portal | ✅ Complete |
+| M12 | Vercel deployment | 🟡 In progress |
 
 No experiment is marked complete unless its artifact exists under `results/`
 and passes the validation checks in `tests/`.
@@ -197,9 +197,15 @@ artifacts where present. See [docs/reproducibility.md](docs/reproducibility.md).
 
 ## Research portal
 
-Vercel deployment link will be added here once M12 completes. The portal
-reads only exported, verified JSON/CSV artifacts from `results/` — it never
-runs transformer models itself (see [docs/architecture.md](docs/architecture.md#design-decision-vercel-never-runs-the-transformer-models)).
+`web/` — Next.js 16 (App Router) + TypeScript + Tailwind CSS, 13 routes
+(overview, dataset, pipeline, models, experiments, results, evaluation,
+error-analysis, efficiency, search demo, paper, reproducibility, about),
+all reading real exported JSON from `web/data/` (`scripts/export_web_results.py`)
+— never fabricated, never a live model call. Verified with `npm run
+{typecheck,lint,build}` and real Playwright screenshots (desktop, mobile
+nav, dark/light theme). Production Vercel URL will be added here once M12
+completes. See [docs/architecture.md](docs/architecture.md#design-decision-vercel-never-runs-the-transformer-models)
+for why the portal never runs a transformer model itself.
 
 ## Paper
 
