@@ -1,0 +1,48 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # CPU-only torch to keep CI fast/light; the project's actual
+          # experiments run on Colab GPU / local MPS, not in CI.
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Lint (ruff)
+        run: ruff check src/ scripts/ tests/
+
+      - name: Import check
+        run: python -c "import biomedical_ir; print(biomedical_ir.__version__)"
+
+      - name: Unit tests
+        run: pytest -q --cov=biomedical_ir --cov-report=term-missing
+
+      - name: Lightweight dataset validation (synthetic fixtures only, no network)
+        run: pytest -q tests/test_data.py
+
+  # NOTE: this CI intentionally does NOT download BeIR/nfcorpus, BGE, or
+  # MedCPT models. Those require network access to Hugging Face and are
+  # exercised manually / in Colab (see notebooks/) and via
+  # scripts/reproduce.py, not on every push.
