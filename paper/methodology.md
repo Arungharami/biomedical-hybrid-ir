@@ -80,12 +80,17 @@ both lexical baselines on every metric but is essentially tied with BGE
 small margins) — H2 is not straightforwardly supported by these raw point
 estimates; significance testing is left to M7.
 
-### 5.5 Reciprocal Rank Fusion
+### 5.5 Reciprocal Rank Fusion ✅ M5 complete
 
 `RRF(d) = Σ_i 1 / (k + rank_i(d))` over BM25 and MedCPT rankings, k=60
 default (configurable, `configs/hybrid.yaml`). Chosen over raw score
 summation specifically because BM25 and dot-product scores are not on
-comparable scales — see `docs/architecture.md`.
+comparable scales — see `docs/architecture.md`. Real test-split results
+(n=323 queries): P@10=0.2598, Recall@100=0.3389, MAP=0.1809, MRR@10=0.5678,
+nDCG@10=0.3620 (`results/metrics/hybrid_rrf.json`). Hybrid wins P@1/MRR/MRR@10
+(all highest of the five models run so far) but does not beat BGE/MedCPT
+individually on P@10/Recall@100/MAP/nDCG@10 — H3 is only partially, not
+uniformly, supported by these raw numbers.
 
 ### 5.6 Cross-Encoder Reranking
 

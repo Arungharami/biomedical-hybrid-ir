@@ -79,7 +79,38 @@ domain-specific training help over pure lexical matching) is supported
 relative to TF-IDF/BM25, but the domain-vs-general dense comparison
 specifically remains open pending M7's paired significance test.
 
-## Hybrid RRF, cross-encoder reranking
+## Hybrid RRF (M5, real numbers)
 
-⚪ **Pending.** These milestones (M5–M6) have not run. See the root README's
-Experiment status table for current milestone status.
+Fuses the already-computed M2/M4 runs (`results/runs/{bm25,medcpt}.trec`)
+via `src/biomedical_ir/fusion.py`. Full metric set:
+`results/metrics/hybrid_rrf.json`. Run artifact: `results/runs/hybrid_rrf.trec`.
+Manifest: `results/manifests/exp-hybrid-rrf-001.json`.
+
+| Model | P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency (ms/query) |
+|---|---:|---:|---:|---:|---:|---:|
+| BM25 + MedCPT (RRF, k=60) | 0.2598 | 0.3389 | 0.1809 | 0.5678 | 0.3620 | 4.069 |
+
+Latency is reported end-to-end (BM25 retrieval + MedCPT retrieval + RRF
+fusion), not fusion-time-alone (0.0425 ms/query) — a real hybrid query pays
+both component retrievers' cost.
+
+A genuine BM25 property surfaced while building this run: 25 of 323 test
+queries (7.7% — e.g. "deafness", "eggnog", "Fosamax") share zero vocabulary
+with any document after preprocessing, so BM25 returns an empty ranking for
+them entirely (the classic lexical vocabulary-mismatch problem, part of the
+motivation behind RQ2/RQ4). `fuse_runs` handles this correctly via a
+union-of-query-IDs design: those queries still rank via MedCPT's
+contribution alone rather than being dropped.
+
+**H3** ("hybrid retrieval will outperform either method individually") is
+**only partially supported**, not confirmed uniformly, by these raw point
+estimates: hybrid wins P@1 (0.4799), MRR (0.5736), and MRR@10 (0.5678) — all
+the highest values across the five models run so far — but does **not**
+exceed BGE or MedCPT individually on P@10, Recall@100, MAP, or nDCG@10 (the
+metrics this project treats as primary). Reported exactly as observed with
+no significance test applied; RQ4 remains open pending M7.
+
+## Cross-encoder reranking
+
+⚪ **Pending.** M6 has not run. See the root README's Experiment status
+table for current milestone status.

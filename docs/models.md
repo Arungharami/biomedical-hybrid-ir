@@ -108,7 +108,27 @@ honestly rather than framed as a win, pending M7's significance testing.
 `RRF(d) = Σ 1 / (k + rank_i(d))`, k=60 default, configurable. Operates on
 rank positions specifically because BM25 and dot-product scores are not on
 comparable scales — see `docs/architecture.md`. Implementation:
-`src/biomedical_ir/fusion.py`. ⚪ Pending.
+`src/biomedical_ir/fusion.py`, unit-tested against hand-computed rankings
+(`tests/test_fusion.py`, per Section 10 of the spec).
+
+**M5 — ✅ Complete.** Fuses the already-computed M2/M4 runs
+(`results/runs/{bm25,medcpt}.trec`). Real test-split (n=323) results, from
+`results/metrics/hybrid_rrf.json`:
+
+| P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2598 | 0.3389 | 0.1809 | 0.5678 | 0.3620 | 4.069 ms/query (end-to-end: bm25 + medcpt + fusion) |
+
+Mixed result relative to the individual retrievers: hybrid wins P@1
+(0.4799), MRR (0.5736), and MRR@10 (0.5678) — all highest of the five
+models run so far — but does **not** beat BGE/MedCPT individually on P@10,
+Recall@100, MAP, or nDCG@10. H3 is therefore only partially supported by
+these raw numbers, not uniformly. One notable finding surfaced along the
+way: 25/323 test queries (7.7%, e.g. "deafness", "eggnog", "Fosamax") share
+zero vocabulary with the corpus after preprocessing, so BM25 returns an
+empty ranking for them entirely — the classic vocabulary-mismatch problem,
+correctly handled by `fuse_runs`'s union-of-query-IDs semantics (those
+queries still get ranked via MedCPT's contribution alone).
 
 ## M6 — MedCPT Cross-Encoder reranking
 
