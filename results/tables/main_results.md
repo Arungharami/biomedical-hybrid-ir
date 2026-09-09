@@ -121,14 +121,26 @@ mechanically expected, not a bug: a reranker cannot recover documents it
 was never given as candidates. Confirmed exactly: pool=100's Recall@100
 (0.3389) equals hybrid RRF's own Recall@100 to five decimal places.)
 
-**The headline finding: at the default pool (50), reranking achieves
-nDCG@10 = 0.3731 -- the highest nDCG@10 of all six models in this study**
-(vs. hybrid RRF 0.3620, BGE 0.3712, MedCPT 0.3654), consistent with **H4**'s
-specific prediction ("cross-encoder reranking will improve top-ranked
-effectiveness, especially nDCG@10"). Latency also increased dramatically as
-H4 predicted: reranking-only adds ~1941.6 ms/query on top of hybrid RRF's
-~4.1 ms/query (measured on Apple M1 Pro MPS -- not representative of
-GPU-optimized production latency; see `docs/reproducibility.md`).
+**At the default pool (50), reranking achieves nDCG@10 = 0.3731 -- the
+highest nDCG@10 of all six models in this study** (vs. hybrid RRF 0.3620,
+BGE 0.3712, MedCPT 0.3654), directionally consistent with **H4**'s specific
+prediction ("cross-encoder reranking will improve top-ranked effectiveness,
+especially nDCG@10"). Latency also increased dramatically as H4 predicted:
+reranking-only adds ~1941.6 ms/query on top of hybrid RRF's ~4.1 ms/query
+(measured on Apple M1 Pro MPS -- not representative of GPU-optimized
+production latency; see `docs/reproducibility.md`).
+
+**UPDATE from M7's significance test (`results/tables/statistical_tests.md`):
+the nDCG@10 improvement above is NOT statistically significant** (paired
+bootstrap, hybrid RRF vs. hybrid+reranker, nDCG@10: diff=-0.0111,
+p=0.1944, n=323) -- this correction supersedes any earlier framing of the
+nDCG@10 result as a confirmed "headline finding"; it was, and remains,
+the best raw point estimate in the study, but that alone does not establish
+significance at this sample size. What IS significant: P@10 improves with
+reranking (diff=-0.0167 hybrid RRF vs. reranked, i.e. reranked higher,
+p=0.0150), and Recall@100 changes significantly in the direction explained
+by the pool-cap artifact above (p<0.0001). MAP and MRR@10 show no
+significant difference.
 
 **However, MAP and Recall@100 both DECREASED relative to hybrid RRF**
 (MAP: 0.1760 vs. 0.1809; Recall@100: 0.2782 vs. 0.3389) at the default pool.
@@ -141,10 +153,47 @@ reranker restricted to reordering only its top 50 candidates. At pool=100
 pool=50 result -- suggesting the effectiveness/pool-size relationship is
 genuinely non-monotonic here, not simply "bigger pool always better."
 
-**H4 is therefore substantially, but not uncritically, supported**: the
-specific claim about nDCG@10 improving is directly confirmed on these raw
-numbers (and by the largest margin of the whole study), and the latency
-increase is unambiguous and large; the claim doesn't extend cleanly to
-every metric at the chosen default pool once the recall-capping mechanism
-is accounted for. As always, no formal significance test has been applied
-to any of this -- that is M7's job.
+**Revised H4 verdict after M7's significance test: PARTIALLY supported.**
+The latency increase is unambiguous, large, and requires no significance
+test (it is a direct measurement). The specific nDCG@10 claim is the best
+point estimate in the study but is **not statistically significant**
+(p=0.194) -- so H4 is not confirmed on its most emphasized metric. P@10
+does improve significantly (p=0.015), which is genuine partial support for
+"reranking improves top-ranked effectiveness" in general, just not
+specifically via nDCG@10 at conventional significance on n=323 queries.
+
+---
+
+## M7 — Statistical Analysis (paired bootstrap, real numbers)
+
+See `results/tables/statistical_tests.md` / `.json` for the full table (6
+comparisons x 5 metrics = 30 tests, paired bootstrap, n_resamples=10000,
+seed=42, `src/biomedical_ir/statistics.py`). Per-hypothesis verdicts:
+
+- **H1 (BM25 will outperform TF-IDF) -- REJECTED.** TF-IDF significantly
+  outperforms BM25 on P@10 (p=0.017), Recall@100 (p=0.010), and nDCG@10
+  (p=0.030); MAP and MRR@10 point the same direction but are not
+  significant (p=0.095, p=0.295). This directly contradicts H1 with
+  statistical support, not just a raw-number observation.
+- **H2 (MedCPT will outperform BGE) -- NOT SUPPORTED.** No metric shows a
+  significant difference between BGE and MedCPT (all p >= 0.12). The two
+  are statistically indistinguishable on this test set at this sample size.
+- **H3 (Hybrid will outperform BM25 and MedCPT individually) -- NOT
+  SUPPORTED for the MedCPT comparison actually tested.** MedCPT
+  significantly *beats* Hybrid RRF on Recall@100 (p=0.040, opposite the
+  predicted direction); no significant difference on P@10, MAP, MRR@10, or
+  nDCG@10. (A direct BM25-vs-Hybrid-RRF test was not run -- it is outside
+  the five comparisons Section 16 of the project spec names explicitly --
+  so H3's other half is untested, not merely unsupported.)
+- **H4 (Reranking will improve nDCG@10, increase latency) -- PARTIALLY
+  SUPPORTED.** Latency increase: unambiguous (direct measurement, no test
+  needed). nDCG@10 improvement: **not significant** (p=0.194) despite being
+  the best point estimate in the study. P@10 *does* improve significantly
+  (p=0.015).
+
+**What's confirmed statistically, not just directionally:** both dense
+models (BGE, MedCPT) significantly outperform BM25 on every one of the five
+primary metrics (all p<0.005) -- this is the study's most robust finding.
+Beyond classical-vs-dense, none of the "which advanced method is better"
+questions (biomedical vs. general dense; hybrid vs. individual; reranked
+vs. not) reach significance on their headline metrics at n=323 queries.

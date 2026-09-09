@@ -155,11 +155,17 @@ from `results/metrics/hybrid_reranked.json` (default pool=50):
 
 \*Capped by the candidate pool — see the ablation below.
 
-**Headline finding:** reranking achieves **nDCG@10 = 0.3731, the highest of
-all six models** in this study (vs. hybrid RRF 0.3620, BGE 0.3712, MedCPT
-0.3654) — directly consistent with H4's specific prediction. Latency
-increased dramatically as H4 also predicted (~1941.6 ms/query reranking
-alone, vs. hybrid RRF's ~4.1 ms/query end-to-end).
+Reranking achieves **nDCG@10 = 0.3731, the highest of all six models** in
+this study (vs. hybrid RRF 0.3620, BGE 0.3712, MedCPT 0.3654) — the best
+raw point estimate, and directionally consistent with H4's specific
+prediction. Latency increased dramatically as H4 also predicted
+(~1941.6 ms/query reranking alone, vs. hybrid RRF's ~4.1 ms/query
+end-to-end). **However, M7's significance test found this nDCG@10
+improvement is NOT statistically significant** (paired bootstrap vs.
+hybrid RRF: diff=-0.0111, p=0.194, n=323) — the best point estimate in the
+study does not clear conventional significance at this sample size. What
+IS significant: P@10 improves with reranking (p=0.015). See
+`results/tables/statistical_tests.md` for the full test.
 
 MAP and Recall@100 both *decreased* relative to hybrid RRF at the default
 pool, but this is a mechanical artifact of the pool cap, not evidence the
@@ -177,8 +183,10 @@ document set, just reordered).
 | 100 | 0.2690 | 0.3389 | 0.1846 | 0.3664 | 3918.1 ms/query |
 
 Effectiveness vs. pool size is non-monotonic for nDCG@10 (peaks at 50, not
-100) — reported as observed, not smoothed over. **H4 is substantially, but
-not uncritically, supported**: the nDCG@10 claim is directly confirmed by
-the largest margin in the study, latency clearly increased, but the claim
-doesn't extend cleanly to every metric once the recall-capping mechanism is
-accounted for. No significance test has been run on any of this (M7).
+100) — reported as observed, not smoothed over. **Revised H4 verdict after
+M7: partially supported.** Latency increase is unambiguous. The nDCG@10
+claim -- the metric H4 explicitly emphasizes -- is directionally correct
+(best point estimate of the study) but not statistically significant;
+P@10 does improve significantly. See `docs/evaluation.md` and
+`results/tables/statistical_tests.md` for the full M7 methodology and
+results across all six comparisons tested.
