@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "Hybrid Biomedical Information Retrieval with Lexical, Dense, and Cross-Encoder Reranking: A Reproducible Study on NFCorpus"
+authors:
+  - family-names: "Gharami"
+    given-names: "Arun"
+date-released: 2026-09-09
+version: "0.1.0"
+repository-code: "https://github.com/Arungharami/biomedical-hybrid-ir"
+license: MIT
+keywords:
+  - information retrieval
+  - biomedical NLP
+  - BM25
+  - dense retrieval
+  - cross-encoder reranking
+  - NFCorpus
+  - BEIR
+message: >-
+  Course project for CAP 6776 - Information Retrieval.

@@ -1,0 +1,17 @@
+# Hybrid lexical + biomedical semantic retrieval (Model 5)
+model_id: "hybrid_rrf"
+extends: "default.yaml"
+
+fusion:
+  method: "rrf"
+  k: 60
+  components: ["bm25", "medcpt"]
+  # If k is tuned, it is tuned on dev only (see ablation A8) and frozen here.
+  tuning:
+    enabled: false
+    split: "dev"
+    k_grid: [10, 20, 30, 60, 100]
+
+retrieval:
+  candidate_depth: 100   # depth taken from each component before fusion
+  top_k: 100

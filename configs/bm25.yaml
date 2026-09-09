@@ -1,0 +1,27 @@
+# BM25 (Model 2)
+model_id: "bm25"
+extends: "default.yaml"
+
+lexical_preprocessing:
+  unicode_normalize: "NFKC"
+  lowercase: true
+  strip_punctuation: true
+  remove_stopwords: false
+  tokenizer: "regex"
+  min_token_len: 1
+
+bm25:
+  # Initial values per the BM25 literature (Robertson & Zaragoza, 2009).
+  k1: 1.2
+  b: 0.75
+  # If tuning is performed, it MUST use the dev split only, and the final
+  # frozen values below are copied here before any test-set evaluation.
+  tuning:
+    enabled: false
+    split: "dev"
+    k1_grid: [0.9, 1.2, 1.5, 1.8]
+    b_grid: [0.4, 0.6, 0.75, 0.9]
+  frozen_before_test: true
+
+retrieval:
+  top_k: 100

@@ -1,0 +1,47 @@
+# Global defaults shared across all experiments.
+# Model-specific configs (tfidf.yaml, bm25.yaml, ...) override these where noted.
+
+seed: 42
+
+dataset:
+  name: "BeIR/nfcorpus"
+  # BeIR/nfcorpus on Hugging Face ships corpus + queries as separate configs,
+  # and qrels for each split under BeIR/nfcorpus-qrels.
+  qrels_name: "BeIR/nfcorpus-qrels"
+  splits: ["train", "dev", "test"]
+  cache_dir: "./data/cache/huggingface"
+  raw_dir: "./data/raw/nfcorpus"
+  processed_dir: "./data/processed"
+
+paths:
+  results_dir: "./results"
+  runs_dir: "./results/runs"
+  metrics_dir: "./results/metrics"
+  manifests_dir: "./results/manifests"
+  tables_dir: "./results/tables"
+  figures_dir: "./results/figures"
+  error_analysis_dir: "./results/error-analysis"
+
+device:
+  preference: "auto"   # auto | cuda | mps | cpu
+  batch_size: 32
+  max_seq_length: 512
+
+evaluation:
+  qrel_split: "test"       # final evaluation ALWAYS uses test
+  tuning_split: "dev"      # any parameter selection uses dev only
+  cutoffs:
+    precision: [1, 5, 10]
+    recall: [10, 20, 50, 100]
+    ndcg: [5, 10, 20]
+  mrr_cutoff: 10
+  map_cutoff: 100
+
+logging:
+  level: "INFO"
+
+document_composition:
+  # How NFCorpus documents (title + text fields) are turned into a single string.
+  # "title_sep_body" -> "{title} [SEP] {text}" when both fields are non-empty.
+  strategy: "title_sep_body"
+  separator: " [SEP] "

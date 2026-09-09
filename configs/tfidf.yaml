@@ -1,0 +1,23 @@
+# TF-IDF baseline (Model 1)
+model_id: "tfidf"
+extends: "default.yaml"
+
+lexical_preprocessing:
+  unicode_normalize: "NFKC"
+  lowercase: true
+  strip_punctuation: true
+  remove_stopwords: false   # do not aggressively remove biomedical terms by default
+  tokenizer: "regex"        # simple \w+ tokenizer, configurable
+  min_token_len: 1
+
+tfidf:
+  sublinear_tf: true
+  norm: "l2"
+  smooth_idf: true
+  use_idf: true
+  ngram_range: [1, 1]
+  min_df: 1
+  max_df: 1.0
+
+retrieval:
+  top_k: 100

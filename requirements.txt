@@ -1,0 +1,39 @@
+# Core scientific stack
+numpy>=1.26,<2.0
+scipy>=1.11
+pandas>=2.1
+scikit-learn>=1.4
+
+# Data
+datasets>=2.19
+huggingface_hub>=0.23
+
+# Retrieval models
+sentence-transformers>=2.7
+transformers>=4.40
+torch>=2.2
+faiss-cpu>=1.8
+
+# Evaluation
+pytrec_eval>=0.5
+
+# Config / utils
+pyyaml>=6.0
+tqdm>=4.66
+python-dotenv>=1.0
+
+# Statistics
+statsmodels>=0.14
+
+# Figures
+matplotlib>=3.8
+seaborn>=0.13
+
+# Testing / lint
+pytest>=8.0
+pytest-cov>=5.0
+ruff>=0.4
+
+# Notebooks
+jupyter>=1.0
+nbformat>=5.10

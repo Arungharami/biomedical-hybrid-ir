@@ -1,0 +1,24 @@
+# Biomedical dense retrieval (Model 4)
+model_id: "medcpt"
+extends: "default.yaml"
+
+model:
+  query_encoder: "ncbi/MedCPT-Query-Encoder"
+  article_encoder: "ncbi/MedCPT-Article-Encoder"
+  # Per the official MedCPT model cards: use the [CLS] hidden state of the
+  # last_hidden_state as the embedding; no extra normalization is applied by
+  # the model itself. Similarity is inner product.
+  pooling: "cls"
+  normalize_embeddings: false
+  similarity: "dot"
+  query_max_length: 64
+  article_max_length: 512
+  # Article encoder expects [title, text] pairs tokenized jointly
+  # (tokenizer(title, text, ...)), per the model card example.
+  article_input: "title_text_pair"
+
+faiss:
+  index_type: "IndexFlatIP"
+
+retrieval:
+  top_k: 100

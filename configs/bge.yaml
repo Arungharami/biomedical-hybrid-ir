@@ -1,0 +1,21 @@
+# General-purpose dense retrieval (Model 3)
+model_id: "bge"
+extends: "default.yaml"
+
+model:
+  name: "BAAI/bge-base-en-v1.5"
+  # Per the official model card: queries need an instruction prefix for
+  # retrieval tasks; documents/passages do NOT.
+  query_instruction: "Represent this sentence for searching relevant passages: "
+  document_instruction: ""
+  pooling: "cls"          # sentence-transformers config for this checkpoint uses [CLS] pooling
+  normalize_embeddings: true
+  similarity: "cosine"    # equivalent to dot-product on normalized embeddings
+  max_seq_length: 512
+  embedding_dim: 768
+
+faiss:
+  index_type: "IndexFlatIP"   # exact search over normalized embeddings = cosine similarity
+
+retrieval:
+  top_k: 100

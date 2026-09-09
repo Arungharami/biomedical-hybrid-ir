@@ -1,0 +1,21 @@
+# Hybrid retrieval + biomedical cross-encoder reranking (Model 6)
+model_id: "hybrid_reranked"
+extends: "hybrid.yaml"
+
+reranker:
+  model: "ncbi/MedCPT-Cross-Encoder"
+  # Per the official model card: input is [query, article] pairs, tokenized
+  # jointly by AutoTokenizer(query, article, ...). "article" here is built by
+  # joining the document's title and body as "{title}. {text}" (the join
+  # convention used in the official MedCPT reference code), consistent with
+  # the article encoder's title+text representation. Model outputs a single
+  # raw logit used as the relevance score (higher = more relevant); no
+  # sigmoid is applied for ranking.
+  input_format: "query_title_text"
+  article_join: "{title}. {text}"
+  candidate_pool_sizes: [20, 50, 100]
+  default_candidate_pool: 50
+  max_length: 512
+
+retrieval:
+  top_k: 100
