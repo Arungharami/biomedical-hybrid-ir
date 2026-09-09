@@ -58,11 +58,15 @@ as-is without tuning against the test set; whether this is statistically
 meaningful is left to M7's paired significance testing, so H1 is neither
 confirmed nor rejected here.
 
-### 5.3 BGE (general dense retrieval)
+### 5.3 BGE (general dense retrieval) ✅ M3 complete
 
 `BAAI/bge-base-en-v1.5`, CLS pooling, L2-normalized embeddings, retrieval
 instruction prefix on queries only — see `docs/models.md` for the verified
-model-card details and `configs/bge.yaml`.
+model-card details and `configs/bge.yaml`. Real test-split results (n=323
+queries): P@10=0.2796, Recall@100=0.3368, MAP=0.1831, MRR@10=0.5556,
+nDCG@10=0.3712 (`results/metrics/bge.json`). BGE's point estimates exceed
+both lexical baselines on every metric — the direction RQ2 asks about — but
+whether that difference is significant is left to M7.
 
 ### 5.4 MedCPT (biomedical dense retrieval)
 

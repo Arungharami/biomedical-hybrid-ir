@@ -1,10 +1,10 @@
 # 8. Results
 
-M2 (TF-IDF, BM25) is complete with real artifacts; M3-M6 (BGE, MedCPT,
-hybrid RRF, cross-encoder reranking) have not run yet, so every corresponding
-cell in the main results table still reads `Pending` (Section 15 of the
-project spec / the root README's Experiment status table). No metric below
-is estimated or fabricated in advance of its actual run.
+M2 (TF-IDF, BM25) and M3 (BGE) are complete with real artifacts; M4-M6
+(MedCPT, hybrid RRF, cross-encoder reranking) have not run yet, so every
+corresponding cell in the main results table still reads `Pending` (Section
+15 of the project spec / the root README's Experiment status table). No
+metric below is estimated or fabricated in advance of its actual run.
 
 ## TF-IDF and BM25 (M2, real numbers)
 
@@ -33,7 +33,29 @@ query level (`src/biomedical_ir/statistics.py`), which is explicitly an M7
 deliverable and has not run yet. H1 therefore remains an open hypothesis —
 neither confirmed nor rejected — pending that test.
 
-## BGE, MedCPT, hybrid RRF, cross-encoder reranking
+## BGE (M3, real numbers)
 
-⚪ **Pending.** These milestones (M3–M6) have not run. See the root README's
+Computed identically (same test qrels, same `pytrec_eval` protocol) on
+Apple M1 Pro (MPS). Full metric set: `results/metrics/bge.json`. Run
+artifact: `results/runs/bge.trec`. Manifest: `results/manifests/exp-bge-001.json`.
+
+| Model | P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency (ms/query) |
+|---|---:|---:|---:|---:|---:|---:|
+| BGE (general dense) | 0.2796 | 0.3368 | 0.1831 | 0.5556 | 0.3712 | 2.678 |
+
+Latency here is query-side only (query encoding + FAISS search); corpus
+encoding (3,633 docs, 120.3s) is a one-time offline cost tracked separately
+in the manifest, not part of per-query latency.
+
+BGE's point estimates exceed both TF-IDF and BM25 on every metric shown
+(e.g. nDCG@10: BGE 0.3712 vs. TF-IDF 0.3050 vs. BM25 0.2954) — the direction
+RQ2 asks about ("Does dense semantic retrieval improve retrieval
+effectiveness compared with traditional lexical methods?"). **No
+significance claim is made here** for the same reason as above: paired
+testing is an M7 deliverable. RQ2 is not considered answered by this
+milestone alone.
+
+## MedCPT, hybrid RRF, cross-encoder reranking
+
+⚪ **Pending.** These milestones (M4–M6) have not run. See the root README's
 Experiment status table for current milestone status.

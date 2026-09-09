@@ -1,0 +1,49 @@
+{
+  "model": "bge",
+  "config_path": "configs/bge.yaml",
+  "parameters": {
+    "model": {
+      "name": "BAAI/bge-base-en-v1.5",
+      "query_instruction": "Represent this sentence for searching relevant passages: ",
+      "document_instruction": "",
+      "normalize_embeddings": true,
+      "max_seq_length": 512,
+      "embedding_dim": 768,
+      "batch_size": 32,
+      "top_k": 100
+    }
+  },
+  "split": "test",
+  "num_queries_evaluated": 323,
+  "dropped_queries_not_in_qrels": [],
+  "metrics": {
+    "P@1": 0.4551083591331269,
+    "P@5": 0.3479876160990714,
+    "P@10": 0.27956656346749226,
+    "Recall@10": 0.17933533511012864,
+    "Recall@20": 0.22482149950351146,
+    "Recall@50": 0.28362207904099007,
+    "Recall@100": 0.3367923031847207,
+    "nDCG@5": 0.4001949327385019,
+    "nDCG@10": 0.37115645719029683,
+    "nDCG@20": 0.3490692137982387,
+    "MRR": 0.5607849037416147,
+    "MRR@10": 0.5556366406211607,
+    "MAP": 0.18308991266338917,
+    "MAP@100": 0.18308991266338917
+  },
+  "timing": {
+    "model_load_seconds": 24.5661,
+    "corpus_encoding_seconds": 120.2961,
+    "retrieve_seconds": 0.8651,
+    "total_seconds": 145.7273,
+    "latency_ms_per_query": 2.6784
+  },
+  "index": {
+    "type": "IndexFlatIP",
+    "embedding_dim": 768,
+    "num_vectors": 3633,
+    "size_bytes": 11160576
+  },
+  "device": "mps"
+}

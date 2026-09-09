@@ -1,7 +1,7 @@
 model,P@10,Recall@100,MAP,MRR@10,nDCG@10,Latency (ms/query)
 TF-IDF,0.2167,0.2372,0.1372,0.5062,0.3050,3.631
 BM25,0.2071,0.2295,0.1333,0.4939,0.2954,2.155
-BGE,Pending,Pending,Pending,Pending,Pending,Pending
+BGE,0.2796,0.3368,0.1831,0.5556,0.3712,2.678
 MedCPT,Pending,Pending,Pending,Pending,Pending,Pending
 BM25+MedCPT (RRF),Pending,Pending,Pending,Pending,Pending,Pending
 Hybrid+Reranker,Pending,Pending,Pending,Pending,Pending,Pending

@@ -51,7 +51,21 @@ on 2026-09-09:
 - Embedding dimension: **768**; max sequence length: **512**
 - Similarity: cosine (= dot product on normalized embeddings)
 
-Config: `configs/bge.yaml`. ⚪ Pending implementation.
+Config: `configs/bge.yaml`. Implementation: `src/biomedical_ir/dense.py`,
+`src/biomedical_ir/faiss_index.py` (exact `IndexFlatIP` search — the 3,633
+document corpus is small enough that approximate indexing isn't needed).
+
+**M3 — ✅ Complete.** Real test-split (n=323) results, run on Apple M1 Pro
+(MPS), from `results/metrics/bge.json`:
+
+| P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2796 | 0.3368 | 0.1831 | 0.5556 | 0.3712 | 2.678 ms/query (query-side only) |
+
+Corpus encoding (3,633 docs) took 120.3s on MPS; model load 24.6s. BGE's
+point estimates exceed both TF-IDF and BM25 on every metric above — the
+direction RQ2 asks about — but no significance test has run yet (M7), so
+RQ2 is not considered answered by this milestone alone.
 
 ## M4 — MedCPT (Query Encoder + Article Encoder)
 

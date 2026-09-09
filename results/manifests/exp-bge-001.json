@@ -1,0 +1,45 @@
+{
+  "experiment_id": "exp-bge-001",
+  "timestamp": "2026-09-09T16:24:17.453822+00:00",
+  "git_commit": "17abfc141e85dafa3edffdda6c2e3168faf9e7d9",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "BAAI/bge-base-en-v1.5",
+  "model_revision": null,
+  "parameters": {
+    "model": {
+      "name": "BAAI/bge-base-en-v1.5",
+      "query_instruction": "Represent this sentence for searching relevant passages: ",
+      "document_instruction": "",
+      "normalize_embeddings": true,
+      "max_seq_length": 512,
+      "embedding_dim": 768,
+      "batch_size": 32,
+      "top_k": 100
+    }
+  },
+  "seed": 42,
+  "device": "mps",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 145.7273,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "top_k": 100,
+  "embedding_dim": 768,
+  "index_size_bytes": 11160576
+}
