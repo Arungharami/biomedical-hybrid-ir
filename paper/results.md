@@ -56,7 +56,30 @@ significance claim is made here** for the same reason as above: paired
 testing is an M7 deliverable. RQ2 is not considered answered by this
 milestone alone.
 
-## MedCPT, hybrid RRF, cross-encoder reranking
+## MedCPT (M4, real numbers)
 
-⚪ **Pending.** These milestones (M4–M6) have not run. See the root README's
+Computed identically on Apple M1 Pro (MPS). Full metric set:
+`results/metrics/medcpt.json`. Run artifact: `results/runs/medcpt.trec`.
+Manifest: `results/manifests/exp-medcpt-001.json`.
+
+| Model | P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency (ms/query) |
+|---|---:|---:|---:|---:|---:|---:|
+| MedCPT (biomedical dense) | 0.2697 | 0.3488 | 0.1824 | 0.5487 | 0.3654 | 1.871 |
+
+MedCPT clearly beats both lexical baselines (TF-IDF, BM25) on every metric
+above. Against BGE specifically, however, the comparison is close rather
+than a clean win either way: MedCPT leads Recall@100 (0.3488 vs. 0.3368)
+and P@1 (0.4675 vs. 0.4551), while BGE leads P@10 (0.2796 vs. 0.2697), MAP
+(0.1831 vs. 0.1824), MRR@10 (0.5556 vs. 0.5487), and nDCG@10 (0.3712 vs.
+0.3654) — all margins are small. **H2** ("biomedical dense retrieval will
+outperform a general-purpose embedding system") is therefore **not**
+straightforwardly supported by these raw point estimates alone, reported
+honestly rather than framed as a confirmation. RQ3's premise (does
+domain-specific training help over pure lexical matching) is supported
+relative to TF-IDF/BM25, but the domain-vs-general dense comparison
+specifically remains open pending M7's paired significance test.
+
+## Hybrid RRF, cross-encoder reranking
+
+⚪ **Pending.** These milestones (M5–M6) have not run. See the root README's
 Experiment status table for current milestone status.
