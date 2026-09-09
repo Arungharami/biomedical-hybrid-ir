@@ -66,10 +66,12 @@ export default function EfficiencyPage() {
       </Card>
 
       <Card title="nDCG@10 vs. latency" className="mt-6">
-        <img
-          src="https://raw.githubusercontent.com/Arungharami/biomedical-hybrid-ir/main/results/figures/figure9_ndcg_vs_latency.png"
+        <Image
+          src="/figures/figure9_ndcg_vs_latency.png"
           alt="Scatter plot of nDCG@10 versus query latency (log scale) for all six models"
-          className="mx-auto max-w-full rounded-md border border-border"
+          width={960}
+          height={660}
+          className="mx-auto h-auto w-full max-w-2xl rounded-md border border-border"
         />
         <p className="mt-2 text-xs text-text-muted">
           Cross-encoder reranking sits roughly three orders of magnitude further right than any

@@ -8,7 +8,7 @@ data/processed/ artifacts -- never fabricates a number. The portal
 Produces, under web/data/:
     dataset.json        research-status.json   models.json
     experiments.json     metrics.json           comparison.json
-    error-analysis.json  efficiency.json
+    error-analysis.json  efficiency.json        search-demo.json
 
 Usage:
     python scripts/export_web_results.py
@@ -23,6 +23,23 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
+
+from biomedical_ir.data import load_nfcorpus_from_raw  # noqa: E402
+from biomedical_ir.evaluation import load_run_json  # noqa: E402
+
+# A curated set of real test queries for the /search demo (Section 37).
+# Chosen to illustrate different real phenomena documented elsewhere on the
+# portal -- every ranking shown for these is genuine, precomputed pipeline
+# output (results/runs/*.json), never a live model call.
+SEARCH_DEMO_QUERY_IDS = [
+    "PLAIN-2040",  # "salmon" -- BM25 exact-match win, MedCPT miss (see error-analysis)
+    "PLAIN-12",  # MedCPT recovers where BM25 misses entirely
+    "PLAIN-1008",  # "deafness" -- BM25 zero-vocabulary-overlap failure
+    "PLAIN-33",  # appears in both BM25-wins and MedCPT-wins examples
+    "PLAIN-2490",
+    "PLAIN-227",
+    "PLAIN-133",
+]
 
 DATA_PROCESSED = REPO_ROOT / "data" / "processed"
 RESULTS = REPO_ROOT / "results"
@@ -155,6 +172,38 @@ def export_efficiency() -> None:
 
 def export_research_status() -> None:
     write_json(WEB_DATA / "research-status.json", RESEARCH_STATUS)
+
+
+def export_search_demo(top_k: int = 5) -> None:
+    """Real top-k rankings for a curated set of test queries, across all six
+    models -- genuine precomputed pipeline output for the /search demo page.
+    """
+    data = load_nfcorpus_from_raw(REPO_ROOT / "data" / "raw" / "nfcorpus")
+    runs = {
+        model: load_run_json(RESULTS / "runs" / f"{model}.json")
+        for model in ["bm25", "medcpt", "hybrid_rrf", "hybrid_reranked"]
+    }
+
+    demo = []
+    for qid in SEARCH_DEMO_QUERY_IDS:
+        if qid not in data.queries:
+            continue
+        entry = {"query_id": qid, "query": data.queries[qid], "results": {}}
+        for model, run in runs.items():
+            docs = run.get(qid, [])[:top_k]
+            entry["results"][model] = [
+                {
+                    "doc_id": doc_id,
+                    "score": score,
+                    "title": data.corpus.get(doc_id, {}).get("title", ""),
+                    "snippet": (data.corpus.get(doc_id, {}).get("text", "") or "")[:200],
+                    "relevant": data.qrels.get("test", {}).get(qid, {}).get(doc_id, 0) > 0,
+                }
+                for doc_id, score in docs
+            ]
+        demo.append(entry)
+
+    write_json(WEB_DATA / "search-demo.json", demo)
 
 
 def main() -> int:
