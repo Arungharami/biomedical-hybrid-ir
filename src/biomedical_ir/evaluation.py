@@ -196,6 +196,27 @@ def save_run_json(run: RunType, path: str | Path) -> Path:
     return path
 
 
+def load_run_json(path: str | Path) -> RunType:
+    """Load a run previously written by :func:`save_run_json`.
+
+    Unlike :func:`load_trec_run`, this preserves queries with an EMPTY
+    result list as an explicit ``[]`` entry (TREC format has no way to
+    represent "this query retrieved nothing" -- :func:`save_trec_run` simply
+    writes no lines for it, so :func:`load_trec_run` cannot distinguish
+    "empty" from "never existed"). This matters for paired statistical
+    testing (:mod:`biomedical_ir.statistics`), which requires every model's
+    per-query score array to cover the exact same query ID set -- e.g. 25 of
+    BM25's 323 test queries retrieve zero documents (see
+    ``results/metrics/bm25.json``), and those queries must still appear
+    (scoring 0.0 on every measure) rather than silently vanishing from one
+    side of a comparison.
+    """
+    path = Path(path)
+    with open(path) as f:
+        raw = json.load(f)
+    return {qid: [(d, float(s)) for d, s in docs] for qid, docs in raw.items()}
+
+
 def load_trec_run(path: str | Path) -> RunType:
     """Parse a TREC-format run file back into ``{qid: [(docid, score), ...]}``."""
     run: dict[str, list[tuple[str, float]]] = {}
