@@ -1,0 +1,67 @@
+[
+  {
+    "milestone": "M0",
+    "description": "Repository foundation, packaging, configs, CI skeleton",
+    "status": "complete"
+  },
+  {
+    "milestone": "M1",
+    "description": "Dataset ingestion + validation",
+    "status": "complete"
+  },
+  {
+    "milestone": "M2",
+    "description": "TF-IDF + BM25 baselines",
+    "status": "complete"
+  },
+  {
+    "milestone": "M3",
+    "description": "BGE general dense retrieval",
+    "status": "complete"
+  },
+  {
+    "milestone": "M4",
+    "description": "MedCPT biomedical dense retrieval",
+    "status": "complete"
+  },
+  {
+    "milestone": "M5",
+    "description": "Hybrid RRF",
+    "status": "complete"
+  },
+  {
+    "milestone": "M6",
+    "description": "MedCPT cross-encoder reranking",
+    "status": "complete"
+  },
+  {
+    "milestone": "M7",
+    "description": "Full evaluation, statistical tests, efficiency analysis",
+    "status": "complete"
+  },
+  {
+    "milestone": "M8",
+    "description": "Error analysis",
+    "status": "complete"
+  },
+  {
+    "milestone": "M9",
+    "description": "Colab notebooks",
+    "status": "complete"
+  },
+  {
+    "milestone": "M10",
+    "description": "Paper artifacts (figures, BibTeX)",
+    "status": "complete"
+  },
+  {
+    "milestone": "M11",
+    "description": "Next.js research portal",
+    "status": "complete"
+  },
+  {
+    "milestone": "M12",
+    "description": "Vercel deployment",
+    "status": "in_progress"
+  }
+]

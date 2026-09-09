@@ -1,0 +1,355 @@
+{
+  "tfidf": {
+    "model": "tfidf",
+    "config_path": "configs/tfidf.yaml",
+    "parameters": {
+      "tfidf": {
+        "sublinear_tf": true,
+        "norm": "l2",
+        "smooth_idf": true,
+        "use_idf": true,
+        "ngram_range": [
+          1,
+          1
+        ],
+        "min_df": 1,
+        "max_df": 1.0,
+        "top_k": 100
+      },
+      "lexical_preprocessing": {
+        "unicode_normalize": "NFKC",
+        "lowercase": true,
+        "strip_punctuation": true,
+        "remove_stopwords": false,
+        "tokenizer": "regex",
+        "min_token_len": 1
+      }
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "dropped_queries_not_in_qrels": [],
+    "metrics": {
+      "P@1": 0.42724458204334365,
+      "P@5": 0.2860681114551087,
+      "P@10": 0.21671826625387028,
+      "Recall@10": 0.1529122039036005,
+      "Recall@20": 0.1762352941704794,
+      "Recall@50": 0.2117204485888063,
+      "Recall@100": 0.23717554511862657,
+      "nDCG@5": 0.336584948320183,
+      "nDCG@10": 0.3050301124234175,
+      "nDCG@20": 0.2803341493057147,
+      "MRR": 0.5102274104376875,
+      "MRR@10": 0.5061772077251953,
+      "MAP": 0.13716535275587025,
+      "MAP@100": 0.13716535275587025
+    },
+    "timing": {
+      "fit_seconds": 0.3124,
+      "retrieve_seconds": 1.1727,
+      "total_seconds": 1.4851,
+      "latency_ms_per_query": 3.6307
+    }
+  },
+  "bm25": {
+    "model": "bm25",
+    "config_path": "configs/bm25.yaml",
+    "parameters": {
+      "bm25": {
+        "k1": 1.2,
+        "b": 0.75,
+        "top_k": 100
+      },
+      "lexical_preprocessing": {
+        "unicode_normalize": "NFKC",
+        "lowercase": true,
+        "strip_punctuation": true,
+        "remove_stopwords": false,
+        "tokenizer": "regex",
+        "min_token_len": 1
+      }
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "dropped_queries_not_in_qrels": [],
+    "metrics": {
+      "P@1": 0.42105263157894735,
+      "P@5": 0.2681114551083595,
+      "P@10": 0.207120743034056,
+      "Recall@10": 0.14239950374842153,
+      "Recall@20": 0.16688462262554385,
+      "Recall@50": 0.20203945489599073,
+      "Recall@100": 0.22950034813369363,
+      "nDCG@5": 0.32405816289543393,
+      "nDCG@10": 0.2954181611702252,
+      "nDCG@20": 0.2700537253387668,
+      "MRR": 0.49870840581139003,
+      "MRR@10": 0.4938584205612071,
+      "MAP": 0.13332452396576447,
+      "MAP@100": 0.13332452396576447
+    },
+    "timing": {
+      "fit_seconds": 0.2416,
+      "retrieve_seconds": 0.6962,
+      "total_seconds": 0.9378,
+      "latency_ms_per_query": 2.1554
+    }
+  },
+  "bge": {
+    "model": "bge",
+    "config_path": "configs/bge.yaml",
+    "parameters": {
+      "model": {
+        "name": "BAAI/bge-base-en-v1.5",
+        "query_instruction": "Represent this sentence for searching relevant passages: ",
+        "document_instruction": "",
+        "normalize_embeddings": true,
+        "max_seq_length": 512,
+        "embedding_dim": 768,
+        "batch_size": 32,
+        "top_k": 100
+      }
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "dropped_queries_not_in_qrels": [],
+    "metrics": {
+      "P@1": 0.4551083591331269,
+      "P@5": 0.3479876160990714,
+      "P@10": 0.27956656346749226,
+      "Recall@10": 0.17933533511012864,
+      "Recall@20": 0.22482149950351146,
+      "Recall@50": 0.28362207904099007,
+      "Recall@100": 0.3367923031847207,
+      "nDCG@5": 0.4001949327385019,
+      "nDCG@10": 0.37115645719029683,
+      "nDCG@20": 0.3490692137982387,
+      "MRR": 0.5607849037416147,
+      "MRR@10": 0.5556366406211607,
+      "MAP": 0.18308991266338917,
+      "MAP@100": 0.18308991266338917
+    },
+    "timing": {
+      "model_load_seconds": 24.5661,
+      "corpus_encoding_seconds": 120.2961,
+      "retrieve_seconds": 0.8651,
+      "total_seconds": 145.7273,
+      "latency_ms_per_query": 2.6784
+    },
+    "index": {
+      "type": "IndexFlatIP",
+      "embedding_dim": 768,
+      "num_vectors": 3633,
+      "size_bytes": 11160576
+    },
+    "device": "mps"
+  },
+  "medcpt": {
+    "model": "medcpt",
+    "config_path": "configs/medcpt.yaml",
+    "parameters": {
+      "model": {
+        "query_encoder": "ncbi/MedCPT-Query-Encoder",
+        "article_encoder": "ncbi/MedCPT-Article-Encoder",
+        "query_max_length": 64,
+        "article_max_length": 512,
+        "batch_size": 32,
+        "top_k": 100
+      }
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "dropped_queries_not_in_qrels": [],
+    "metrics": {
+      "P@1": 0.4674922600619195,
+      "P@5": 0.3380804953560376,
+      "P@10": 0.2696594427244582,
+      "Recall@10": 0.18278101709661937,
+      "Recall@20": 0.2238262237138603,
+      "Recall@50": 0.28233895164243383,
+      "Recall@100": 0.34876271145714066,
+      "nDCG@5": 0.3941407557557842,
+      "nDCG@10": 0.3654480183288019,
+      "nDCG@20": 0.3451389061258514,
+      "MRR": 0.5536566615922974,
+      "MRR@10": 0.5487136960047175,
+      "MAP": 0.18240741727913135,
+      "MAP@100": 0.18240741727913135
+    },
+    "timing": {
+      "model_load_seconds": 52.3489,
+      "corpus_encoding_seconds": 141.9411,
+      "retrieve_seconds": 0.6045,
+      "total_seconds": 194.8945,
+      "latency_ms_per_query": 1.8714
+    },
+    "index": {
+      "type": "IndexFlatIP",
+      "embedding_dim": 768,
+      "num_vectors": 3633,
+      "size_bytes": 11160576
+    },
+    "device": "mps"
+  },
+  "hybrid_rrf": {
+    "model": "hybrid_rrf",
+    "config_path": "configs/hybrid.yaml",
+    "parameters": {
+      "fusion": {
+        "k": 60,
+        "candidate_depth": 100,
+        "top_k": 100
+      },
+      "components": [
+        "bm25",
+        "medcpt"
+      ]
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "dropped_queries_not_in_qrels": [],
+    "metrics": {
+      "P@1": 0.47987616099071206,
+      "P@5": 0.3343653250773998,
+      "P@10": 0.2597523219814242,
+      "Recall@10": 0.17866854288827783,
+      "Recall@20": 0.2182180942219288,
+      "Recall@50": 0.27882590517185285,
+      "Recall@100": 0.33890539807131126,
+      "nDCG@5": 0.3948138685458334,
+      "nDCG@10": 0.36200066337340553,
+      "nDCG@20": 0.3375800705575414,
+      "MRR": 0.5736245146960592,
+      "MRR@10": 0.5678436286795419,
+      "MAP": 0.18093720173656336,
+      "MAP@100": 0.18093720173656336
+    },
+    "timing": {
+      "fusion_seconds": 0.013732,
+      "fusion_latency_ms_per_query": 0.0425,
+      "component_bm25_latency_ms_per_query": 2.1554,
+      "component_medcpt_latency_ms_per_query": 1.8714,
+      "latency_ms_per_query": 4.0693,
+      "latency_note": "latency_ms_per_query = bm25 retrieval + medcpt retrieval + RRF fusion, since a real hybrid query pays both component retrievers' cost."
+    }
+  },
+  "hybrid_reranked": {
+    "model": "hybrid_reranked",
+    "config_path": "configs/reranker.yaml",
+    "parameters": {
+      "reranker": {
+        "model": "ncbi/MedCPT-Cross-Encoder",
+        "article_join": "{title}. {text}",
+        "candidate_pool": 50,
+        "max_length": 512,
+        "batch_size": 32,
+        "top_k": 100
+      },
+      "candidate_pool": 50
+    },
+    "split": "test",
+    "num_queries_evaluated": 323,
+    "metrics": {
+      "P@1": 0.48297213622291024,
+      "P@5": 0.3436532507739942,
+      "P@10": 0.27647058823529413,
+      "Recall@10": 0.1894791033587908,
+      "Recall@20": 0.2290852213142771,
+      "Recall@50": 0.2781895102630121,
+      "Recall@100": 0.2781895102630121,
+      "nDCG@5": 0.398606268151482,
+      "nDCG@10": 0.37305120057592916,
+      "nDCG@20": 0.34900630324660437,
+      "MRR": 0.5713327686041324,
+      "MRR@10": 0.5669738070666862,
+      "MAP": 0.17604197555430498,
+      "MAP@100": 0.17604197555430498
+    },
+    "timing": {
+      "model_load_seconds": 36.8655,
+      "reranking_seconds": 627.1288,
+      "reranking_latency_ms_per_query": 1941.5751,
+      "hybrid_rrf_latency_ms_per_query": 4.0693,
+      "latency_ms_per_query": 1945.6444,
+      "latency_note": "latency_ms_per_query = hybrid RRF's end-to-end latency (bm25 + medcpt + fusion) + this pool's reranking time, since a real query pays the full pipeline's cost, not reranking alone."
+    },
+    "device": "mps"
+  },
+  "reranker_pool_ablation": {
+    "ablation": "A6 - candidate pool size sweep",
+    "pool_sizes_tested": [
+      20,
+      50,
+      100
+    ],
+    "default_pool": 50,
+    "results_by_pool": {
+      "20": {
+        "candidate_pool": 20,
+        "num_queries_evaluated": 323,
+        "metrics": {
+          "P@1": 0.48606811145510836,
+          "P@5": 0.3436532507739941,
+          "P@10": 0.2622291021671826,
+          "Recall@10": 0.18109575360434163,
+          "Recall@20": 0.21738492600544745,
+          "Recall@50": 0.21738492600544745,
+          "Recall@100": 0.21738492600544745,
+          "nDCG@5": 0.4005230853382566,
+          "nDCG@10": 0.3640496027343614,
+          "nDCG@20": 0.3380124483620041,
+          "MRR": 0.5699060997726758,
+          "MRR@10": 0.5660634429210282,
+          "MAP": 0.1585620078573776,
+          "MAP@100": 0.1585620078573776
+        },
+        "reranking_seconds": 247.2278,
+        "reranking_latency_ms_per_query": 765.411
+      },
+      "50": {
+        "candidate_pool": 50,
+        "num_queries_evaluated": 323,
+        "metrics": {
+          "P@1": 0.48297213622291024,
+          "P@5": 0.3436532507739942,
+          "P@10": 0.27647058823529413,
+          "Recall@10": 0.1894791033587908,
+          "Recall@20": 0.2290852213142771,
+          "Recall@50": 0.2781895102630121,
+          "Recall@100": 0.2781895102630121,
+          "nDCG@5": 0.398606268151482,
+          "nDCG@10": 0.37305120057592916,
+          "nDCG@20": 0.34900630324660437,
+          "MRR": 0.5713327686041324,
+          "MRR@10": 0.5669738070666862,
+          "MAP": 0.17604197555430498,
+          "MAP@100": 0.17604197555430498
+        },
+        "reranking_seconds": 627.1288,
+        "reranking_latency_ms_per_query": 1941.5751
+      },
+      "100": {
+        "candidate_pool": 100,
+        "num_queries_evaluated": 323,
+        "metrics": {
+          "P@1": 0.48606811145510836,
+          "P@5": 0.33869969040247716,
+          "P@10": 0.2690402476780185,
+          "Recall@10": 0.1857975042902804,
+          "Recall@20": 0.22689788692271842,
+          "Recall@50": 0.2906486633136138,
+          "Recall@100": 0.33890539807131126,
+          "nDCG@5": 0.39423443642246947,
+          "nDCG@10": 0.3664146015402638,
+          "nDCG@20": 0.34567440793146204,
+          "MRR": 0.5714969600468649,
+          "MRR@10": 0.5668067226890755,
+          "MAP": 0.18459637507008964,
+          "MAP@100": 0.18459637507008964
+        },
+        "reranking_seconds": 1265.5613,
+        "reranking_latency_ms_per_query": 3918.1466
+      }
+    }
+  }
+}

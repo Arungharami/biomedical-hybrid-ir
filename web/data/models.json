@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tfidf",
+    "name": "TF-IDF",
+    "family": "Classical lexical",
+    "huggingface": null,
+    "description": "scikit-learn TfidfVectorizer (sublinear TF, L2 norm, smoothed IDF) + cosine similarity.",
+    "config": "configs/tfidf.yaml"
+  },
+  {
+    "id": "bm25",
+    "name": "BM25",
+    "family": "Classical lexical",
+    "huggingface": null,
+    "description": "From-scratch Okapi BM25 (k1=1.2, b=0.75, frozen literature defaults). Robertson/Sparck-Jones IDF.",
+    "config": "configs/bm25.yaml"
+  },
+  {
+    "id": "bge",
+    "name": "BGE",
+    "family": "General dense retrieval",
+    "huggingface": "BAAI/bge-base-en-v1.5",
+    "description": "CLS pooling, L2-normalized embeddings, query-only instruction prefix. FAISS IndexFlatIP.",
+    "config": "configs/bge.yaml"
+  },
+  {
+    "id": "medcpt",
+    "name": "MedCPT",
+    "family": "Biomedical dense retrieval",
+    "huggingface": "ncbi/MedCPT-Query-Encoder + ncbi/MedCPT-Article-Encoder",
+    "description": "Two-tower biomedical retriever, CLS pooling, no normalization (raw dot product). Articles as [title, text] pairs.",
+    "config": "configs/medcpt.yaml"
+  },
+  {
+    "id": "hybrid_rrf",
+    "name": "BM25 + MedCPT (RRF)",
+    "family": "Hybrid retrieval",
+    "huggingface": null,
+    "description": "Reciprocal Rank Fusion of BM25 and MedCPT rankings, k=60. Operates on rank positions, not raw scores.",
+    "config": "configs/hybrid.yaml"
+  },
+  {
+    "id": "hybrid_reranked",
+    "name": "Hybrid + MedCPT Cross-Encoder",
+    "family": "Biomedical reranking",
+    "huggingface": "ncbi/MedCPT-Cross-Encoder",
+    "description": "Reranks the hybrid RRF run's top candidates (default pool=50) with a biomedical cross-encoder.",
+    "config": "configs/reranker.yaml"
+  }
+]

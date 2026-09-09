@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f4f2ee;
+  --border: #e4e1d9;
+  --text-primary: #17160f;
+  --text-secondary: #57544a;
+  --text-muted: #8a8778;
+  --accent: #1d4ed8;
+  --accent-soft: #eef2ff;
+  --good: #15803d;
+  --warn: #b45309;
+  --bad: #b91c1c;
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #c98500;
+  --series-5: #d5507f;
+  --series-6: #147a14;
+}
+
+.dark {
+  --background: #121210;
+  --surface: #1a1a17;
+  --surface-2: #212019;
+  --border: #34322a;
+  --text-primary: #f4f2ec;
+  --text-secondary: #c3c0b3;
+  --text-muted: #8f8c7d;
+  --accent: #6d93ef;
+  --accent-soft: #1c2540;
+  --good: #4ade80;
+  --warn: #fbbf24;
+  --bad: #f87171;
+
+  --series-1: #3987e5;
+  --series-2: #d97a4e;
+  --series-3: #22c48f;
+  --series-4: #d99a1f;
+  --series-5: #e07299;
+  --series-6: #3aa33a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
