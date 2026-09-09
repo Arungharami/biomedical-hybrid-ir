@@ -34,8 +34,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from .utils import REPO_ROOT
-
 DATASET_NAME = "BeIR/nfcorpus"
 QRELS_DATASET_NAME = "BeIR/nfcorpus-qrels"
 SPLITS = ("train", "dev", "test")
