@@ -5,6 +5,8 @@
 Course project for **CAP 6776 — Information Retrieval**. Domain: healthcare /
 biomedical information retrieval.
 
+**🔗 Live research portal: [biomedical-hybrid-ir.vercel.app](https://biomedical-hybrid-ir.vercel.app)**
+
 > **Status legend:** ✅ Complete · 🟡 In progress · ⚪ Pending · ❌ Failed
 > An experiment is only marked ✅ once its output artifact exists under
 > `results/` and passes validation — see [Experiment status](#experiment-status).
@@ -130,7 +132,7 @@ status and verification details.
 | M9 | Colab notebooks | ✅ Complete |
 | M10 | Paper artifacts (figures, BibTeX) | ✅ Complete |
 | M11 | Next.js research portal | ✅ Complete |
-| M12 | Vercel deployment | 🟡 In progress |
+| M12 | Vercel deployment | ✅ Complete |
 
 No experiment is marked complete unless its artifact exists under `results/`
 and passes the validation checks in `tests/`.
@@ -197,14 +199,17 @@ artifacts where present. See [docs/reproducibility.md](docs/reproducibility.md).
 
 ## Research portal
 
+**Live: [biomedical-hybrid-ir.vercel.app](https://biomedical-hybrid-ir.vercel.app)**
+
 `web/` — Next.js 16 (App Router) + TypeScript + Tailwind CSS, 13 routes
 (overview, dataset, pipeline, models, experiments, results, evaluation,
 error-analysis, efficiency, search demo, paper, reproducibility, about),
 all reading real exported JSON from `web/data/` (`scripts/export_web_results.py`)
 — never fabricated, never a live model call. Verified with `npm run
-{typecheck,lint,build}` and real Playwright screenshots (desktop, mobile
-nav, dark/light theme). Production Vercel URL will be added here once M12
-completes. See [docs/architecture.md](docs/architecture.md#design-decision-vercel-never-runs-the-transformer-models)
+{typecheck,lint,build}`, real Playwright screenshots (desktop, mobile nav,
+dark/light theme) both locally and against the live production URL (all 13
+routes return 200 with real data confirmed present), and a real figure
+asset load. See [docs/architecture.md](docs/architecture.md#design-decision-vercel-never-runs-the-transformer-models)
 for why the portal never runs a transformer model itself.
 
 ## Paper
