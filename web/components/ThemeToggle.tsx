@@ -26,6 +26,13 @@ export default function ThemeToggle() {
         : window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "light";
+    // Reading the theme requires browser-only APIs (localStorage, matchMedia)
+    // unavailable during SSR, so it can only happen after mount -- the
+    // one-time sync-from-external-source case react-hooks/set-state-in-effect
+    // otherwise warns about. applyTheme() is idempotent with the inline
+    // anti-FOUC script in layout.tsx, which already set the DOM class
+    // correctly before this runs; this only syncs this component's own icon.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(initial);
     applyTheme(initial);
   }, []);

@@ -216,6 +216,7 @@ def main() -> int:
     export_error_analysis()
     export_efficiency()
     export_research_status()
+    export_search_demo()
     print(f"\n[export_web_results] done -- {len(list(WEB_DATA.glob('*.json')))} files in {WEB_DATA}")
     return 0
 

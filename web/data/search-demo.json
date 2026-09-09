@@ -1,0 +1,1044 @@
+[
+  {
+    "query_id": "PLAIN-2040",
+    "query": "salmon",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-4933",
+          "score": 10.245151665384657,
+          "title": "Polybrominated diphenyl ethers (PBDEs) in farmed and wild salmon marketed in the Northeastern United States.",
+          "snippet": "Recently, we reported on the analysis of polychlorinated biphenyls (PCBs) and chlorinated pesticides in farmed Atlantic salmon (Salmo salar) from Maine, eastern Canada, and Norway, and wild Alaskan Ch",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-3024",
+          "score": 9.596047988868982,
+          "title": "Dietary lipids modulate methylmercury toxicity in Atlantic salmon.",
+          "snippet": "This experiment aimed to study the molecular toxicity of methylmercury (MeHg) in liver, brain and white muscle of Atlantic salmon fed a diet based on fish oil (FO, high dietary n-3/n-6 ratio) compared",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4936",
+          "score": 9.521561723935204,
+          "title": "Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid.",
+          "snippet": "Food and nutrition professionals question whether supplement-sourced nutrients appear to be equivalent to those derived from natural food sources. We compared the nutritional availability of docosahex",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4943",
+          "score": 8.73228675606504,
+          "title": "Persistent organic pollutants in fish oil supplements on the Canadian market: polychlorinated biphenyls and organochlorine insecticides.",
+          "snippet": "Fish and seal oil dietary supplements, marketed to be rich in omega-3 fatty acids, are frequently consumed by Canadians. Samples of these supplements (n = 30) were collected in Vancouver, Canada, betw",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4961",
+          "score": 8.641817768315693,
+          "title": "Haff disease after eating salmon.",
+          "snippet": "While fish consumption is considered a component of a heart-healthy diet, many illnesses have been associated with eating contaminated fish. The authors describe two cases of muscle weakness and rhabd",
+          "relevant": true
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-4936",
+          "score": 63.73686599731445,
+          "title": "Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid.",
+          "snippet": "Food and nutrition professionals question whether supplement-sourced nutrients appear to be equivalent to those derived from natural food sources. We compared the nutritional availability of docosahex",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4964",
+          "score": 62.387229919433594,
+          "title": "Microbial quality of raw aquacultured fish fillets procured from Internet and local retail markets.",
+          "snippet": "The microbial quality of raw fillets of aquacultured catfish, salmon, tilapia, and trout was evaluated. A total of 272 fillets from nine local and nine Internet retail markets were tested. Mean values",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2751",
+          "score": 62.247222900390625,
+          "title": "Global fishmeal and fish-oil supply: inputs, outputs and markets.",
+          "snippet": "Recent data on fishmeal and fish-oil supply are presented identifying key producer countries and raw material sources and distinguishing between whole fish and by-products. The conversion of these raw",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4968",
+          "score": 61.97285079956055,
+          "title": "Cholera and other types of vibriosis: a story of human pandemics and oysters on the half shell.",
+          "snippet": "Vibrios are ubiquitous in the aquatic environment and are commonly present in or on shellfish and other seafood. A small subset of strains/species are able to cause human disease, including the choler",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-5170",
+          "score": 61.45016860961914,
+          "title": "Microbiological quality of sushi from sushi bars and retailers.",
+          "snippet": "Sushi is a traditional Japanese food, mostly consisting of rice and raw fish. Fish is considered a healthy food, but as with other animal products, consumption of raw muscle incurs potential health ri",
+          "relevant": true
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-4936",
+          "score": 0.032266458495966696,
+          "title": "Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid.",
+          "snippet": "Food and nutrition professionals question whether supplement-sourced nutrients appear to be equivalent to those derived from natural food sources. We compared the nutritional availability of docosahex",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4964",
+          "score": 0.03128054740957967,
+          "title": "Microbial quality of raw aquacultured fish fillets procured from Internet and local retail markets.",
+          "snippet": "The microbial quality of raw fillets of aquacultured catfish, salmon, tilapia, and trout was evaluated. A total of 272 fillets from nine local and nine Internet retail markets were tested. Mean values",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4961",
+          "score": 0.030536130536130537,
+          "title": "Haff disease after eating salmon.",
+          "snippet": "While fish consumption is considered a component of a heart-healthy diet, many illnesses have been associated with eating contaminated fish. The authors describe two cases of muscle weakness and rhabd",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4943",
+          "score": 0.02738970588235294,
+          "title": "Persistent organic pollutants in fish oil supplements on the Canadian market: polychlorinated biphenyls and organochlorine insecticides.",
+          "snippet": "Fish and seal oil dietary supplements, marketed to be rich in omega-3 fatty acids, are frequently consumed by Canadians. Samples of these supplements (n = 30) were collected in Vancouver, Canada, betw",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2396",
+          "score": 0.025362318840579712,
+          "title": "The role of persistent organic pollutants in the worldwide epidemic of type 2 diabetes mellitus and the possible connection to Farmed Atlantic Salm...",
+          "snippet": "Rates of type 2 diabetes mellitus (T2DM), both in the United States and worldwide, have been rising at an alarming rate over the last two decades. Because this disease is viewed as primarily being att",
+          "relevant": true
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-4936",
+          "score": 14.538923263549805,
+          "title": "Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid.",
+          "snippet": "Food and nutrition professionals question whether supplement-sourced nutrients appear to be equivalent to those derived from natural food sources. We compared the nutritional availability of docosahex",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4596",
+          "score": 14.020233154296875,
+          "title": "Non-typhoidal salmonellosis: emerging problems.",
+          "snippet": "Two major changes in the epidemiology of non-typhoidal salmonellosis have occurred during the second half of the 20th century. First, Salmonella typhimurium strains resistant to multiple antibiotics h",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4354",
+          "score": 12.09927749633789,
+          "title": "Scientific and technical factors affecting the setting of Salmonella criteria for raw poultry: a global perspective.",
+          "snippet": "Concerns about foodborne salmonellosis have led many countries to introduce microbiological criteria for certain food products. If such criteria are not well-grounded in science, they could be an unju",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4961",
+          "score": 11.806699752807617,
+          "title": "Haff disease after eating salmon.",
+          "snippet": "While fish consumption is considered a component of a heart-healthy diet, many illnesses have been associated with eating contaminated fish. The authors describe two cases of muscle weakness and rhabd",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2396",
+          "score": 11.144182205200195,
+          "title": "The role of persistent organic pollutants in the worldwide epidemic of type 2 diabetes mellitus and the possible connection to Farmed Atlantic Salm...",
+          "snippet": "Rates of type 2 diabetes mellitus (T2DM), both in the United States and worldwide, have been rising at an alarming rate over the last two decades. Because this disease is viewed as primarily being att",
+          "relevant": true
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-12",
+    "query": "Exploiting Autophagy to Live Longer",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-5042",
+          "score": 11.103953432266536,
+          "title": "Flavanols, the Kuna, Cocoa Consumption, and Nitric Oxide",
+          "snippet": "The Kuna Indians who reside in an archipelago on the Caribbean Coast of Panama have very low blood pressure levels, live longer than other Panamanians, and have a reduced frequency of myocardial infar",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4711",
+          "score": 6.367886983084186,
+          "title": "Licorice and licochalcone-A induce autophagy in LNCaP prostate cancer cells by suppression of Bcl-2 expression and the mTOR pathway.",
+          "snippet": "Licorice is a common Chinese medicinal herb with antitumor activity. Some components in licorice root have been shown to induce cell cycle arrest or apoptosis in cancer cells. This paper demonstrates ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4812",
+          "score": 6.230990890936374,
+          "title": "Much meat, much malady: changing perceptions of the epidemiology of hepatitis E.",
+          "snippet": "Hepatitis E, which is caused by hepatitis E virus (HEV), may now be considered a zoonosis as well as an anthroponosis. Pigs, boars and deer have been identified as reservoirs, and their flesh and entr",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-721",
+          "score": 5.315522723001499,
+          "title": "Bismuth therapy in gastrointestinal diseases.",
+          "snippet": "Bismuth therapy has shown efficacy against two major gastrointestinal disorders: peptic ulcer disease and diarrhea. In peptic ulcer disease it is as effective as the H2-receptor antagonists, costs con",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1661",
+          "score": 4.74709913775709,
+          "title": "Lumbar disc degeneration: correlation with age, sex, and spine level in 600 autopsy specimens.",
+          "snippet": "Using data from 16 published reports, the authors correlated macroscopic disc degeneration grades with age, sex, and spine level in 600 lumbar intervertebral discs from 273 cadavers (ages: 0-96 years)",
+          "relevant": false
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-2514",
+          "score": 63.36650085449219,
+          "title": "Why human lifespan is rapidly increasing: solving \"longevity riddle\" with \"revealed-slow-aging\" hypothesis",
+          "snippet": "Healthy life span is rapidly increasing and human aging seems to be postponed. As recently exclaimed in Nature, these findings are so perplexing that they can be dubbed the 'longevity riddle'. To expl",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2335",
+          "score": 61.8968620300293,
+          "title": "Xenohormesis: health benefits from an eon of plant stress response evolution",
+          "snippet": "Xenohormesis is a biological principle that explains how environmentally stressed plants produce bioactive compounds that can confer stress resistance and survival benefits to animals that consume the",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2325",
+          "score": 59.60249710083008,
+          "title": "Longevity. The allostatic load of dietary restriction.",
+          "snippet": "Restriction of food intake by 10-50% of ad libitum on a per unit of weight or energy content basis can extend the lifespan of a wide variety of species and prevent or delay age-related disease. This r",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2512",
+          "score": 59.11332321166992,
+          "title": "Extending healthy ageing: nutrient sensitive pathway and centenarian population",
+          "snippet": "Ageing is a challenge for any living organism and human longevity is a complex phenotype. With increasing life expectancy, maintaining long-term health, functionality and well-being during ageing has ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2513",
+          "score": 58.9814338684082,
+          "title": "Insights into the beneficial effect of caloric/ dietary restriction for a healthy and prolonged life",
+          "snippet": "Over the last several years, new evidence has kept pouring in about the remarkable effect of caloric restriction (CR) on the conspicuous bedfellows- aging and cancer. Through the use of various animal",
+          "relevant": true
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-2603",
+          "score": 0.02821939586645469,
+          "title": "FADD: a regulator of life and death.",
+          "snippet": "FAS-associated protein with death domain (FADD) is the key adaptor protein transmitting apoptotic signals mediated by the main death receptors (DRs). Besides being an essential instrument in cell deat",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2136",
+          "score": 0.02817460317460317,
+          "title": "The impact of cow's milk-mediated mTORC1-signaling in the initiation and progression of prostate cancer",
+          "snippet": "Prostate cancer (PCa) is dependent on androgen receptor signaling and aberrations of the PI3K-Akt-mTORC1 pathway mediating excessive and sustained growth signaling. The nutrient-sensitive kinase mTORC",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2501",
+          "score": 0.026140526140526144,
+          "title": "Amino acid sensing and regulation of mTORC1.",
+          "snippet": "Amino acids play fundamental roles in the cell both as the building blocks of new proteins and as metabolic precursors. To adapt to their limitation during periods of protein starvation, multiple adap",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4711",
+          "score": 0.02603002235707442,
+          "title": "Licorice and licochalcone-A induce autophagy in LNCaP prostate cancer cells by suppression of Bcl-2 expression and the mTOR pathway.",
+          "snippet": "Licorice is a common Chinese medicinal herb with antitumor activity. Some components in licorice root have been shown to induce cell cycle arrest or apoptosis in cancer cells. This paper demonstrates ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1376",
+          "score": 0.02591362126245847,
+          "title": "Sociodemographic and Lifestyle Statistics of Oldest Old People (>80 Years) Living in Ikaria Island: The Ikaria Study",
+          "snippet": "Background. There are places around the world where people live longer and they are active past the age of 100 years, sharing common behavioral characteristics; these places (i.e., Sardinia in Italy, ",
+          "relevant": false
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-2517",
+          "score": -1.9902366399765015,
+          "title": "mTOR is a key modulator of ageing and age-related disease",
+          "snippet": "Many experts in the biology of ageing believe that pharmacological interventions to slow ageing are a matter of \u2018when\u2019 rather than \u2018if\u2019. A leading target for such interventions is the nutrient respons",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2501",
+          "score": -3.201550006866455,
+          "title": "Amino acid sensing and regulation of mTORC1.",
+          "snippet": "Amino acids play fundamental roles in the cell both as the building blocks of new proteins and as metabolic precursors. To adapt to their limitation during periods of protein starvation, multiple adap",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2514",
+          "score": -8.600532531738281,
+          "title": "Why human lifespan is rapidly increasing: solving \"longevity riddle\" with \"revealed-slow-aging\" hypothesis",
+          "snippet": "Healthy life span is rapidly increasing and human aging seems to be postponed. As recently exclaimed in Nature, these findings are so perplexing that they can be dubbed the 'longevity riddle'. To expl",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2502",
+          "score": -9.087580680847168,
+          "title": "Macronutrient balance and lifespan",
+          "snippet": "Dietary restriction (DR) without malnutrition is widely regarded to be a universal mechanism for prolonging lifespan. It is generally believed that the benefits of DR arise from eating fewer calories ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2510",
+          "score": -10.668994903564453,
+          "title": "Comparative and meta-analytic insights into life extension via dietary restriction.",
+          "snippet": "Dietary restriction (DR) extends the lifespan of a wide range of species, although the universality of this effect has never been quantitatively examined. Here, we report the first comprehensive compa",
+          "relevant": false
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-1008",
+    "query": "deafness",
+    "results": {
+      "bm25": [],
+      "medcpt": [
+        {
+          "doc_id": "MED-4668",
+          "score": 58.32136154174805,
+          "title": "Cretinism revisited.",
+          "snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3391",
+          "score": 55.35516357421875,
+          "title": "Safety of sildenafil citrate: review of 67 double-blind placebo-controlled trials and the postmarketing safety database",
+          "snippet": "Aim: To review special safety topics associated with sildenafil and to document the tolerability of 50- and 100-mg doses, overall and by age, in men with erectile dysfunction (ED). Methods: Data were ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3381",
+          "score": 55.10696029663086,
+          "title": "Synthetic Food Colors and Neurobehavioral Hazards: The View from Environmental Health Research",
+          "snippet": "Background: The proposition that synthetic food colors can induce adverse behavioral effects in children was first enunciated in 1975 by Feingold [Why Your Child Is Hyperactive. New York:Random House ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-866",
+          "score": 54.06964111328125,
+          "title": "Bitter melon (Momordica charantia): a review of efficacy and safety.",
+          "snippet": "The pharmacology, clinical efficacy, adverse effects, drug interactions, and place in therapy of bitter melon are described. Bitter melon (Momordica charantia) is an alternative therapy that has prima",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4113",
+          "score": 54.006195068359375,
+          "title": "Good riddance: Thymocyte clonal deletion prevents autoimmunity.",
+          "snippet": "Clonal deletion is arguably the most important mechanism of eliminating self-reactive thymocytes from the T-cell repertoire. Recent work has identified new players in this process. On the thymocyte si",
+          "relevant": false
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-4668",
+          "score": 0.01639344262295082,
+          "title": "Cretinism revisited.",
+          "snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3391",
+          "score": 0.016129032258064516,
+          "title": "Safety of sildenafil citrate: review of 67 double-blind placebo-controlled trials and the postmarketing safety database",
+          "snippet": "Aim: To review special safety topics associated with sildenafil and to document the tolerability of 50- and 100-mg doses, overall and by age, in men with erectile dysfunction (ED). Methods: Data were ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3381",
+          "score": 0.015873015873015872,
+          "title": "Synthetic Food Colors and Neurobehavioral Hazards: The View from Environmental Health Research",
+          "snippet": "Background: The proposition that synthetic food colors can induce adverse behavioral effects in children was first enunciated in 1975 by Feingold [Why Your Child Is Hyperactive. New York:Random House ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-866",
+          "score": 0.015625,
+          "title": "Bitter melon (Momordica charantia): a review of efficacy and safety.",
+          "snippet": "The pharmacology, clinical efficacy, adverse effects, drug interactions, and place in therapy of bitter melon are described. Bitter melon (Momordica charantia) is an alternative therapy that has prima",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4113",
+          "score": 0.015384615384615385,
+          "title": "Good riddance: Thymocyte clonal deletion prevents autoimmunity.",
+          "snippet": "Clonal deletion is arguably the most important mechanism of eliminating self-reactive thymocytes from the T-cell repertoire. Recent work has identified new players in this process. On the thymocyte si",
+          "relevant": false
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-4668",
+          "score": 3.8636269569396973,
+          "title": "Cretinism revisited.",
+          "snippet": "Endemic cretinism includes two syndromes: a more common neurological disorder with brain damage, deaf mutism, squint and spastic paresis of the legs and a less common syndrome of severe hypothyroidism",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3391",
+          "score": 0.1961764395236969,
+          "title": "Safety of sildenafil citrate: review of 67 double-blind placebo-controlled trials and the postmarketing safety database",
+          "snippet": "Aim: To review special safety topics associated with sildenafil and to document the tolerability of 50- and 100-mg doses, overall and by age, in men with erectile dysfunction (ED). Methods: Data were ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1049",
+          "score": -12.781166076660156,
+          "title": "Bowel movement: the sixth vital sign.",
+          "snippet": "Bowel movements provide vital information on how the body is functioning, and constipation among older adults is especially problematic. Although we do not like hearing the details of someone else's b",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4564",
+          "score": -15.102174758911133,
+          "title": "Acute rhinosinusitis in adults.",
+          "snippet": "Rhinosinusitis is one of the most common conditions for which patients seek medical care. Subtypes of rhinosinusitis include acute, subacute, recurrent acute, and chronic. Acute rhinosinusitis is furt",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1996",
+          "score": -15.18136978149414,
+          "title": "Childhood obesity and type 2 diabetes mellitus.",
+          "snippet": "Until recently, the majority of cases of diabetes mellitus among children and adolescents were immune-mediated type 1a diabetes. Obesity has led to a dramatic increase in the incidence of type 2 diabe",
+          "relevant": false
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-33",
+    "query": "What\u2019s Driving America\u2019s Obesity Problem?",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-2221",
+          "score": 13.7441497656526,
+          "title": "The Perils of Ignoring History: Big Tobacco Played Dirty and Millions Died. How Similar Is Big Food?",
+          "snippet": "Context: In 1954 the tobacco industry paid to publish the \u201cFrank Statement to Cigarette Smokers\u201d in hundreds of U.S. newspapers. It stated that the public's health was the industry's concern above all",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1344",
+          "score": 11.771907417486293,
+          "title": "Deception as treatment: the case of depression.",
+          "snippet": "Is it ever right to prescribe placebos to patients in clinical practice? The General Medical Council is ambivalent about the issue; the American Medical Association asserts that placebos can be admini",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4876",
+          "score": 11.563539900507669,
+          "title": "Cyanobacterial neurotoxin BMAA in ALS and Alzheimer's disease.",
+          "snippet": "OBJECTIVE: The aim of this study was to screen for and quantify the neurotoxic amino acid beta-N-methylamino-L-alanine (BMAA) in a cohort of autopsy specimens taken from Alzheimer's disease (AD), amyo",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2715",
+          "score": 11.022830848295674,
+          "title": "Physical activity energy expenditure has not declined since the 1980s and matches energy expenditures of wild mammals.",
+          "snippet": "OBJECTIVE: Obesity results from protracted energy imbalance. Whether this comprises excessive energy intake, lowered physical activity or both, remains disputed. DESIGN: Physical activity energy expen",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4366",
+          "score": 10.964891869922145,
+          "title": "The marketing of dietary supplements in North America: the emperor is (almost) naked.",
+          "snippet": "BACKGROUND: Many different dietary supplements are being sold in North America. The quality of the evidence supporting their efficacy covers a wide spectrum: Some are based on solid science (such as v",
+          "relevant": false
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-2722",
+          "score": 62.58500289916992,
+          "title": "Prevalence of physical activity and obesity in US counties, 2001\u20132011: a road map for action",
+          "snippet": "Background Obesity and physical inactivity are associated with several chronic conditions, increased medical care costs, and premature death. Methods We used the Behavioral Risk Factor Surveillance Sy",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1055",
+          "score": 62.50422286987305,
+          "title": "Why the Bush administration and the global sugar industry are determined to demolish the 2004 WHO global strategy on diet, physical activity and he...",
+          "snippet": "OBJECTIVE: To indicate why the world's most powerful nation state and one powerful sector of the food and drink production and manufacturing industry are determined to demolish the 2004 WHO (World Hea",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-5006",
+          "score": 61.678565979003906,
+          "title": "Will all Americans become overweight or obese? estimating the progression and cost of the US obesity epidemic.",
+          "snippet": "We projected future prevalence and BMI distribution based on national survey data (National Health and Nutrition Examination Study) collected between 1970s and 2004. Future obesity-related health-care",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2221",
+          "score": 61.391204833984375,
+          "title": "The Perils of Ignoring History: Big Tobacco Played Dirty and Millions Died. How Similar Is Big Food?",
+          "snippet": "Context: In 1954 the tobacco industry paid to publish the \u201cFrank Statement to Cigarette Smokers\u201d in hundreds of U.S. newspapers. It stated that the public's health was the industry's concern above all",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2716",
+          "score": 60.3306884765625,
+          "title": "Myths, Presumptions, and Facts about Obesity",
+          "snippet": "BACKGROUND Many beliefs about obesity persist in the absence of supporting scientific evidence (presumptions); some persist despite contradicting evidence (myths). The promulgation of unsupported beli",
+          "relevant": true
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-2221",
+          "score": 0.032018442622950824,
+          "title": "The Perils of Ignoring History: Big Tobacco Played Dirty and Millions Died. How Similar Is Big Food?",
+          "snippet": "Context: In 1954 the tobacco industry paid to publish the \u201cFrank Statement to Cigarette Smokers\u201d in hundreds of U.S. newspapers. It stated that the public's health was the industry's concern above all",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1056",
+          "score": 0.028258706467661692,
+          "title": "NOW AND THEN: The Global Nutrition Transition: The Pandemic of Obesity in Developing Countries",
+          "snippet": "Decades ago discussion of an impending global pandemic of obesity was thought of as heresy. Diets in the 1970\u2019s began to shift toward increased reliance upon processed foods, increased away from home ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2763",
+          "score": 0.027650648360030512,
+          "title": "Facing the facelessness of public health: what's the public got to do with it?",
+          "snippet": "Despite compelling statistics that show we could eliminate 80%of all heart disease and strokes, 90% of all diabetes, and 60% of all cancers with basic lifestyle changes, we have failed to motivate the",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1994",
+          "score": 0.025974025974025976,
+          "title": "Prediabetes and type 2 diabetes in youth: an emerging epidemic disease?",
+          "snippet": "PURPOSE OF REVIEW: The prevalence of obesity in youth is increasing alarmingly among children and adolescents in the United States. The problem falls disproportionately on African-American and Hispani",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2717",
+          "score": 0.023157894736842106,
+          "title": "The role of exercise in the treatment of obesity.",
+          "snippet": "The United States is in the midst of a significant public health problem that relates to obesity and inactivity. This epidemic has far-ranging consequences for our workforce and our children and shows",
+          "relevant": true
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-5006",
+          "score": 13.221219062805176,
+          "title": "Will all Americans become overweight or obese? estimating the progression and cost of the US obesity epidemic.",
+          "snippet": "We projected future prevalence and BMI distribution based on national survey data (National Health and Nutrition Examination Study) collected between 1970s and 2004. Future obesity-related health-care",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2721",
+          "score": 11.1392822265625,
+          "title": "Increased food energy supply is more than sufficient to explain the US epidemic of obesity.",
+          "snippet": "BACKGROUND: The major drivers of the obesity epidemic are much debated and have considerable policy importance for the population-wide prevention of obesity. OBJECTIVE: The objective was to determine ",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1650",
+          "score": 7.809174060821533,
+          "title": "Tobacco and obesity epidemics: not so different after all?",
+          "snippet": "Short abstract Campaigns to promote healthy eating are undermined by the ubiquity of processed, energy dense foods. A global strategy is now needed to tackle the rising prevalence of obesity",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1056",
+          "score": 6.148500442504883,
+          "title": "NOW AND THEN: The Global Nutrition Transition: The Pandemic of Obesity in Developing Countries",
+          "snippet": "Decades ago discussion of an impending global pandemic of obesity was thought of as heresy. Diets in the 1970\u2019s began to shift toward increased reliance upon processed foods, increased away from home ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2717",
+          "score": 5.754016876220703,
+          "title": "The role of exercise in the treatment of obesity.",
+          "snippet": "The United States is in the midst of a significant public health problem that relates to obesity and inactivity. This epidemic has far-ranging consequences for our workforce and our children and shows",
+          "relevant": true
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-2490",
+    "query": "The Actual Benefit of Diet vs. Drugs",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-2111",
+          "score": 1.4658066074067226,
+          "title": "Updating a 12-year experience with arrest and reversal therapy for coronary heart disease (an overdue requiem for palliative cardiology).",
+          "snippet": "Coronary artery disease is essentially nonexistent in cultures whose nutrition assures cholesterol levels <150 mg/dl. Patients with advanced coronary artery disease may abolish disease progression thr",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1248",
+          "score": -6.227395187823854,
+          "title": "Patients' attitudes to rectal drug administration.",
+          "snippet": "One hundred adult patients attending for day case surgery were surveyed by anonymous questionnaire in order to determine their attitudes to rectal drug administration. Fifty four patients did not want",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1490",
+          "score": -7.147265935209207,
+          "title": "Are preventive drugs preventive enough? A study of patients' expectation of benefit from preventive drugs.",
+          "snippet": "OBJECTIVES: The study aimed to find the threshold of benefit for a hypothetical cholesterol-lowering drug below which the subject would not be prepared to take the drug. We also looked at whether prox",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1535",
+          "score": -8.274820135204964,
+          "title": "Raisins compared with other snack effects on glycemia and blood pressure: a randomized, controlled trial.",
+          "snippet": "OBJECTIVE: To compare effects of raisin snacks with conventional snacks on glycemia and cardiovascular risk factors. MATERIALS AND METHODS: A 12-week, randomized, controlled trial compared 3-times-a-d",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4829",
+          "score": -8.397919782150378,
+          "title": "Statin therapy, muscle function and falls risk in community-dwelling older adults.",
+          "snippet": "BACKGROUND: Statin therapy can cause myopathy, however it is unclear whether this exacerbates age-related muscle function declines. AIM: To describe differences between statin users and non-users in m",
+          "relevant": false
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-1488",
+          "score": 63.93113327026367,
+          "title": "What benefit do patients expect from adding second and third antihypertensive drugs?",
+          "snippet": "Aims To discover whether patients have the same expectations of benefit from taking the first and any additional drugs for the treatment of hypertension and to investigate any patient characteristics ",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2527",
+          "score": 63.763118743896484,
+          "title": "Cross-analysis of dietary prescriptions and adherence in 356 hypercholesterolaemic patients.",
+          "snippet": "BACKGROUND: One of the major issues in controlling serum cholesterol through dietetic intervention appears to be the need to improve patient adherence. AIMS: To explore the many questions regarding ba",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1490",
+          "score": 63.313026428222656,
+          "title": "Are preventive drugs preventive enough? A study of patients' expectation of benefit from preventive drugs.",
+          "snippet": "OBJECTIVES: The study aimed to find the threshold of benefit for a hypothetical cholesterol-lowering drug below which the subject would not be prepared to take the drug. We also looked at whether prox",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-4559",
+          "score": 63.16658020019531,
+          "title": "Can a statin neutralize the cardiovascular risk of unhealthy dietary choices?",
+          "snippet": "The cardiovascular risk reduction associated with different statins for the prevention of cardiovascular disease and the cardiovascular risk increase associated with excess dietary intake of fat have ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2750",
+          "score": 62.825416564941406,
+          "title": "Lack of benefit of dietary advice to men with angina: results of a controlled trial.",
+          "snippet": "OBJECTIVE: To see whether mortality among men with angina can be reduced by dietary advice. DESIGN: A randomized controlled factorial trial. SETTING: Male patients of general practitioners in south Wa",
+          "relevant": false
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-1490",
+          "score": 0.031746031746031744,
+          "title": "Are preventive drugs preventive enough? A study of patients' expectation of benefit from preventive drugs.",
+          "snippet": "OBJECTIVES: The study aimed to find the threshold of benefit for a hypothetical cholesterol-lowering drug below which the subject would not be prepared to take the drug. We also looked at whether prox",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1488",
+          "score": 0.030679156908665108,
+          "title": "What benefit do patients expect from adding second and third antihypertensive drugs?",
+          "snippet": "Aims To discover whether patients have the same expectations of benefit from taking the first and any additional drugs for the treatment of hypertension and to investigate any patient characteristics ",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2527",
+          "score": 0.02364782925054572,
+          "title": "Cross-analysis of dietary prescriptions and adherence in 356 hypercholesterolaemic patients.",
+          "snippet": "BACKGROUND: One of the major issues in controlling serum cholesterol through dietetic intervention appears to be the need to improve patient adherence. AIMS: To explore the many questions regarding ba",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1639",
+          "score": 0.021764705882352943,
+          "title": "Impact of acute caffeine ingestion on endothelial function in subjects with and without coronary artery disease.",
+          "snippet": "Although coffee is a widely used, pharmacologically active beverage, its impact on the cardiovascular system is controversial. To explore the effect of acute caffeine ingestion on brachial artery flow",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4985",
+          "score": 0.021018062397372743,
+          "title": "A low-fat vegan diet and a conventional diabetes diet in the treatment of type 2 diabetes: a randomized, controlled, 74-wk clinical trial",
+          "snippet": "Background: Low-fat vegetarian and vegan diets are associated with weight loss, increased insulin sensitivity, and improved cardiovascular health. Objective: We compared the effects of a low-fat vegan",
+          "relevant": false
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-4603",
+          "score": -0.7778875231742859,
+          "title": "Reductions in Cardiovascular Disease Projected from Modest Reductions in Dietary Salt",
+          "snippet": "Background The US diet is high in salt, with the majority coming from processed foods. Reducing dietary salt is an important potential public health target. Methods We used the Coronary Heart Disease ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-5301",
+          "score": -0.7778875231742859,
+          "title": "Reductions in Cardiovascular Disease Projected from Modest Reductions in Dietary Salt",
+          "snippet": "Background The US diet is high in salt, with the majority coming from processed foods. Reducing dietary salt is an important potential public health target. Methods We used the Coronary Heart Disease ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2527",
+          "score": -6.319721698760986,
+          "title": "Cross-analysis of dietary prescriptions and adherence in 356 hypercholesterolaemic patients.",
+          "snippet": "BACKGROUND: One of the major issues in controlling serum cholesterol through dietetic intervention appears to be the need to improve patient adherence. AIMS: To explore the many questions regarding ba",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-3926",
+          "score": -6.775475025177002,
+          "title": "Protein redistribution diet and antiparkinsonian response to levodopa.",
+          "snippet": "Sixteen parkinsonian patients with daily fluctuations in the clinical response to levodopa have been placed on a redistribution protein diet. The diet was virtually protein-free until the evening meal",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1679",
+          "score": -6.986104488372803,
+          "title": "Healthy lifestyle factors in the primary prevention of coronary heart disease among men: benefits among users and nonusers of lipid-lowering and an...",
+          "snippet": "BACKGROUND: Healthy lifestyle choices such as eating a prudent diet, exercising regularly, managing weight, and not smoking may substantially reduce coronary heart disease (CHD) risk by improving lipi",
+          "relevant": false
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-227",
+    "query": "Increasing Muscle Strength with Fenugreek",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-3466",
+          "score": 15.620479709936683,
+          "title": "Influence of tart cherry juice on indices of recovery following marathon running.",
+          "snippet": "This investigation determined the efficacy of a tart cherry juice in aiding recovery and reducing muscle damage, inflammation and oxidative stress. Twenty recreational Marathon runners assigned to eit",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4150",
+          "score": 14.585123295707701,
+          "title": "Pseudo-maple syrup urine disease due to maternal prenatal ingestion of fenugreek.",
+          "snippet": "Fenugreek, maple syrup and the urine of maple syrup urine disease (MSUD) patients all share a characteristic odour originating from a common component, sotolone. Ingestion of fenugreek by mothers duri",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-3534",
+          "score": 12.29603442473884,
+          "title": "Efficacy of a tart cherry juice blend in preventing the symptoms of muscle damage",
+          "snippet": "Background Numerous antioxidant and anti\u2010inflammatory agents have been identified in tart cherries. Objective To test the efficacy of a tart cherry juice blend in preventing the symptoms of exercise i",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4829",
+          "score": 11.72111055585202,
+          "title": "Statin therapy, muscle function and falls risk in community-dwelling older adults.",
+          "snippet": "BACKGROUND: Statin therapy can cause myopathy, however it is unclear whether this exacerbates age-related muscle function declines. AIM: To describe differences between statin users and non-users in m",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3459",
+          "score": 10.69645309125848,
+          "title": "Whole-Body Vibration and the Prevention and Treatment of Delayed-Onset Muscle Soreness",
+          "snippet": "Context: Numerous recovery strategies have been used in an attempt to minimize the symptoms of delayed-onset muscle soreness (DOMS). Whole-body vibration (WBV) has been suggested as a viable warm-up f",
+          "relevant": false
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-3554",
+          "score": 61.86278533935547,
+          "title": "A wholly nutritional 'multifocal angiostatic therapy' for control of disseminated cancer.",
+          "snippet": "A great deal of effort is now being devoted to the development of new drugs that hopefully will control the spread of inoperable cancer by safely inhibiting tumor-evoked angiogenesis. However, there i",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3465",
+          "score": 61.660152435302734,
+          "title": "Effect of blueberry ingestion on natural killer cell counts, oxidative stress, and inflammation prior to and after 2.5 h of running.",
+          "snippet": "Blueberries are rich in antioxidants known as anthocyanins, which may exhibit significant health benefits. Strenous exercise is known to acutely generate oxidative stress and an inflammatory state, an",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1520",
+          "score": 59.396461486816406,
+          "title": "The effects of peppermint on exercise performance",
+          "snippet": "Background Enhancing athletic performance is a great desire among the athletes, coaches and researchers. Mint is one of the most famous natural herbs used for its analgesic, anti-inflammatory, antispa",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3534",
+          "score": 59.2554931640625,
+          "title": "Efficacy of a tart cherry juice blend in preventing the symptoms of muscle damage",
+          "snippet": "Background Numerous antioxidant and anti\u2010inflammatory agents have been identified in tart cherries. Objective To test the efficacy of a tart cherry juice blend in preventing the symptoms of exercise i",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1724",
+          "score": 59.0893669128418,
+          "title": "A low-fat, whole-food vegan diet, as well as other strategies that down-regulate IGF-I activity, may slow the human aging process.",
+          "snippet": "A considerable amount of evidence is consistent with the proposition that systemic IGF-I activity acts as pacesetter in the aging process. A reduction in IGF-I activity is the common characteristic of",
+          "relevant": false
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-3534",
+          "score": 0.03149801587301587,
+          "title": "Efficacy of a tart cherry juice blend in preventing the symptoms of muscle damage",
+          "snippet": "Background Numerous antioxidant and anti\u2010inflammatory agents have been identified in tart cherries. Objective To test the efficacy of a tart cherry juice blend in preventing the symptoms of exercise i",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3466",
+          "score": 0.03131881575727918,
+          "title": "Influence of tart cherry juice on indices of recovery following marathon running.",
+          "snippet": "This investigation determined the efficacy of a tart cherry juice in aiding recovery and reducing muscle damage, inflammation and oxidative stress. Twenty recreational Marathon runners assigned to eit",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1491",
+          "score": 0.02821939586645469,
+          "title": "Flaxseed fed pork: n-3 fatty acid enrichment and contribution to dietary recommendations.",
+          "snippet": "The potential to increase n-3 fatty acid (FA) intake via flaxseed fed pork is underestimated when restricted to pure longissimus muscle, whereas a combination of muscle and adipose tissue is typically",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3465",
+          "score": 0.02736498731424429,
+          "title": "Effect of blueberry ingestion on natural killer cell counts, oxidative stress, and inflammation prior to and after 2.5 h of running.",
+          "snippet": "Blueberries are rich in antioxidants known as anthocyanins, which may exhibit significant health benefits. Strenous exercise is known to acutely generate oxidative stress and an inflammatory state, an",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2271",
+          "score": 0.023698630136986303,
+          "title": "Watermelon juice: potential functional drink for sore muscle relief in athletes.",
+          "snippet": "l-Citrulline is an excellent candidate to reduce muscle soreness, and watermelon is a fruit rich in this amino acid. This study investigated the potential of watermelon juice as a functional drink for",
+          "relevant": false
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-4829",
+          "score": -15.40733528137207,
+          "title": "Statin therapy, muscle function and falls risk in community-dwelling older adults.",
+          "snippet": "BACKGROUND: Statin therapy can cause myopathy, however it is unclear whether this exacerbates age-related muscle function declines. AIM: To describe differences between statin users and non-users in m",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3157",
+          "score": -15.468345642089844,
+          "title": "Effect of vitamin C supplements on physical performance.",
+          "snippet": "Vitamin C is an essential component of the diet and may reduce the adverse effects of exercise-induced reactive oxygen species, including muscle damage, immune dysfunction, and fatigue. However, react",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-4150",
+          "score": -15.549169540405273,
+          "title": "Pseudo-maple syrup urine disease due to maternal prenatal ingestion of fenugreek.",
+          "snippet": "Fenugreek, maple syrup and the urine of maple syrup urine disease (MSUD) patients all share a characteristic odour originating from a common component, sotolone. Ingestion of fenugreek by mothers duri",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-1491",
+          "score": -15.563952445983887,
+          "title": "Flaxseed fed pork: n-3 fatty acid enrichment and contribution to dietary recommendations.",
+          "snippet": "The potential to increase n-3 fatty acid (FA) intake via flaxseed fed pork is underestimated when restricted to pure longissimus muscle, whereas a combination of muscle and adipose tissue is typically",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3466",
+          "score": -15.631498336791992,
+          "title": "Influence of tart cherry juice on indices of recovery following marathon running.",
+          "snippet": "This investigation determined the efficacy of a tart cherry juice in aiding recovery and reducing muscle damage, inflammation and oxidative stress. Twenty recreational Marathon runners assigned to eit",
+          "relevant": false
+        }
+      ]
+    }
+  },
+  {
+    "query_id": "PLAIN-133",
+    "query": "Starving Tumors of Their Blood Supply",
+    "results": {
+      "bm25": [
+        {
+          "doc_id": "MED-4120",
+          "score": 1.3723704767272484,
+          "title": "Sucrose activates human taste pathways differently from artificial sweetener.",
+          "snippet": "Animal models suggest that sucrose activates taste afferents differently than non-caloric sweeteners. Little information exists how artificial sweeteners engage central taste pathways in the human bra",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-5205",
+          "score": 0.5394867061609041,
+          "title": "Meat-Related Compounds and Colorectal Cancer Risk by Anatomical Subsite",
+          "snippet": "Since meat may be involved in the etiology of colorectal cancer, associations between meat-related compounds were examined to elucidate underlying mechanisms in a population-based case-control study. ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1666",
+          "score": -2.1171888731749604,
+          "title": "Nutrition of the intervertebral disc.",
+          "snippet": "STUDY DESIGN: A review of the literature on disc nutrition. OBJECTIVES: To summarize the information on disc nutrition in relation to disc degeneration. SUMMARY OF THE BACKGROUND DATA: The disc is ava",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1665",
+          "score": -3.3666698551866707,
+          "title": "Symptomatic disc herniation and serum lipid levels",
+          "snippet": "Insufficient blood supply to the intervertebral disc (IVD) has been proposed to play a role as causative factor in IVD degeneration. There is an association between IVD diseases and increased risk of ",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2426",
+          "score": -3.5246770478582676,
+          "title": "Pre-diagnostic acrylamide exposure and survival after breast cancer among postmenopausal Danish women.",
+          "snippet": "Acrylamide is a probable human carcinogen, with industrial contact, tobacco smoking and foods processed at high temperatures as the main routes of exposure. In animal studies oral intake of acrylamide",
+          "relevant": false
+        }
+      ],
+      "medcpt": [
+        {
+          "doc_id": "MED-3550",
+          "score": 62.281097412109375,
+          "title": "Tumor Angiogenesis as a Target for Dietary Cancer Prevention",
+          "snippet": "Between 2000 and 2050, the number of new cancer patients diagnosed annually is expected to double, with an accompanying increase in treatment costs of more than $80 billion over just the next decade. ",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-3840",
+          "score": 60.876800537109375,
+          "title": "Tamoxifen and Flaxseed Alter Angiogenesis Regulators in Normal Human Breast Tissue In Vivo",
+          "snippet": "The incidence of breast cancer is increasing in the Western world and there is an urgent need for studies of the mechanisms of sex steroids in order to develop novel preventive strategies. Diet modifi",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2513",
+          "score": 59.72016143798828,
+          "title": "Insights into the beneficial effect of caloric/ dietary restriction for a healthy and prolonged life",
+          "snippet": "Over the last several years, new evidence has kept pouring in about the remarkable effect of caloric restriction (CR) on the conspicuous bedfellows- aging and cancer. Through the use of various animal",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3554",
+          "score": 59.58718490600586,
+          "title": "A wholly nutritional 'multifocal angiostatic therapy' for control of disseminated cancer.",
+          "snippet": "A great deal of effort is now being devoted to the development of new drugs that hopefully will control the spread of inoperable cancer by safely inhibiting tumor-evoked angiogenesis. However, there i",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-2111",
+          "score": 57.798370361328125,
+          "title": "Updating a 12-year experience with arrest and reversal therapy for coronary heart disease (an overdue requiem for palliative cardiology).",
+          "snippet": "Coronary artery disease is essentially nonexistent in cultures whose nutrition assures cholesterol levels <150 mg/dl. Patients with advanced coronary artery disease may abolish disease progression thr",
+          "relevant": false
+        }
+      ],
+      "hybrid_rrf": [
+        {
+          "doc_id": "MED-2498",
+          "score": 0.028814262023217248,
+          "title": "Dietary Restriction, Growth Factors and Aging: from yeast to humans",
+          "snippet": "Dietary restriction (DR) and reduced growth factor signaling both elevate resistance to oxidative stress, reduce macromolecular damage, and increase lifespan in model organisms. In rodents, both DR an",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-1666",
+          "score": 0.028068137824235385,
+          "title": "Nutrition of the intervertebral disc.",
+          "snippet": "STUDY DESIGN: A review of the literature on disc nutrition. OBJECTIVES: To summarize the information on disc nutrition in relation to disc degeneration. SUMMARY OF THE BACKGROUND DATA: The disc is ava",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2923",
+          "score": 0.02651914295749912,
+          "title": "Death receptor ligands in tumors.",
+          "snippet": "Activation of apoptosis via death receptors is a tightly regulated event, and the death pathway itself is open to interference on the part of soluble or membrane-bound decoy receptors. The aggregation",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3277",
+          "score": 0.025989268947015427,
+          "title": "Expression of the biochemical defect of methionine dependence in fresh patient tumors in primary histoculture.",
+          "snippet": "Methionine dependence is a metabolic defect that occurs in many human tumor cell lines but not normal in unestablished cell strains. Methionine-dependent tumor cell lines are unable to proliferate and",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-2129",
+          "score": 0.02591362126245847,
+          "title": "Amino acid sensing mechanisms: an Achilles heel in cancer?",
+          "snippet": "The act of increasing mass, either in non-dividing cells or in dividing cells seeking to provide new material for daughter cells, depends upon the continued presence of extracellular nutrients in orde",
+          "relevant": false
+        }
+      ],
+      "hybrid_reranked": [
+        {
+          "doc_id": "MED-2129",
+          "score": -11.928071975708008,
+          "title": "Amino acid sensing mechanisms: an Achilles heel in cancer?",
+          "snippet": "The act of increasing mass, either in non-dividing cells or in dividing cells seeking to provide new material for daughter cells, depends upon the continued presence of extracellular nutrients in orde",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3280",
+          "score": -12.379718780517578,
+          "title": "Methionine dependency and cancer treatment.",
+          "snippet": "Conventional chemotherapies have showed their limits, notably for patients with advanced cancer. New therapeutic strategies must be identified, and the metabolic abnormalities of cancer cells offer su",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3554",
+          "score": -12.754068374633789,
+          "title": "A wholly nutritional 'multifocal angiostatic therapy' for control of disseminated cancer.",
+          "snippet": "A great deal of effort is now being devoted to the development of new drugs that hopefully will control the spread of inoperable cancer by safely inhibiting tumor-evoked angiogenesis. However, there i",
+          "relevant": true
+        },
+        {
+          "doc_id": "MED-3281",
+          "score": -13.04627513885498,
+          "title": "Targeting methionine auxotrophy in cancer: discovery & exploration.",
+          "snippet": "INTRODUCTION: Amino acid auxotrophy or the metabolic defect which renders cancer incapable of surviving under amino acid depleted conditions is being exploited and explored as a therapeutic against ca",
+          "relevant": false
+        },
+        {
+          "doc_id": "MED-3550",
+          "score": -13.326315879821777,
+          "title": "Tumor Angiogenesis as a Target for Dietary Cancer Prevention",
+          "snippet": "Between 2000 and 2050, the number of new cancer patients diagnosed annually is expected to double, with an accompanying increase in treatment costs of more than $80 billion over just the next decade. ",
+          "relevant": true
+        }
+      ]
+    }
+  }
+]
