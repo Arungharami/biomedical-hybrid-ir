@@ -128,7 +128,7 @@ status and verification details.
 | M7 | Full evaluation, tables, statistical tests, efficiency analysis | ✅ Complete |
 | M8 | Error analysis | ✅ Complete |
 | M9 | Colab notebooks | ✅ Complete |
-| M10 | Paper artifacts (figures, BibTeX) | ⚪ Pending |
+| M10 | Paper artifacts (figures, BibTeX) | ✅ Complete |
 | M11 | Next.js research portal | ⚪ Pending |
 | M12 | Vercel deployment | ⚪ Pending |
 
@@ -200,6 +200,14 @@ artifacts where present. See [docs/reproducibility.md](docs/reproducibility.md).
 Vercel deployment link will be added here once M12 completes. The portal
 reads only exported, verified JSON/CSV artifacts from `results/` — it never
 runs transformer models itself (see [docs/architecture.md](docs/architecture.md#design-decision-vercel-never-runs-the-transformer-models)).
+
+## Paper
+
+Full paper text (abstract through conclusion, all sections complete) is in
+[paper/](paper/), built entirely from real results — see
+[paper/abstract.md](paper/abstract.md) for the summary and
+[paper/results.md](paper/results.md) for the full results/statistics/error-analysis
+writeup. Figures: [results/figures/](results/figures/) (`scripts/generate_figures.py`).
 
 ## Citation
 
