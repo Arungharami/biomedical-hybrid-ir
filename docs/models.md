@@ -105,9 +105,12 @@ primary metrics), but is essentially tied with BGE rather than clearly
 ahead of it (MedCPT wins on Recall@100, BGE wins on P@10/MAP/MRR@10/nDCG@10,
 all by small margins). **M7 confirms none of these BGE-vs-MedCPT
 differences are statistically significant (all p>=0.12) — H2 ("biomedical
-dense retrieval will outperform general-purpose") is REJECTED**, not merely
-unsupported on raw numbers; the two models are statistically
-indistinguishable on this test set.
+dense retrieval will outperform general-purpose") is NOT SUPPORTED.** Note
+this is "no significant evidence of a difference either way," not evidence
+of NO difference (absence of evidence isn't evidence of absence) — the two
+models are statistically indistinguishable from each other on this test
+set at n=323 queries, which is a different, more precise claim than "H2 is
+false."
 
 ## M5 — Hybrid (BM25 + MedCPT, RRF)
 
@@ -128,8 +131,13 @@ comparable scales — see `docs/architecture.md`. Implementation:
 Mixed result relative to the individual retrievers: hybrid wins P@1
 (0.4799), MRR (0.5736), and MRR@10 (0.5678) — all highest of the five
 models run so far — but does **not** beat BGE/MedCPT individually on P@10,
-Recall@100, MAP, or nDCG@10. H3 is therefore only partially supported by
-these raw numbers, not uniformly. One notable finding surfaced along the
+Recall@100, MAP, or nDCG@10. **M7's significance test (MedCPT vs. Hybrid
+RRF) found MedCPT significantly BEATS Hybrid RRF on Recall@100 specifically
+(p=0.040, opposite H3's predicted direction); no significant difference on
+P@10/MAP/MRR@10/nDCG@10 — H3 is NOT SUPPORTED for this comparison.** (A
+direct BM25-vs-Hybrid test was outside the five comparisons the project
+spec names explicitly, so that half of H3 remains formally untested rather
+than merely unsupported.) One notable finding surfaced along the
 way: 25/323 test queries (7.7%, e.g. "deafness", "eggnog", "Fosamax") share
 zero vocabulary with the corpus after preprocessing, so BM25 returns an
 empty ranking for them entirely — the classic vocabulary-mismatch problem,

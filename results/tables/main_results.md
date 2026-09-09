@@ -35,20 +35,19 @@ every reported metric (e.g. nDCG@10: TF-IDF 0.3050 vs. BM25 0.2954; MAP:
 0.1372 vs. 0.1333) -- the opposite direction from H1 ("BM25 will outperform
 standard TF-IDF"). This is reported as-is; no parameter was tuned against
 the test set to change it (`configs/bm25.yaml` uses the frozen literature
-defaults k1=1.2, b=0.75, `tuning.enabled: false`). Whether this difference
-is statistically meaningful is **not** evaluated here -- paired
-significance testing across all model pairs is M7's job
-(`src/biomedical_ir/statistics.py`, not yet implemented). H1 remains an
-open hypothesis, not confirmed or rejected, until that test runs.
+defaults k1=1.2, b=0.75, `tuning.enabled: false`). **Update (M7): this
+difference IS statistically significant** (paired bootstrap, n=323): P@10
+p=0.017, Recall@100 p=0.010, nDCG@10 p=0.030. **H1 is REJECTED** -- see the
+M7 section at the bottom of this file for the full test.
 
 ## M3 observation (raw numbers only, no significance claim)
 
 BGE's point estimates exceed both lexical baselines on every reported
 metric (nDCG@10: BGE 0.3712 vs. TF-IDF 0.3050 vs. BM25 0.2954; MAP: BGE
 0.1831 vs. TF-IDF 0.1372). This is consistent with the *direction* RQ2 asks
-about (does dense retrieval improve over lexical methods), but again no
-significance test has been run against these specific numbers -- that is
-M7's job. RQ2 is not considered answered by this milestone alone.
+about (does dense retrieval improve over lexical methods). **Update (M7):
+confirmed significant** -- BM25 vs. BGE is significant on all five primary
+metrics (p<0.005 each), the strongest finding in this study.
 
 ## M4 observation (raw numbers only, no significance claim)
 
@@ -57,13 +56,13 @@ than clearly ahead of it: MedCPT wins on Recall@100 (0.3488 vs. 0.3368) and
 P@1 (0.4675 vs. 0.4551, not shown in the primary table above), while BGE
 wins on P@10 (0.2796 vs. 0.2697), MAP (0.1831 vs. 0.1824), MRR@10 (0.5556
 vs. 0.5487), and nDCG@10 (0.3712 vs. 0.3654) -- all differences are small.
-This does **not** straightforwardly support H2 ("biomedical dense retrieval
-will outperform a general-purpose embedding system") on raw point estimates
-alone; MedCPT does clearly beat both lexical baselines (TF-IDF, BM25) on
-every metric, which is consistent with RQ3's premise that domain-specific
-training helps over lexical matching, just not decisively over a strong
-general-purpose dense baseline here. As always, no significance test has
-been run -- H2 and RQ3 remain open until M7.
+**Update (M7): confirmed -- none of these BGE-vs-MedCPT differences are
+statistically significant (all p>=0.12). H2 is NOT SUPPORTED** (the two
+models are statistically indistinguishable here, not proven equal).
+MedCPT's win over TF-IDF/BM25 IS significant (p<0.005 on all five metrics
+vs. BM25), so RQ3's premise about domain-specific training beating lexical
+matching is confirmed; the domain-vs-general-dense half of RQ3 specifically
+shows no significant difference either way.
 
 ## M5 observation (raw numbers only, no significance claim)
 
@@ -95,8 +94,11 @@ So **H3 ("hybrid retrieval will outperform either method individually") is
 only partially, not uniformly, supported by these raw point estimates** --
 true for rank-of-first-relevant-document metrics (P@1, MRR, MRR@10), not
 true for the metrics this project treats as primary (P@10, Recall@100, MAP,
-nDCG@10). Reported exactly as observed; no significance test has been run
-on any of these comparisons, and RQ4 remains open pending M7.
+nDCG@10). **Update (M7): MedCPT vs. Hybrid RRF found MedCPT significantly
+*beats* Hybrid RRF on Recall@100 (p=0.040) -- the opposite of H3's
+predicted direction -- with no significant difference on P@10/MAP/MRR@10/
+nDCG@10. H3 is NOT SUPPORTED for this comparison** (BM25-vs-Hybrid was not
+directly tested; outside the spec's five named comparisons).
 
 Latency here is deliberately reported end-to-end (BM25 retrieval + MedCPT
 retrieval + RRF fusion, `4.069 ms/query`) rather than fusion-time-only

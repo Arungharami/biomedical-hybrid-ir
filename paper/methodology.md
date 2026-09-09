@@ -16,18 +16,36 @@
 
 ## Hypotheses
 
-These are stated as hypotheses to be tested, not findings. They are not
-reported as confirmed anywhere in this repository until the corresponding
-experiment and statistical test (Section 9 below / `docs/evaluation.md`)
-complete.
+These were stated as hypotheses to be tested before any experiment ran.
+M7's paired bootstrap significance tests (`results/tables/statistical_tests.md`,
+`src/biomedical_ir/statistics.py`) have now run against all real results
+(M2-M6); each hypothesis's verdict below is stated precisely and is not
+overstated beyond what the test actually shows.
 
 **H1.** BM25 will outperform standard TF-IDF because BM25 incorporates term saturation and document-length normalization.
+**Verdict: REJECTED.** TF-IDF significantly *outperforms* BM25 — the
+opposite direction — on P@10 (p=0.017), Recall@100 (p=0.010), and nDCG@10
+(p=0.030); n=323, paired bootstrap.
 
 **H2.** Biomedical dense retrieval will outperform a general-purpose embedding system on biomedical queries.
+**Verdict: NOT SUPPORTED.** No metric shows a significant difference
+between BGE and MedCPT (all p>=0.12, n=323). This means "no significant
+evidence of a difference," not "proven equal" — absence of evidence is not
+evidence of absence.
 
 **H3.** Hybrid BM25 + MedCPT retrieval will outperform either retrieval method individually because lexical and semantic evidence are complementary.
+**Verdict: NOT SUPPORTED for the MedCPT-vs-Hybrid comparison actually
+tested** (the five comparisons Section 16 of the project spec names
+explicitly do not include a direct BM25-vs-Hybrid test). MedCPT
+significantly *beats* Hybrid RRF on Recall@100 (p=0.040, opposite the
+predicted direction); no significant difference on P@10/MAP/MRR@10/nDCG@10.
 
 **H4.** Cross-encoder reranking will improve top-ranked effectiveness, especially nDCG@10, while increasing latency.
+**Verdict: PARTIALLY SUPPORTED.** Latency increase is large and
+unambiguous (direct measurement). The nDCG@10 improvement H4 specifically
+emphasizes is the best point estimate across all six models (0.3731) but
+is **not statistically significant** (p=0.194, n=323). P@10 *does* improve
+significantly (p=0.015).
 
 ## 5. Methodology
 
