@@ -37,6 +37,15 @@ strength) default to 1.2 / 0.75 per ``configs/bm25.yaml``, the suggested
 initial values from Robertson & Zaragoza (2009). ``configs/bm25.yaml`` has
 ``tuning.enabled: false`` for this milestone, so these defaults are used
 frozen, with no dev-split grid search performed.
+
+Cross-check note: this implementation was verified to match the third-party
+``rank_bm25.BM25Okapi`` (same k1/b) to within floating-point precision
+(~1e-15) on a real NFCorpus subset with positive-idf query terms (see
+``tests/test_bm25.py::TestCrossCheckAgainstRankBm25``). The one documented
+divergence: ``rank_bm25`` applies an epsilon correction that replaces any
+NEGATIVE idf with ``eps * average_idf`` rather than using the classical
+formula's raw negative value; this implementation deliberately does not
+replicate that correction, to stay transparent about the textbook formula.
 """
 
 from __future__ import annotations

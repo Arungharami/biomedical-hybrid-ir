@@ -54,6 +54,10 @@ duplicating code (Section 21 of the project spec).
 
 ## Known limitations (living list)
 
-- This is a from-scratch build started 2026-09-09; as of M0/M1 only dataset
-  ingestion and validation are real. See the README's Experiment status
-  table for the authoritative current state.
+- This is a from-scratch build started 2026-09-09; as of M0/M1/M2 dataset
+  ingestion/validation and the TF-IDF/BM25 baselines are real
+  (`results/runs/`, `results/metrics/`, `results/manifests/`). `scripts/
+  run_tfidf.py` and `scripts/run_bm25.py` are standalone entry points for
+  now; the unifying `scripts/reproduce.py` orchestrator is still pending
+  (M3+). See the README's Experiment status table for the authoritative
+  current state.

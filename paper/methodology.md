@@ -31,21 +31,32 @@ complete.
 
 ## 5. Methodology
 
-### 5.1 TF-IDF
+### 5.1 TF-IDF ✅ M2 complete
 
 Scikit-learn `TfidfVectorizer` — sublinear term frequency, smoothed IDF, L2
 normalization — with cosine similarity for ranking (`configs/tfidf.yaml`).
 Educational validation against hand-computed TF/IDF examples is included in
-`tests/test_tfidf.py` (⚪ pending M2) to confirm the production implementation
-matches the textbook formulas it is meant to embody.
+`tests/test_tfidf.py` to confirm the production implementation matches the
+textbook formulas it is meant to embody. Real test-split results (n=323
+queries): P@10=0.2167, Recall@100=0.2372, MAP=0.1372, MRR@10=0.5062,
+nDCG@10=0.3050 (`results/metrics/tfidf.json`).
 
-### 5.2 BM25
+### 5.2 BM25 ✅ M2 complete
 
 Okapi BM25 with `k1=1.2, b=0.75` as documented initial values (Robertson &
 Zaragoza, 2009), implemented transparently in `src/biomedical_ir/bm25.py`
-(⚪ pending M2) so term-saturation and length-normalization behavior are
-inspectable rather than hidden behind a third-party black box. Any parameter
-tuning is dev-only (Section 4).
+so term-saturation and length-normalization behavior are inspectable rather
+than hidden behind a third-party black box; cross-checked against
+`rank_bm25.BM25Okapi` to floating-point precision. `configs/bm25.yaml` has
+`tuning.enabled: false` for this milestone, so k1/b are used frozen at
+their literature defaults with no dev-split search performed. Real
+test-split results (n=323 queries): P@10=0.2071, Recall@100=0.2295,
+MAP=0.1333, MRR@10=0.4939, nDCG@10=0.2954 (`results/metrics/bm25.json`).
+On these real numbers TF-IDF's point estimates are numerically higher than
+BM25's on every reported metric — the opposite direction from H1 — reported
+as-is without tuning against the test set; whether this is statistically
+meaningful is left to M7's paired significance testing, so H1 is neither
+confirmed nor rejected here.
 
 ### 5.3 BGE (general dense retrieval)
 

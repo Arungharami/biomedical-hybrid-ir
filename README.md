@@ -48,8 +48,8 @@ queries/documents, **0** train/dev/test split overlap.
 
 | # | Model | Role | Status |
 |---|---|---|---|
-| M1 | TF-IDF + cosine similarity | Classical lexical baseline | ⚪ Pending |
-| M2 | BM25 (`k1=1.2, b=0.75`) | Classical lexical baseline | ⚪ Pending |
+| M1 | TF-IDF + cosine similarity | Classical lexical baseline | ✅ Complete (P@10 0.2167, Recall@100 0.2372, MAP 0.1372, MRR@10 0.5062, nDCG@10 0.3050) |
+| M2 | BM25 (`k1=1.2, b=0.75`) | Classical lexical baseline | ✅ Complete (P@10 0.2071, Recall@100 0.2295, MAP 0.1333, MRR@10 0.4939, nDCG@10 0.2954) |
 | M3 | [BAAI/bge-base-en-v1.5](https://huggingface.co/BAAI/bge-base-en-v1.5) | General dense retrieval | ⚪ Pending |
 | M4 | [ncbi/MedCPT-Query-Encoder](https://huggingface.co/ncbi/MedCPT-Query-Encoder) + [ncbi/MedCPT-Article-Encoder](https://huggingface.co/ncbi/MedCPT-Article-Encoder) | Biomedical dense retrieval | ⚪ Pending |
 | M5 | BM25 + MedCPT, Reciprocal Rank Fusion (k=60) | Hybrid retrieval | ⚪ Pending |
@@ -92,8 +92,10 @@ python3.11 -m venv .venv && source .venv/bin/activate   # PyTorch/FAISS need <=3
 pip install -r requirements.txt
 pip install -e .
 
-pytest -q                        # 28 tests, all passing as of M0/M1
+pytest -q                        # 81 tests, all passing as of M0/M1/M2
 python scripts/audit_dataset.py  # downloads NFCorpus, validates, writes stats
+python scripts/run_tfidf.py      # M2: TF-IDF baseline -> results/{runs,metrics,manifests}
+python scripts/run_bm25.py       # M2: BM25 baseline -> results/{runs,metrics,manifests}
 ```
 
 ## Colab
@@ -108,7 +110,7 @@ listed in [docs/reproducibility.md](docs/reproducibility.md).
 |---|---|---|
 | M0 | Repository foundation, packaging, configs, CI skeleton | ✅ Complete |
 | M1 | Dataset ingestion + validation (real NFCorpus, verified against live Hub) | ✅ Complete |
-| M2 | TF-IDF + BM25 baselines | ⚪ Pending |
+| M2 | TF-IDF + BM25 baselines | ✅ Complete |
 | M3 | BGE general dense retrieval | ⚪ Pending |
 | M4 | MedCPT biomedical dense retrieval | ⚪ Pending |
 | M5 | Hybrid RRF | ⚪ Pending |

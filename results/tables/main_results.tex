@@ -1,0 +1,25 @@
+% Main results table (NFCorpus, test split, n=323 queries).
+% Generated from results/metrics/{tfidf,bm25}.json (M2). Rows for M3-M6 are
+% "Pending" until their milestones produce real artifacts under
+% results/metrics/ -- see results/tables/main_results.md for the M2
+% observation notes and results/metrics/*.json for full metric sets.
+\begin{table}[t]
+  \centering
+  \caption{Main retrieval results on NFCorpus (test split, $n=323$ queries).
+    P@10, Recall@100, MAP, MRR@10, nDCG@10 computed with \texttt{pytrec\_eval}
+    against \texttt{qrels\_test.json}. Latency is mean top-100 retrieval
+    wall-clock time per query (CPU).}
+  \label{tab:main-results}
+  \begin{tabular}{lrrrrrr}
+    \toprule
+    Model & P@10 & Recall@100 & MAP & MRR@10 & nDCG@10 & Latency (ms/query) \\
+    \midrule
+    TF-IDF                                   & 0.2167  & 0.2372  & 0.1372  & 0.5062  & 0.3050  & 3.631 \\
+    BM25 ($k_1{=}1.2$, $b{=}0.75$)           & 0.2071  & 0.2295  & 0.1333  & 0.4939  & 0.2954  & 2.155 \\
+    BGE (general dense)                      & Pending & Pending & Pending & Pending & Pending & Pending \\
+    MedCPT (biomedical dense)                & Pending & Pending & Pending & Pending & Pending & Pending \\
+    BM25 + MedCPT (RRF)                      & Pending & Pending & Pending & Pending & Pending & Pending \\
+    Hybrid + MedCPT Cross-Encoder Reranker   & Pending & Pending & Pending & Pending & Pending & Pending \\
+    \bottomrule
+  \end{tabular}
+\end{table}

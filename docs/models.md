@@ -1,19 +1,45 @@
 # Models
 
-> Status: stub — filled in as M2 (TF-IDF/BM25), M3 (BGE), M4 (MedCPT), M5
-> (RRF), and M6 (cross-encoder) complete. Config decisions below are already
-> finalized and verified against official sources; the *results* sections
-> will be filled with real numbers as each milestone lands.
+> Status: M2 (TF-IDF/BM25) complete with real artifacts; M3 (BGE), M4
+> (MedCPT), M5 (RRF), and M6 (cross-encoder) still pending. Config decisions
+> below are finalized and verified against official sources; the *results*
+> sections are filled with real numbers as each milestone lands.
 
-## M1 — TF-IDF
+## M1 — TF-IDF ✅ Complete
 
 Scikit-learn `TfidfVectorizer` (sublinear TF, L2 norm, smoothed IDF) +
-cosine similarity. Config: `configs/tfidf.yaml`. ⚪ Pending implementation.
+cosine similarity, over the lexical pipeline in
+`src/biomedical_ir/preprocessing.py` (unicode NFKC, lowercase, `\w+`
+tokenizer, no stopword removal). Implementation: `src/biomedical_ir/tfidf.py`.
+Config: `configs/tfidf.yaml`. Real test-split (n=323) results, from
+`results/metrics/tfidf.json`:
 
-## M2 — BM25
+| P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2167 | 0.2372 | 0.1372 | 0.5062 | 0.3050 | 3.631 ms/query |
 
-Custom transparent implementation (`k1=1.2, b=0.75` initial values, per
-Robertson & Zaragoza 2009). Config: `configs/bm25.yaml`. ⚪ Pending.
+## M2 — BM25 ✅ Complete
+
+Custom transparent implementation (`src/biomedical_ir/bm25.py`), classical
+Robertson/Sparck-Jones IDF with +0.5 smoothing (no +1 inside the log --
+documented precisely in the module docstring since conventions differ),
+`k1=1.2, b=0.75` frozen initial values per Robertson & Zaragoza (2009);
+`configs/bm25.yaml -> bm25.tuning.enabled` is `false` for this milestone, so
+no dev-split grid search was run. Verified to match the third-party
+`rank_bm25.BM25Okapi` to floating-point precision on positive-idf query
+terms (`tests/test_bm25.py::TestCrossCheckAgainstRankBm25`). Config:
+`configs/bm25.yaml`. Real test-split (n=323) results, from
+`results/metrics/bm25.json`:
+
+| P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2071 | 0.2295 | 0.1333 | 0.4939 | 0.2954 | 2.155 ms/query |
+
+On this real run, TF-IDF's point estimates are numerically higher than
+BM25's on every metric above -- the opposite direction from H1. This is
+reported as a raw observation only; no significance test has been run yet
+(that is M7's job), so H1 is neither confirmed nor rejected by this
+milestone. See `results/tables/main_results.md` for further discussion.
 
 ## M3 — BAAI/bge-base-en-v1.5
 
