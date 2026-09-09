@@ -1,0 +1,43 @@
+{
+  "experiment_id": "exp-hybrid-rrf-001",
+  "timestamp": "2026-09-09T16:36:11.739261+00:00",
+  "git_commit": "90e4f0a0a54830cdcd40eb1c274eea3c77a81f40",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "bm25+medcpt-rrf",
+  "model_revision": null,
+  "parameters": {
+    "fusion": {
+      "k": 60,
+      "candidate_depth": 100,
+      "top_k": 100
+    },
+    "components": [
+      "bm25",
+      "medcpt"
+    ]
+  },
+  "seed": 42,
+  "device": "cpu",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 0.0137,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "top_k": 100,
+  "note": "Fuses precomputed results/runs/{bm25,medcpt}.trec; see docs for provenance."
+}
