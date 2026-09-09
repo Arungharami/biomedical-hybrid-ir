@@ -1,9 +1,8 @@
 # Models
 
-> Status: M2 (TF-IDF/BM25) complete with real artifacts; M3 (BGE), M4
-> (MedCPT), M5 (RRF), and M6 (cross-encoder) still pending. Config decisions
-> below are finalized and verified against official sources; the *results*
-> sections are filled with real numbers as each milestone lands.
+> Status: all six models (M1-M6) complete with real artifacts as of
+> 2026-09-09. Config decisions below are finalized and verified against
+> official sources.
 
 ## M1 — TF-IDF ✅ Complete
 
@@ -142,4 +141,44 @@ on 2026-09-09:
 - Max sequence length: 512
 
 Candidate pool sizes tested: 20, 50, 100 (default 50). Config:
-`configs/reranker.yaml`. ⚪ Pending.
+`configs/reranker.yaml`. Implementation: `src/biomedical_ir/reranker.py`.
+The joint tokenizer call was empirically verified (not assumed) to match
+`tokenizer(text=queries, text_pair=articles, ...)` before use in production
+code.
+
+**M6 — ✅ Complete.** Real test-split (n=323) results, Apple M1 Pro (MPS),
+from `results/metrics/hybrid_reranked.json` (default pool=50):
+
+| P@10 | Recall@100\* | MAP\* | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2765 | 0.2782 | 0.1760 | 0.5670 | **0.3731** | 1945.6 ms/query (end-to-end) |
+
+\*Capped by the candidate pool — see the ablation below.
+
+**Headline finding:** reranking achieves **nDCG@10 = 0.3731, the highest of
+all six models** in this study (vs. hybrid RRF 0.3620, BGE 0.3712, MedCPT
+0.3654) — directly consistent with H4's specific prediction. Latency
+increased dramatically as H4 also predicted (~1941.6 ms/query reranking
+alone, vs. hybrid RRF's ~4.1 ms/query end-to-end).
+
+MAP and Recall@100 both *decreased* relative to hybrid RRF at the default
+pool, but this is a mechanical artifact of the pool cap, not evidence the
+reranker judges relevance worse: a cross-encoder can only reorder the
+candidates it's given, so Recall@k for k > pool_size is identical to
+Recall@pool_size by construction. Confirmed exactly via the pool ablation
+(A6, `results/metrics/reranker_pool_ablation.json`): pool=100's Recall@100
+(0.3389) matches hybrid RRF's own Recall@100 to five decimal places (same
+document set, just reordered).
+
+| Pool | P@10 | Recall@100 | MAP | nDCG@10 | Reranking latency |
+|---:|---:|---:|---:|---:|---:|
+| 20 | 0.2622 | 0.2174 | 0.1586 | 0.3640 | 765.4 ms/query |
+| **50 (default)** | 0.2765 | 0.2782 | 0.1760 | **0.3731** | 1941.6 ms/query |
+| 100 | 0.2690 | 0.3389 | 0.1846 | 0.3664 | 3918.1 ms/query |
+
+Effectiveness vs. pool size is non-monotonic for nDCG@10 (peaks at 50, not
+100) — reported as observed, not smoothed over. **H4 is substantially, but
+not uncritically, supported**: the nDCG@10 claim is directly confirmed by
+the largest margin in the study, latency clearly increased, but the claim
+doesn't extend cleanly to every metric once the recall-capping mechanism is
+accounted for. No significance test has been run on any of this (M7).

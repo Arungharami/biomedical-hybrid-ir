@@ -92,9 +92,16 @@ nDCG@10=0.3620 (`results/metrics/hybrid_rrf.json`). Hybrid wins P@1/MRR/MRR@10
 individually on P@10/Recall@100/MAP/nDCG@10 — H3 is only partially, not
 uniformly, supported by these raw numbers.
 
-### 5.6 Cross-Encoder Reranking
+### 5.6 Cross-Encoder Reranking ✅ M6 complete
 
 `ncbi/MedCPT-Cross-Encoder` reranks the top candidates from the hybrid RRF
 ranking (`configs/reranker.yaml`, candidate pool sizes 20/50/100 tested as
 ablation A6). Full-corpus cross-encoder scoring is treated as a separate,
-explicitly-labeled efficiency experiment, not the default pipeline.
+explicitly-labeled efficiency experiment, not the default pipeline. Real
+test-split results at the default pool (50): P@10=0.2765, MAP=0.1760\*,
+MRR@10=0.5670, **nDCG@10=0.3731** (`results/metrics/hybrid_reranked.json`)
+— the highest nDCG@10 of all six models, directly consistent with H4.
+\*MAP/Recall@100 are capped by the candidate pool (mechanically confirmed
+via the A6 ablation, not a relevance-quality regression) — see
+`docs/models.md` and `results/tables/main_results.md` for the full
+mechanism and pool sweep.

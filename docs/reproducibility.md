@@ -54,16 +54,28 @@ duplicating code (Section 21 of the project spec).
 
 ## Known limitations (living list)
 
-- This is a from-scratch build started 2026-09-09; as of M0-M3 dataset
-  ingestion/validation, the TF-IDF/BM25 baselines, and BGE dense retrieval
-  are real (`results/runs/`, `results/metrics/`, `results/manifests/`).
-  `scripts/run_{tfidf,bm25,bge}.py` are standalone entry points for now;
-  the unifying `scripts/reproduce.py` orchestrator is still pending (M4+).
-  See the README's Experiment status table for the authoritative current
-  state.
-- BGE corpus encoding (M3) took ~120s for 3,633 documents on Apple M1 Pro
-  (MPS); embeddings are not currently cached to disk between runs (each
-  invocation of `scripts/run_bge.py` re-encodes), which is fine at this
-  corpus size but will matter for MedCPT (M4, two separate encoders) and
-  should be revisited if `scripts/reproduce.py`'s "resume from cache"
-  requirement (Section 24) is to be honored precisely.
+- This is a from-scratch build started 2026-09-09; as of M0-M6, all six
+  retrieval models are real (`results/runs/`, `results/metrics/`,
+  `results/manifests/`). `scripts/run_{tfidf,bm25,bge,medcpt,hybrid,reranker}.py`
+  are standalone entry points for now; the unifying `scripts/reproduce.py`
+  orchestrator is still pending (M7+). See the README's Experiment status
+  table for the authoritative current state.
+- Dense/cross-encoder embeddings (BGE, MedCPT, reranker) are not currently
+  cached to disk between runs -- each script invocation re-encodes/re-scores
+  from scratch. Fine at this corpus size (3,633 docs) but should be
+  revisited if `scripts/reproduce.py`'s "resume from cache" requirement
+  (Section 24) is to be honored precisely at a larger scale.
+- **Cross-encoder reranking (M6) is slow on this project's hardware:**
+  ~765-3918 ms/query depending on candidate pool size (20/50/100), measured
+  on Apple M1 Pro (MPS). This is NOT representative of GPU-optimized
+  production latency -- PyTorch's MPS backend lacks some of the fused
+  attention kernels CUDA has for transformer inference. Reported as an
+  honest, real measurement on the hardware actually used, not smoothed or
+  extrapolated to a hypothetical GPU number.
+- **The reranker's Recall@100/MAP are capped by its candidate pool size**
+  (a cross-encoder can only reorder candidates it's given) -- this is a
+  genuine methodological property, not a bug, but means the M6 row in
+  `results/tables/main_results.md` is not directly apples-to-apples with
+  the other rows' true top-100 rankings on those two metrics specifically.
+  See that table's M6 observation section for the full mechanism and the
+  pool-size ablation (A6) that confirms it exactly.

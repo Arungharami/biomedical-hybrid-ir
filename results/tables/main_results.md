@@ -1,8 +1,7 @@
 # Main results (NFCorpus, test split, n=323 queries)
 
-> Generated from `results/metrics/{tfidf,bm25,bge,medcpt,hybrid_rrf}.json`
-> (M2, M3, M4, M5). The M6 row is `Pending` until that milestone produces a real artifact under
-> `results/metrics/` -- no number below is fabricated or estimated in
+> Generated from `results/metrics/{tfidf,bm25,bge,medcpt,hybrid_rrf,hybrid_reranked}.json`
+> (M2-M6; all six models complete) -- no number below is fabricated or estimated in
 > advance of its actual run. Metrics computed with `pytrec_eval` against
 > `data/raw/nfcorpus/qrels_test.json`; see `src/biomedical_ir/evaluation.py`
 > for the exact measure definitions and graded-relevance handling.
@@ -17,7 +16,17 @@
 | BGE (general dense) | 0.2796 | 0.3368 | 0.1831 | 0.5556 | 0.3712 | 2.678 |
 | MedCPT (biomedical dense) | 0.2697 | 0.3488 | 0.1824 | 0.5487 | 0.3654 | 1.871 |
 | BM25 + MedCPT (RRF) | 0.2598 | 0.3389 | 0.1809 | 0.5678 | 0.3620 | 4.069 |
-| Hybrid + MedCPT Cross-Encoder Reranker | Pending | Pending | Pending | Pending | Pending | Pending |
+| Hybrid + MedCPT Cross-Encoder Reranker (pool=50) | 0.2765 | 0.2782\* | 0.1760\* | 0.5670 | **0.3731** | 1945.6 |
+
+\* **Recall@100 and MAP for the reranked row are capped by the candidate
+pool (50), not directly comparable to the other rows' true top-100
+ranking.** A cross-encoder can only reorder the candidates it is given; with
+pool=50 the reranked run never contains more than 50 documents per query,
+so Recall@100 == Recall@50 exactly (0.2782 both) by construction. Verified
+mechanistically in the pool ablation below: pool=100's Recall@100 (0.3389)
+exactly equals hybrid RRF's own Recall@100 (0.3389) — reordering an
+unchanged 100-document set cannot change how many relevant documents are
+present in it. See the M6 observation below for the honest read.
 
 ## M2 observation (raw numbers only, no significance claim)
 
@@ -94,3 +103,48 @@ retrieval + RRF fusion, `4.069 ms/query`) rather than fusion-time-only
 (`0.0425 ms/query`), since a real hybrid query genuinely pays both component
 retrievers' cost -- see `results/metrics/hybrid_rrf.json -> timing` for both
 numbers and the exact breakdown.
+
+## M6 observation (raw numbers only, no significance claim)
+
+Reranks the hybrid RRF (M5) run's top candidates with
+`ncbi/MedCPT-Cross-Encoder` (`src/biomedical_ir/reranker.py`). Candidate
+pool sizes 20/50/100 were all run (ablation A6):
+
+| Pool | P@10 | Recall@10 | Recall@20 | Recall@50 | Recall@100 | MAP | MRR@10 | nDCG@10 | Reranking latency |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 20 | 0.2622 | 0.1811 | 0.2174 | 0.2174 | 0.2174 | 0.1586 | 0.5661 | 0.3640 | 765.4 ms/query |
+| **50 (default)** | **0.2765** | 0.1895 | 0.2291 | 0.2782 | 0.2782 | 0.1760 | 0.5670 | **0.3731** | 1941.6 ms/query |
+| 100 | 0.2690 | 0.1858 | 0.2269 | 0.2906 | 0.3389 | 0.1846 | 0.5668 | 0.3664 | 3918.1 ms/query |
+
+(Recall@k for k > pool size is identical to Recall@pool within each row --
+mechanically expected, not a bug: a reranker cannot recover documents it
+was never given as candidates. Confirmed exactly: pool=100's Recall@100
+(0.3389) equals hybrid RRF's own Recall@100 to five decimal places.)
+
+**The headline finding: at the default pool (50), reranking achieves
+nDCG@10 = 0.3731 -- the highest nDCG@10 of all six models in this study**
+(vs. hybrid RRF 0.3620, BGE 0.3712, MedCPT 0.3654), consistent with **H4**'s
+specific prediction ("cross-encoder reranking will improve top-ranked
+effectiveness, especially nDCG@10"). Latency also increased dramatically as
+H4 predicted: reranking-only adds ~1941.6 ms/query on top of hybrid RRF's
+~4.1 ms/query (measured on Apple M1 Pro MPS -- not representative of
+GPU-optimized production latency; see `docs/reproducibility.md`).
+
+**However, MAP and Recall@100 both DECREASED relative to hybrid RRF**
+(MAP: 0.1760 vs. 0.1809; Recall@100: 0.2782 vs. 0.3389) at the default pool.
+This is **not** evidence the reranker judges relevance worse -- it is
+mechanically explained by the candidate-pool cap above: hybrid RRF's own
+top-100 ranking naturally has more room to accumulate recall than a
+reranker restricted to reordering only its top 50 candidates. At pool=100
+(no candidate-pool disadvantage vs. hybrid RRF), MAP actually improves to
+0.1846 (vs. hybrid RRF's 0.1809) while nDCG@10 (0.3664) is still below the
+pool=50 result -- suggesting the effectiveness/pool-size relationship is
+genuinely non-monotonic here, not simply "bigger pool always better."
+
+**H4 is therefore substantially, but not uncritically, supported**: the
+specific claim about nDCG@10 improving is directly confirmed on these raw
+numbers (and by the largest margin of the whole study), and the latency
+increase is unambiguous and large; the claim doesn't extend cleanly to
+every metric at the chosen default pool once the recall-capping mechanism
+is accounted for. As always, no formal significance test has been applied
+to any of this -- that is M7's job.

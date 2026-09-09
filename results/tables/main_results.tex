@@ -19,7 +19,12 @@
     BGE (general dense)                      & 0.2796  & 0.3368  & 0.1831  & 0.5556  & 0.3712  & 2.678 \\
     MedCPT (biomedical dense)                & 0.2697  & 0.3488  & 0.1824  & 0.5487  & 0.3654  & 1.871 \\
     BM25 + MedCPT (RRF)                      & 0.2598  & 0.3389  & 0.1809  & 0.5678  & 0.3620  & 4.069 \\
-    Hybrid + MedCPT Cross-Encoder Reranker   & Pending & Pending & Pending & Pending & Pending & Pending \\
+    Hybrid + MedCPT Cross-Encoder Reranker (pool=50) & 0.2765 & 0.2782$^\dagger$ & 0.1760$^\dagger$ & 0.5670 & \textbf{0.3731} & 1945.6 \\
     \bottomrule
   \end{tabular}
+  \vspace{2pt}
+  \\ \footnotesize{$^\dagger$Recall@100/MAP for the reranked row are capped
+  by its candidate pool (50); a cross-encoder can only reorder candidates it
+  is given. See results/tables/main\_results.md for the full pool ablation
+  (20/50/100) and mechanism.}
 \end{table}

@@ -1,0 +1,47 @@
+{
+  "experiment_id": "exp-reranker-001",
+  "timestamp": "2026-09-09T17:21:35.122443+00:00",
+  "git_commit": "eab2847f603382cdcef0a4f6c382a3401fedad80",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "ncbi/MedCPT-Cross-Encoder",
+  "model_revision": null,
+  "parameters": {
+    "reranker": {
+      "model": "ncbi/MedCPT-Cross-Encoder",
+      "article_join": "{title}. {text}",
+      "candidate_pool": 50,
+      "max_length": 512,
+      "batch_size": 32,
+      "top_k": 100
+    },
+    "candidate_pool": 50
+  },
+  "seed": 42,
+  "device": "mps",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 2176.7834,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "candidate_pool_sizes_tested": [
+    20,
+    50,
+    100
+  ],
+  "default_candidate_pool": 50
+}

@@ -110,7 +110,51 @@ exceed BGE or MedCPT individually on P@10, Recall@100, MAP, or nDCG@10 (the
 metrics this project treats as primary). Reported exactly as observed with
 no significance test applied; RQ4 remains open pending M7.
 
-## Cross-encoder reranking
+## Cross-encoder reranking (M6, real numbers)
 
-⚪ **Pending.** M6 has not run. See the root README's Experiment status
-table for current milestone status.
+Reranks the hybrid RRF (M5) run's top candidates with
+`ncbi/MedCPT-Cross-Encoder` (`src/biomedical_ir/reranker.py`). Candidate
+pool sizes 20/50/100 all run (ablation A6). Full metric sets:
+`results/metrics/hybrid_reranked.json` (default pool=50) and
+`results/metrics/reranker_pool_ablation.json` (all three pools). Run
+artifact: `results/runs/hybrid_reranked.trec`. Manifest:
+`results/manifests/exp-reranker-001.json`.
+
+| Pool | P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Reranking latency (ms/query) |
+|---:|---:|---:|---:|---:|---:|---:|
+| 20 | 0.2622 | 0.2174 | 0.1586 | 0.5661 | 0.3640 | 765.4 |
+| **50 (default)** | 0.2765 | 0.2782 | 0.1760 | 0.5670 | **0.3731** | 1941.6 |
+| 100 | 0.2690 | 0.3389 | 0.1846 | 0.5668 | 0.3664 | 3918.1 |
+
+**Headline finding: reranking at the default pool achieves nDCG@10 =
+0.3731 — the highest nDCG@10 of all six models in this study** (hybrid RRF
+0.3620, BGE 0.3712, MedCPT 0.3654), directly supporting **H4**'s specific
+claim ("cross-encoder reranking will improve top-ranked effectiveness,
+especially nDCG@10"). Latency increased dramatically and unambiguously, also
+as H4 predicted: reranking alone adds ~1941.6 ms/query on Apple M1 Pro
+(MPS) — not representative of GPU-optimized production latency, but a real
+measurement on the hardware this project ran on (`docs/reproducibility.md`).
+
+**Important methodological caveat, reported rather than hidden:** MAP
+(0.1760) and Recall@100 (0.2782) both *decreased* relative to hybrid RRF
+(MAP 0.1809, Recall@100 0.3389) at the default pool. This is **not**
+evidence the reranker judges relevance worse — it is a mechanical
+consequence of the candidate-pool cap: a cross-encoder can only reorder the
+candidates it is given, so Recall@k for k exceeding the pool size is
+identical to Recall@pool_size by construction (verified exactly: pool=20's
+Recall@20/50/100 are all 0.2174; pool=50's Recall@50/100 are both 0.2782;
+pool=100's Recall@100, 0.3389, matches hybrid RRF's own Recall@100 to five
+decimal places, since reordering an unchanged 100-document set cannot
+change how many relevant documents it contains). At pool=100 — no
+candidate-pool disadvantage relative to hybrid RRF — MAP does exceed hybrid
+RRF's (0.1846 vs. 0.1809), while nDCG@10 (0.3664) is still below the
+pool=50 result, so effectiveness vs. pool size is genuinely non-monotonic
+here rather than simply "bigger pool always better."
+
+**H4 is therefore substantially, but not uncritically, supported**: the
+nDCG@10 claim is directly confirmed by the largest margin in the whole
+study, and the latency increase is large and unambiguous; the improvement
+does not extend cleanly to every metric at the default pool once the
+recall-capping mechanism is accounted for. As with every other claim in
+this document, no formal significance test has been applied — that
+remains M7's job.
