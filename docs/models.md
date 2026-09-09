@@ -35,10 +35,12 @@ terms (`tests/test_bm25.py::TestCrossCheckAgainstRankBm25`). Config:
 | 0.2071 | 0.2295 | 0.1333 | 0.4939 | 0.2954 | 2.155 ms/query |
 
 On this real run, TF-IDF's point estimates are numerically higher than
-BM25's on every metric above -- the opposite direction from H1. This is
-reported as a raw observation only; no significance test has been run yet
-(that is M7's job), so H1 is neither confirmed nor rejected by this
-milestone. See `results/tables/main_results.md` for further discussion.
+BM25's on every metric above -- the opposite direction from H1. **M7's
+significance test confirms this statistically: TF-IDF significantly
+outperforms BM25 on P@10 (p=0.017), Recall@100 (p=0.010), and nDCG@10
+(p=0.030), so H1 is REJECTED, not merely contradicted on raw numbers.**
+See `results/tables/main_results.md` and `results/tables/statistical_tests.md`
+for the full test.
 
 ## M3 — BAAI/bge-base-en-v1.5
 
@@ -63,8 +65,10 @@ document corpus is small enough that approximate indexing isn't needed).
 
 Corpus encoding (3,633 docs) took 120.3s on MPS; model load 24.6s. BGE's
 point estimates exceed both TF-IDF and BM25 on every metric above — the
-direction RQ2 asks about — but no significance test has run yet (M7), so
-RQ2 is not considered answered by this milestone alone.
+direction RQ2 asks about. **M7 confirms this statistically for the BM25
+comparison specifically**: BM25 vs. BGE is significant on all five primary
+metrics (all p<0.005) — the study's most robust finding (dense retrieval,
+either flavor, clearly and significantly beats BM25).
 
 ## M4 — MedCPT (Query Encoder + Article Encoder)
 
@@ -95,12 +99,15 @@ before being used in production code.
 | 0.2697 | 0.3488 | 0.1824 | 0.5487 | 0.3654 | 1.871 ms/query (query-side only) |
 
 Both encoders loaded in 52.3s; corpus encoding (3,633 docs) took 141.9s.
-MedCPT beats both lexical baselines (TF-IDF, BM25) on every metric, but is
-essentially tied with BGE rather than clearly ahead of it (MedCPT wins on
-Recall@100, BGE wins on P@10/MAP/MRR@10/nDCG@10, all by small margins). H2
-("biomedical dense retrieval will outperform general-purpose") is **not**
-straightforwardly supported by these raw point estimates — reported
-honestly rather than framed as a win, pending M7's significance testing.
+MedCPT beats both lexical baselines (TF-IDF, BM25) on every metric
+(**confirmed significant by M7**: BM25 vs. MedCPT p<0.005 on all five
+primary metrics), but is essentially tied with BGE rather than clearly
+ahead of it (MedCPT wins on Recall@100, BGE wins on P@10/MAP/MRR@10/nDCG@10,
+all by small margins). **M7 confirms none of these BGE-vs-MedCPT
+differences are statistically significant (all p>=0.12) — H2 ("biomedical
+dense retrieval will outperform general-purpose") is REJECTED**, not merely
+unsupported on raw numbers; the two models are statistically
+indistinguishable on this test set.
 
 ## M5 — Hybrid (BM25 + MedCPT, RRF)
 
