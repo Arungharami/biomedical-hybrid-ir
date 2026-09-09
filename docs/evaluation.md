@@ -1,9 +1,9 @@
 # Evaluation
 
 > Status: implementation landed in M2 (`src/biomedical_ir/evaluation.py`),
-> exercised for real on TF-IDF and BM25 (`results/metrics/{tfidf,bm25}.json`).
-> Full cross-model table + statistical testing lands in M7. Metric
-> definitions below are final.
+> exercised on all six models (M2-M6). Statistical testing (M7) complete --
+> see `results/tables/statistical_tests.md` and the Statistical testing
+> section below.
 
 ## Metrics
 
@@ -49,10 +49,31 @@ tolerance.
   frozen in the relevant config before test-set evaluation runs — see
   Section 4 of the project spec and `docs/dataset.md`.
 
-## Statistical testing
+## Statistical testing ✅ M7 complete
 
-Paired bootstrap / permutation testing at the query level for the key model
-comparisons (BM25 vs BGE, BM25 vs MedCPT, BGE vs MedCPT, MedCPT vs Hybrid,
-Hybrid vs Hybrid+Reranker). Reports metric difference, confidence interval,
-p-value, effect direction, and number of queries — implemented in
-`src/biomedical_ir/statistics.py`. ⚪ Pending (M7).
+Paired bootstrap testing (`src/biomedical_ir/statistics.py`,
+n_resamples=10000, seed=42) at the query level, run by
+`scripts/evaluate_all.py`. Six comparisons x five primary metrics = 30
+tests: the five Section 16 names explicitly (BM25 vs BGE, BM25 vs MedCPT,
+BGE vs MedCPT, MedCPT vs Hybrid, Hybrid vs Hybrid+Reranker) plus TF-IDF vs
+BM25 (added to directly resolve H1). Every model's per-query scores are
+loaded from `results/runs/*.json` (not `*.trec`) specifically so BM25's 25
+zero-result test queries participate in the pairing rather than vanishing
+(see `evaluation.load_run_json`'s docstring). Full results:
+`results/tables/statistical_tests.md` / `.json`.
+
+**Headline results:** both dense retrievers (BGE, MedCPT) significantly
+beat BM25 on all five primary metrics (p<0.005 each) — the study's most
+robust finding. H1 is rejected (TF-IDF significantly beats BM25); H2 and
+H3 (for the comparisons actually tested) are not supported; H4 is
+partially supported (latency increase unambiguous, but its flagship
+nDCG@10 claim, while the best point estimate in the study, is not
+significant at p=0.194). See `paper/methodology.md` for the full
+per-hypothesis verdicts and `paper/results.md` Section 9 for the complete
+writeup.
+
+A permutation test (`paired_permutation_test`, same module) is also
+implemented and unit-tested as a second method, per Section 16's "prefer
+paired bootstrap or permutation/randomization testing" — the bootstrap test
+is used as the project's primary reported method since it directly yields
+both a confidence interval and a p-value together.

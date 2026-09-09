@@ -54,12 +54,14 @@ duplicating code (Section 21 of the project spec).
 
 ## Known limitations (living list)
 
-- This is a from-scratch build started 2026-09-09; as of M0-M6, all six
-  retrieval models are real (`results/runs/`, `results/metrics/`,
-  `results/manifests/`). `scripts/run_{tfidf,bm25,bge,medcpt,hybrid,reranker}.py`
-  are standalone entry points for now; the unifying `scripts/reproduce.py`
-  orchestrator is still pending (M7+). See the README's Experiment status
-  table for the authoritative current state.
+- This is a from-scratch build started 2026-09-09; as of M0-M7, all six
+  retrieval models plus statistical/efficiency analysis are real
+  (`results/runs/`, `results/metrics/`, `results/manifests/`,
+  `results/tables/statistical_tests.*`, `results/tables/efficiency.*`).
+  `scripts/run_{tfidf,bm25,bge,medcpt,hybrid,reranker}.py` and
+  `scripts/evaluate_all.py` are standalone entry points for now; the
+  unifying `scripts/reproduce.py` orchestrator is still pending (M8+). See
+  the README's Experiment status table for the authoritative current state.
 - Dense/cross-encoder embeddings (BGE, MedCPT, reranker) are not currently
   cached to disk between runs -- each script invocation re-encodes/re-scores
   from scratch. Fine at this corpus size (3,633 docs) but should be

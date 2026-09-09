@@ -92,7 +92,7 @@ python3.11 -m venv .venv && source .venv/bin/activate   # PyTorch/FAISS need <=3
 pip install -r requirements.txt
 pip install -e .
 
-pytest -q                        # 129 tests, all passing as of M0-M6
+pytest -q                        # 134 tests, all passing as of M0-M7
 python scripts/audit_dataset.py  # downloads NFCorpus, validates, writes stats
 python scripts/run_tfidf.py      # M2: TF-IDF baseline -> results/{runs,metrics,manifests}
 python scripts/run_bm25.py       # M2: BM25 baseline -> results/{runs,metrics,manifests}
@@ -100,6 +100,7 @@ python scripts/run_bge.py        # M3: BGE dense retrieval -> results/{runs,metr
 python scripts/run_medcpt.py     # M4: MedCPT dense retrieval -> results/{runs,metrics,manifests}
 python scripts/run_hybrid.py     # M5: BM25+MedCPT RRF -> results/{runs,metrics,manifests}
 python scripts/run_reranker.py   # M6: MedCPT cross-encoder reranking -> results/{runs,metrics,manifests}
+python scripts/evaluate_all.py   # M7: paired significance tests + efficiency table -> results/tables/
 ```
 
 ## Colab
@@ -119,7 +120,7 @@ listed in [docs/reproducibility.md](docs/reproducibility.md).
 | M4 | MedCPT biomedical dense retrieval | ✅ Complete |
 | M5 | Hybrid RRF | ✅ Complete |
 | M6 | MedCPT cross-encoder reranking | ✅ Complete |
-| M7 | Full evaluation, tables, statistical tests, efficiency analysis | ⚪ Pending |
+| M7 | Full evaluation, tables, statistical tests, efficiency analysis | ✅ Complete |
 | M8 | Error analysis | ⚪ Pending |
 | M9 | Colab notebooks | ⚪ Pending |
 | M10 | Paper artifacts (figures, BibTeX) | ⚪ Pending |
@@ -135,9 +136,22 @@ RQ1–RQ6 (BM25 vs. TF-IDF, dense vs. lexical, biomedical vs. general dense,
 hybrid vs. individual retrievers, reranking's effect on top-ranked
 effectiveness, and effectiveness/efficiency trade-offs) are stated in full in
 [paper/methodology.md](paper/methodology.md) along with the corresponding
-hypotheses H1–H4, which are explicitly treated as hypotheses — not reported
-as findings — until the relevant experiments complete and pass statistical
-testing.
+hypotheses H1–H4.
+
+## Statistical analysis (M7 — complete)
+
+Paired bootstrap significance testing (`src/biomedical_ir/statistics.py`,
+n=323, n_resamples=10000) ran on all real results: see
+[results/tables/statistical_tests.md](results/tables/statistical_tests.md)
+for the full 30-test table and [paper/methodology.md](paper/methodology.md)
+for per-hypothesis verdicts. Summary: **H1 rejected** (TF-IDF significantly
+beats BM25); **H2 not supported** (BGE/MedCPT statistically
+indistinguishable); **H3 not supported** for the comparison tested (MedCPT
+significantly beats Hybrid RRF on Recall@100); **H4 partially supported**
+(latency increase unambiguous; its flagship nDCG@10 claim is the best point
+estimate in the study but not statistically significant, p=0.194). The
+study's most robust finding: both dense retrievers significantly outperform
+BM25 on every primary metric (p<0.005 each).
 
 ## Reproducibility
 
