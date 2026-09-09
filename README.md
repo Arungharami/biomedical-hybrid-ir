@@ -51,7 +51,7 @@ queries/documents, **0** train/dev/test split overlap.
 | M1 | TF-IDF + cosine similarity | Classical lexical baseline | ✅ Complete (P@10 0.2167, Recall@100 0.2372, MAP 0.1372, MRR@10 0.5062, nDCG@10 0.3050) |
 | M2 | BM25 (`k1=1.2, b=0.75`) | Classical lexical baseline | ✅ Complete (P@10 0.2071, Recall@100 0.2295, MAP 0.1333, MRR@10 0.4939, nDCG@10 0.2954) |
 | M3 | [BAAI/bge-base-en-v1.5](https://huggingface.co/BAAI/bge-base-en-v1.5) | General dense retrieval | ✅ Complete (P@10 0.2796, Recall@100 0.3368, MAP 0.1831, MRR@10 0.5556, nDCG@10 0.3712) |
-| M4 | [ncbi/MedCPT-Query-Encoder](https://huggingface.co/ncbi/MedCPT-Query-Encoder) + [ncbi/MedCPT-Article-Encoder](https://huggingface.co/ncbi/MedCPT-Article-Encoder) | Biomedical dense retrieval | ⚪ Pending |
+| M4 | [ncbi/MedCPT-Query-Encoder](https://huggingface.co/ncbi/MedCPT-Query-Encoder) + [ncbi/MedCPT-Article-Encoder](https://huggingface.co/ncbi/MedCPT-Article-Encoder) | Biomedical dense retrieval | ✅ Complete (P@10 0.2697, Recall@100 0.3488, MAP 0.1824, MRR@10 0.5487, nDCG@10 0.3654) |
 | M5 | BM25 + MedCPT, Reciprocal Rank Fusion (k=60) | Hybrid retrieval | ⚪ Pending |
 | M6 | [ncbi/MedCPT-Cross-Encoder](https://huggingface.co/ncbi/MedCPT-Cross-Encoder) reranking M5's candidates | Biomedical reranking | ⚪ Pending |
 
@@ -92,11 +92,12 @@ python3.11 -m venv .venv && source .venv/bin/activate   # PyTorch/FAISS need <=3
 pip install -r requirements.txt
 pip install -e .
 
-pytest -q                        # 90 tests, all passing as of M0-M3
+pytest -q                        # 93 tests, all passing as of M0-M4
 python scripts/audit_dataset.py  # downloads NFCorpus, validates, writes stats
 python scripts/run_tfidf.py      # M2: TF-IDF baseline -> results/{runs,metrics,manifests}
 python scripts/run_bm25.py       # M2: BM25 baseline -> results/{runs,metrics,manifests}
 python scripts/run_bge.py        # M3: BGE dense retrieval -> results/{runs,metrics,manifests}
+python scripts/run_medcpt.py     # M4: MedCPT dense retrieval -> results/{runs,metrics,manifests}
 ```
 
 ## Colab
@@ -113,7 +114,7 @@ listed in [docs/reproducibility.md](docs/reproducibility.md).
 | M1 | Dataset ingestion + validation (real NFCorpus, verified against live Hub) | ✅ Complete |
 | M2 | TF-IDF + BM25 baselines | ✅ Complete |
 | M3 | BGE general dense retrieval | ✅ Complete |
-| M4 | MedCPT biomedical dense retrieval | ⚪ Pending |
+| M4 | MedCPT biomedical dense retrieval | ✅ Complete |
 | M5 | Hybrid RRF | ⚪ Pending |
 | M6 | MedCPT cross-encoder reranking | ⚪ Pending |
 | M7 | Full evaluation, tables, statistical tests, efficiency analysis | ⚪ Pending |

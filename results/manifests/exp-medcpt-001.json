@@ -1,0 +1,43 @@
+{
+  "experiment_id": "exp-medcpt-001",
+  "timestamp": "2026-09-09T16:32:09.262685+00:00",
+  "git_commit": "7fdb8f335ee0f887b2e05f45f5f9242c7169fe8a",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "ncbi/MedCPT-Query-Encoder + ncbi/MedCPT-Article-Encoder",
+  "model_revision": null,
+  "parameters": {
+    "model": {
+      "query_encoder": "ncbi/MedCPT-Query-Encoder",
+      "article_encoder": "ncbi/MedCPT-Article-Encoder",
+      "query_max_length": 64,
+      "article_max_length": 512,
+      "batch_size": 32,
+      "top_k": 100
+    }
+  },
+  "seed": 42,
+  "device": "mps",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 194.8945,
+  "status": "complete",
+  "num_queries_evaluated": 323,
+  "top_k": 100,
+  "embedding_dim": 768,
+  "index_size_bytes": 11160576
+}

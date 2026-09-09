@@ -68,11 +68,17 @@ nDCG@10=0.3712 (`results/metrics/bge.json`). BGE's point estimates exceed
 both lexical baselines on every metric — the direction RQ2 asks about — but
 whether that difference is significant is left to M7.
 
-### 5.4 MedCPT (biomedical dense retrieval)
+### 5.4 MedCPT (biomedical dense retrieval) ✅ M4 complete
 
 `ncbi/MedCPT-Query-Encoder` + `ncbi/MedCPT-Article-Encoder`, CLS pooling, no
 normalization, dot-product similarity, articles encoded as `[title, text]`
-pairs — see `docs/models.md` and `configs/medcpt.yaml`.
+pairs — see `docs/models.md` and `configs/medcpt.yaml`. Real test-split
+results (n=323 queries): P@10=0.2697, Recall@100=0.3488, MAP=0.1824,
+MRR@10=0.5487, nDCG@10=0.3654 (`results/metrics/medcpt.json`). MedCPT beats
+both lexical baselines on every metric but is essentially tied with BGE
+(MedCPT ahead on Recall@100, BGE ahead on P@10/MAP/MRR@10/nDCG@10, all
+small margins) — H2 is not straightforwardly supported by these raw point
+estimates; significance testing is left to M7.
 
 ### 5.5 Reciprocal Rank Fusion
 

@@ -81,7 +81,27 @@ Verified against the official model cards
   `configs/default.yaml` conceptually, but MedCPT gets the pair form
   specifically because that's what its tokenizer call expects.
 
-Config: `configs/medcpt.yaml`. ⚪ Pending implementation.
+Config: `configs/medcpt.yaml`. Implementation: `src/biomedical_ir/medcpt.py`
+(raw `transformers.AutoModel`, two separate encoders, manual CLS pooling —
+unlike BGE which uses sentence-transformers' built-in pooling). The
+title/text-pair tokenizer call was empirically verified (not assumed) to
+produce identical `input_ids` to `tokenizer(text=titles, text_pair=texts, ...)`
+before being used in production code.
+
+**M4 — ✅ Complete.** Real test-split (n=323) results, run on Apple M1 Pro
+(MPS), from `results/metrics/medcpt.json`:
+
+| P@10 | Recall@100 | MAP | MRR@10 | nDCG@10 | Latency |
+|---:|---:|---:|---:|---:|---:|
+| 0.2697 | 0.3488 | 0.1824 | 0.5487 | 0.3654 | 1.871 ms/query (query-side only) |
+
+Both encoders loaded in 52.3s; corpus encoding (3,633 docs) took 141.9s.
+MedCPT beats both lexical baselines (TF-IDF, BM25) on every metric, but is
+essentially tied with BGE rather than clearly ahead of it (MedCPT wins on
+Recall@100, BGE wins on P@10/MAP/MRR@10/nDCG@10, all by small margins). H2
+("biomedical dense retrieval will outperform general-purpose") is **not**
+straightforwardly supported by these raw point estimates — reported
+honestly rather than framed as a win, pending M7's significance testing.
 
 ## M5 — Hybrid (BM25 + MedCPT, RRF)
 

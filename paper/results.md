@@ -1,10 +1,11 @@
 # 8. Results
 
-M2 (TF-IDF, BM25) and M3 (BGE) are complete with real artifacts; M4-M6
-(MedCPT, hybrid RRF, cross-encoder reranking) have not run yet, so every
-corresponding cell in the main results table still reads `Pending` (Section
-15 of the project spec / the root README's Experiment status table). No
-metric below is estimated or fabricated in advance of its actual run.
+M2 (TF-IDF, BM25), M3 (BGE), and M4 (MedCPT) are complete with real
+artifacts; M5-M6 (hybrid RRF, cross-encoder reranking) have not run yet, so
+every corresponding cell in the main results table still reads `Pending`
+(Section 15 of the project spec / the root README's Experiment status
+table). No metric below is estimated or fabricated in advance of its actual
+run.
 
 ## TF-IDF and BM25 (M2, real numbers)
 

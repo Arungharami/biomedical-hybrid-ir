@@ -1,0 +1,47 @@
+{
+  "model": "medcpt",
+  "config_path": "configs/medcpt.yaml",
+  "parameters": {
+    "model": {
+      "query_encoder": "ncbi/MedCPT-Query-Encoder",
+      "article_encoder": "ncbi/MedCPT-Article-Encoder",
+      "query_max_length": 64,
+      "article_max_length": 512,
+      "batch_size": 32,
+      "top_k": 100
+    }
+  },
+  "split": "test",
+  "num_queries_evaluated": 323,
+  "dropped_queries_not_in_qrels": [],
+  "metrics": {
+    "P@1": 0.4674922600619195,
+    "P@5": 0.3380804953560376,
+    "P@10": 0.2696594427244582,
+    "Recall@10": 0.18278101709661937,
+    "Recall@20": 0.2238262237138603,
+    "Recall@50": 0.28233895164243383,
+    "Recall@100": 0.34876271145714066,
+    "nDCG@5": 0.3941407557557842,
+    "nDCG@10": 0.3654480183288019,
+    "nDCG@20": 0.3451389061258514,
+    "MRR": 0.5536566615922974,
+    "MRR@10": 0.5487136960047175,
+    "MAP": 0.18240741727913135,
+    "MAP@100": 0.18240741727913135
+  },
+  "timing": {
+    "model_load_seconds": 52.3489,
+    "corpus_encoding_seconds": 141.9411,
+    "retrieve_seconds": 0.6045,
+    "total_seconds": 194.8945,
+    "latency_ms_per_query": 1.8714
+  },
+  "index": {
+    "type": "IndexFlatIP",
+    "embedding_dim": 768,
+    "num_vectors": 3633,
+    "size_bytes": 11160576
+  },
+  "device": "mps"
+}
