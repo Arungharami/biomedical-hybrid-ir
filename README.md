@@ -92,7 +92,7 @@ python3.11 -m venv .venv && source .venv/bin/activate   # PyTorch/FAISS need <=3
 pip install -r requirements.txt
 pip install -e .
 
-pytest -q                        # 134 tests, all passing as of M0-M7
+pytest -q                        # 148 tests, all passing as of M0-M8
 python scripts/audit_dataset.py  # downloads NFCorpus, validates, writes stats
 python scripts/run_tfidf.py      # M2: TF-IDF baseline -> results/{runs,metrics,manifests}
 python scripts/run_bm25.py       # M2: BM25 baseline -> results/{runs,metrics,manifests}
@@ -101,6 +101,7 @@ python scripts/run_medcpt.py     # M4: MedCPT dense retrieval -> results/{runs,m
 python scripts/run_hybrid.py     # M5: BM25+MedCPT RRF -> results/{runs,metrics,manifests}
 python scripts/run_reranker.py   # M6: MedCPT cross-encoder reranking -> results/{runs,metrics,manifests}
 python scripts/evaluate_all.py   # M7: paired significance tests + efficiency table -> results/tables/
+python scripts/error_analysis.py # M8: query-level win/loss examples -> results/error-analysis/
 ```
 
 ## Colab
@@ -121,7 +122,7 @@ listed in [docs/reproducibility.md](docs/reproducibility.md).
 | M5 | Hybrid RRF | ✅ Complete |
 | M6 | MedCPT cross-encoder reranking | ✅ Complete |
 | M7 | Full evaluation, tables, statistical tests, efficiency analysis | ✅ Complete |
-| M8 | Error analysis | ⚪ Pending |
+| M8 | Error analysis | ✅ Complete |
 | M9 | Colab notebooks | ⚪ Pending |
 | M10 | Paper artifacts (figures, BibTeX) | ⚪ Pending |
 | M11 | Next.js research portal | ⚪ Pending |
@@ -152,6 +153,33 @@ significantly beats Hybrid RRF on Recall@100); **H4 partially supported**
 estimate in the study but not statistically significant, p=0.194). The
 study's most robust finding: both dense retrievers significantly outperform
 BM25 on every primary metric (p<0.005 each).
+
+## Error analysis (M8 — complete)
+
+Automatic query-level diagnostics (`src/biomedical_ir/error_analysis.py`)
+classify every (query, relevant document) pair from the real test qrels
+against all six models' real rankings — see
+[results/error-analysis/error_analysis.md](results/error-analysis/error_analysis.md)
+for concrete examples (query text, relevant doc title/snippet, rank in
+every model). Counts found across 323 test queries:
+
+| Category | Found |
+|---|---:|
+| BM25 wins / MedCPT loses | 52 |
+| MedCPT wins / BM25 loses | 244 |
+| Hybrid fixes a lexical (BM25) failure | 76 |
+| Hybrid fixes a semantic (MedCPT) failure | 17 |
+| Reranker improves the result | 926 |
+| Reranker degrades the result | 832 |
+
+MedCPT recovering from BM25 misses (244) far outnumbers the reverse (52) —
+consistent with M7's significant BM25-vs-dense finding. One illustrative
+example: the one-word query "salmon" is nailed by BM25 (rank 2, exact
+lexical match) but completely missed by MedCPT — a concrete instance of
+lexical precision beating semantic drift, not just dense retrieval
+uniformly winning. The reranker's near-even improve/degrade split (926 vs.
+832) is consistent with M7's finding that its nDCG@10 gain isn't
+statistically significant — real per-query volatility in both directions.
 
 ## Reproducibility
 

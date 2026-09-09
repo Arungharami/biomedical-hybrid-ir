@@ -1,0 +1,44 @@
+{
+  "experiment_id": "exp-error-analysis-001",
+  "timestamp": "2026-09-09T18:54:59.847320+00:00",
+  "git_commit": "3bdf4c444e8d1f558d5ef76351e6d5facae07289",
+  "dataset": "BeIR/nfcorpus",
+  "dataset_revision": null,
+  "split": "test",
+  "model": "error_analysis",
+  "model_revision": null,
+  "parameters": {
+    "max_examples_per_category": 5,
+    "rank_thresholds": {
+      "good_rank": 10,
+      "bad_rank": 50
+    }
+  },
+  "seed": 42,
+  "device": "cpu",
+  "python_version": "3.11.16",
+  "os": "Darwin 25.6.0",
+  "library_versions": {
+    "python": "3.11.16",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.0",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1",
+    "datasets": "5.0.1",
+    "faiss": "1.15.0",
+    "pytrec_eval": "unknown"
+  },
+  "runtime_seconds": 0.9271,
+  "status": "complete",
+  "total_examples_found_per_category": {
+    "bm25_wins_medcpt_loses": 52,
+    "medcpt_wins_bm25_loses": 244,
+    "hybrid_fixes_lexical_failure": 76,
+    "hybrid_fixes_semantic_failure": 17,
+    "reranker_improves_result": 926,
+    "reranker_degrades_result": 832
+  }
+}

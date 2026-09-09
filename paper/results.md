@@ -213,3 +213,43 @@ significantly outperform BM25 on every one of the five primary metrics
 None of the finer "which advanced method wins" questions (biomedical vs.
 general dense, hybrid vs. individual, reranked vs. not) reach significance
 on their respective headline metrics at n=323 queries.
+
+# 10. Error Analysis
+
+`src/biomedical_ir/error_analysis.py` classifies every (query, relevant
+document) pair in the real test qrels by each model's real rank for that
+document (`results/runs/*.json`), into six diagnostic categories (Section
+17 of the project spec). Full output:
+`results/error-analysis/error_analysis.json` / `.md`
+(`scripts/error_analysis.py`). Counts found across all 323 test queries
+(rank thresholds: good <=10, bad = not retrieved or >50):
+
+| Category | Count |
+|---|---:|
+| BM25 wins / MedCPT loses | 52 |
+| MedCPT wins / BM25 loses | 244 |
+| Hybrid fixes a lexical (BM25) failure | 76 |
+| Hybrid fixes a semantic (MedCPT) failure | 17 |
+| Reranker improves the result | 926 |
+| Reranker degrades the result | 832 |
+
+**MedCPT recovering from BM25 misses (244) outnumbers the reverse (52) by
+roughly 5:1** — directly consistent with M7's significant BM25-vs-dense
+finding, at the level of individual query-document pairs rather than
+aggregate metrics. Illustrative example (`results/error-analysis/error_analysis.md`):
+the single-word query "salmon" is ranked #2 by BM25 (exact lexical match to
+a document literally about Atlantic salmon) but is entirely missed by
+MedCPT — a concrete counter-example to "dense retrieval always wins,"
+showing exact lexical matching still has genuine, real advantages for
+short, unambiguous, terminology-heavy queries.
+
+Hybrid recovers from BM25's failures (76 cases) far more often than from
+MedCPT's (17 cases) — consistent with BM25 being the weaker component
+overall, but also showing hybrid fusion has genuine, real value beyond
+just "defer to the stronger retriever": in 17 real cases, BM25's lexical
+signal alone rescued a document MedCPT's semantic embedding had missed.
+
+The reranker's near-even improve/degrade split (926 vs. 832, roughly
+53%/47%) is consistent with M7's finding that its nDCG@10 gain over hybrid
+RRF is not statistically significant: real, substantial per-query movement
+in both directions that roughly cancels out in aggregate.
