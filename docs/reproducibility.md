@@ -6,12 +6,15 @@
 python scripts/reproduce.py --config configs/default.yaml
 ```
 
-Runs, in order: dataset audit → TF-IDF → BM25 → BGE → MedCPT → hybrid RRF →
-cross-encoder reranking → evaluation → statistical analysis → figures → web
-export. Each step checks for its expected output artifact under `results/`
-and skips recomputation if it's already present (expensive embedding steps
-in particular are never silently recomputed) — see the script's `--force`
-flag to override. ⚪ Script scaffolding pending (M2+).
+✅ **Implemented and verified** (`scripts/reproduce.py`). Runs, in order:
+dataset audit → TF-IDF → BM25 → BGE → MedCPT → hybrid RRF → cross-encoder
+reranking → statistical/efficiency analysis → error analysis → web export
+(the last step runs automatically once `scripts/export_web_results.py`
+exists, M11). Each step is **skipped** if its expected output artifact
+already exists under `results/` (verified: a full run against this
+project's real, complete `results/` directory correctly skips all 9 core
+steps) — pass `--force` to recompute everything anyway, or `--from <step>`
+to resume after fixing a failure partway through.
 
 ## Environment
 
@@ -31,26 +34,36 @@ M1 Pro machine), then falls back to CPU. Configurable via
 `configs/default.yaml -> device.preference` or the `BIOMEDICAL_IR_DEVICE`
 env var.
 
-## Colab notebooks
+## Colab notebooks (M9 — complete)
 
 | Notebook | Purpose | Status |
 |---|---|---|
-| `00_environment_setup.ipynb` | Install deps, verify GPU | ⚪ Pending |
-| `01_nfcorpus_dataset_audit.ipynb` | Download + validate NFCorpus | ⚪ Pending |
-| `02_tfidf_baseline.ipynb` | M1 | ⚪ Pending |
-| `03_bm25_baseline.ipynb` | M2 | ⚪ Pending |
-| `04_bge_dense_retrieval.ipynb` | M3 | ⚪ Pending |
-| `05_medcpt_dense_retrieval.ipynb` | M4 | ⚪ Pending |
-| `06_hybrid_rrf.ipynb` | M5 | ⚪ Pending |
-| `07_cross_encoder_reranking.ipynb` | M6 | ⚪ Pending |
-| `08_evaluation.ipynb` | Metrics | ⚪ Pending |
-| `09_statistical_analysis.ipynb` | Significance testing | ⚪ Pending |
-| `10_error_analysis.ipynb` | Query-level diagnostics | ⚪ Pending |
-| `11_export_research_results.ipynb` | Export web/data JSON | ⚪ Pending |
-| `Biomedical_Hybrid_IR_Full_Pipeline.ipynb` | Master run-all notebook | ⚪ Pending |
+| `00_environment_setup.ipynb` | Install deps, verify GPU/MPS, print library versions | ✅ Verified (executed for real) |
+| `01_nfcorpus_dataset_audit.ipynb` | Download + validate NFCorpus | ✅ Verified (M1) |
+| `02_tfidf_baseline.ipynb` | M1 TF-IDF | ✅ Verified (executed for real) |
+| `03_bm25_baseline.ipynb` | M2 BM25 | ✅ Verified (executed for real) |
+| `04_bge_dense_retrieval.ipynb` | M3 BGE | ✅ Complete (calls the verified `scripts/run_bge.py`; not re-executed in-session — ~2 min runtime) |
+| `05_medcpt_dense_retrieval.ipynb` | M4 MedCPT | ✅ Complete (calls the verified `scripts/run_medcpt.py`; not re-executed in-session — ~3 min runtime) |
+| `06_hybrid_rrf.ipynb` | M5 Hybrid RRF | ✅ Verified (executed for real) |
+| `07_cross_encoder_reranking.ipynb` | M6 Reranking | ✅ Complete (calls the verified `scripts/run_reranker.py`; not re-executed in-session — ~40 min runtime on MPS for all 3 pools) |
+| `08_evaluation.ipynb` | Cross-model comparison table | ✅ Verified (executed for real) |
+| `09_statistical_analysis.ipynb` | Significance testing | ✅ Verified (executed for real) |
+| `10_error_analysis.ipynb` | Query-level diagnostics | ✅ Verified (executed for real) |
+| `11_export_research_results.ipynb` | Export web/data JSON (M11) | ✅ Verified (executed for real; correctly reports "pending" until M11's export script exists) |
+| `Biomedical_Hybrid_IR_Full_Pipeline.ipynb` | Master run-all notebook | ✅ Complete (calls `scripts/reproduce.py`, itself verified to correctly skip all cached steps) |
 
 All notebooks import reusable logic from `src/biomedical_ir/` rather than
-duplicating code (Section 21 of the project spec).
+duplicating code (Section 21 of the project spec) — each numbered notebook
+is a thin wrapper around the identically-named `scripts/*.py` file, plus
+markdown explaining the real results and a couple of inline
+teaching/sanity-check cells (e.g. notebook 06 reproduces the RRF
+hand-computation from `tests/test_fusion.py` inline). 8 of 13 notebooks
+were executed end-to-end in a real Jupyter kernel via `nbclient` as part of
+building this project (not just validated as well-formed JSON); the
+remaining 5 (BGE, MedCPT, reranker, and the two notebooks that call them)
+call scripts already independently verified by direct CLI execution
+earlier in this project's history and were not re-executed here solely to
+avoid a redundant ~45-minute rerun.
 
 ## Known limitations (living list)
 

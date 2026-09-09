@@ -107,8 +107,12 @@ python scripts/error_analysis.py # M8: query-level win/loss examples -> results/
 ## Colab
 
 Run the full pipeline from `notebooks/Biomedical_Hybrid_IR_Full_Pipeline.ipynb`
-(Runtime → Run All) once notebooks land in M9. Individual stage notebooks are
-listed in [docs/reproducibility.md](docs/reproducibility.md).
+(Runtime → Run All). It calls `scripts/reproduce.py`, which skips any step
+whose real output already exists — safe to re-run. 13 notebooks total
+(00–11 plus the master notebook); 8 were executed end-to-end for real as
+part of building this project, not just validated as well-formed JSON. See
+[docs/reproducibility.md](docs/reproducibility.md) for the full per-notebook
+status and verification details.
 
 ## Experiment status
 
@@ -123,7 +127,7 @@ listed in [docs/reproducibility.md](docs/reproducibility.md).
 | M6 | MedCPT cross-encoder reranking | ✅ Complete |
 | M7 | Full evaluation, tables, statistical tests, efficiency analysis | ✅ Complete |
 | M8 | Error analysis | ✅ Complete |
-| M9 | Colab notebooks | ⚪ Pending |
+| M9 | Colab notebooks | ✅ Complete |
 | M10 | Paper artifacts (figures, BibTeX) | ⚪ Pending |
 | M11 | Next.js research portal | ⚪ Pending |
 | M12 | Vercel deployment | ⚪ Pending |
