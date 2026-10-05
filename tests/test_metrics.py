@@ -35,6 +35,15 @@ def make_graded_run_and_qrels():
     return run, qrels
 
 
+def test_evaluate_run_keeps_omitted_queries_in_population():
+    qrels = {"q1": {"d1": 1}, "q2": {"d1": 1}}
+    run = {"q1": [("d1", 1.0)]}
+    result = evaluate_run(run, qrels, include_per_query=True)
+    assert result["num_queries_evaluated"] == 2
+    assert result["summary"]["MAP"] == pytest.approx(0.5)
+    assert set(result["per_query"]) == {"q1", "q2"}
+
+
 class TestGradedRelevanceHandling:
     """Documents the empirical investigation referenced in evaluation.py's
     module docstring: how pytrec_eval/trec_eval treats graded (0/1/2)

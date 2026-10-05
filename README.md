@@ -232,3 +232,7 @@ labeled `pending` (not filled with plausible-looking numbers); failed runs
 are labeled `failed` with their error preserved, never silently replaced with
 a guessed value. See `src/biomedical_ir/manifests.py` for the manifest schema
 that every experiment run must satisfy.
+
+## Engineering review
+
+See [the October 4 correctness review](docs/ENGINEERING_REVIEW_2026-10-04.md) for repairs, exact verification results, and the next implementation work.

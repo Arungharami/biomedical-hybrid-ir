@@ -56,8 +56,6 @@ import math
 from pathlib import Path
 from typing import Any
 
-import pytrec_eval
-
 RunType = dict[str, list[tuple[str, float]]]
 QrelsType = dict[str, dict[str, int]]
 
@@ -103,10 +101,14 @@ def evaluate_run(
     relevant document beyond rank ``k`` must be hidden from it to get a
     genuine "MRR at 10" rather than "MRR over the full ranking".
     """
+    import pytrec_eval
+
     qrels_query_ids = set(qrels.keys())
     run_query_ids = set(run.keys())
     dropped_queries = sorted(run_query_ids - qrels_query_ids)
-    evaluated_query_ids = sorted(run_query_ids & qrels_query_ids)
+    # Qrels define the evaluation population. An omitted query is a retrieval
+    # failure with score zero, not permission to shrink the denominator.
+    evaluated_query_ids = sorted(qrels_query_ids)
 
     measures = set()
     for c in precision_cutoffs:
@@ -120,9 +122,9 @@ def evaluate_run(
     measures.add(f"map_cut.{map_cutoff}")
 
     qrels_str = {qid: {did: int(rel) for did, rel in qrels[qid].items()} for qid in evaluated_query_ids}
-    run_full = {qid: run_to_pytrec_format({qid: run[qid]})[qid] for qid in evaluated_query_ids}
+    run_full = {qid: run_to_pytrec_format({qid: run.get(qid, [])})[qid] for qid in evaluated_query_ids}
     run_truncated_for_mrr = {
-        qid: run_to_pytrec_format({qid: run[qid][:mrr_cutoff]})[qid] for qid in evaluated_query_ids
+        qid: run_to_pytrec_format({qid: run.get(qid, [])[:mrr_cutoff]})[qid] for qid in evaluated_query_ids
     }
 
     evaluator = pytrec_eval.RelevanceEvaluator(qrels_str, measures)
@@ -316,30 +318,30 @@ def ndcg_at_k(ranked_doc_ids: list[str], qrels: dict[str, int], k: int) -> float
 
 def mean_precision_at_k(run: RunType, qrels: QrelsType, k: int) -> float:
     scores = [
-        precision_at_k([d for d, _ in run[qid]], qrels[qid], k) for qid in run if qid in qrels
+        precision_at_k([d for d, _ in run.get(qid, [])], qrels[qid], k) for qid in qrels
     ]
     return _mean(scores)
 
 
 def mean_recall_at_k(run: RunType, qrels: QrelsType, k: int) -> float:
-    scores = [recall_at_k([d for d, _ in run[qid]], qrels[qid], k) for qid in run if qid in qrels]
+    scores = [recall_at_k([d for d, _ in run.get(qid, [])], qrels[qid], k) for qid in qrels]
     return _mean(scores)
 
 
 def mean_reciprocal_rank(run: RunType, qrels: QrelsType, k: int | None = None) -> float:
     scores = [
-        reciprocal_rank([d for d, _ in run[qid]], qrels[qid], k) for qid in run if qid in qrels
+        reciprocal_rank([d for d, _ in run.get(qid, [])], qrels[qid], k) for qid in qrels
     ]
     return _mean(scores)
 
 
 def mean_average_precision(run: RunType, qrels: QrelsType, k: int | None = None) -> float:
     scores = [
-        average_precision([d for d, _ in run[qid]], qrels[qid], k) for qid in run if qid in qrels
+        average_precision([d for d, _ in run.get(qid, [])], qrels[qid], k) for qid in qrels
     ]
     return _mean(scores)
 
 
 def mean_ndcg_at_k(run: RunType, qrels: QrelsType, k: int) -> float:
-    scores = [ndcg_at_k([d for d, _ in run[qid]], qrels[qid], k) for qid in run if qid in qrels]
+    scores = [ndcg_at_k([d for d, _ in run.get(qid, [])], qrels[qid], k) for qid in qrels]
     return _mean(scores)
