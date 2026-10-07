@@ -1,5 +1,11 @@
 # Hybrid Biomedical Information Retrieval with Lexical, Dense, and Cross-Encoder Reranking
 
+## Start here
+
+Try the [offline TF-IDF example](examples/tfidf_quickstart.py), inspect [recorded results](results/tables/main_results.md), or follow the [full reproduction guide](docs/reproducibility.md). The research portal displays exported experiment results; it does not run arbitrary live model queries.
+
+**Help improve this project:** [Contribution guide](CONTRIBUTING.md) · [Issues](https://github.com/Arungharami/biomedical-hybrid-ir/issues)
+
 **A Reproducible Study on NFCorpus**
 
 Course project for **CAP 6776 — Information Retrieval**. Domain: healthcare /
@@ -10,6 +16,19 @@ biomedical information retrieval.
 > **Status legend:** ✅ Complete · 🟡 In progress · ⚪ Pending · ❌ Failed
 > An experiment is only marked ✅ once its output artifact exists under
 > `results/` and passes validation — see [Experiment status](#experiment-status).
+
+## Offline educational example
+
+To understand the lexical retriever before downloading NFCorpus or transformer models:
+
+```bash
+python -m pip install numpy scikit-learn
+PYTHONPATH=src python examples/tfidf_quickstart.py
+```
+
+Run from the repository root in your chosen Python environment. Windows PowerShell: set `$env:PYTHONPATH="src"` before running `python examples/tfidf_quickstart.py`.
+
+The example ranks three hand-written documents for "dietary fiber". It demonstrates the existing TF-IDF API; its scores are not benchmark metrics. The full NFCorpus workflow below requires the full project dependencies and dataset downloads.
 
 ## Research objective
 
