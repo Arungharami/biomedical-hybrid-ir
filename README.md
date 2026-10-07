@@ -17,6 +17,19 @@ biomedical information retrieval.
 > An experiment is only marked ✅ once its output artifact exists under
 > `results/` and passes validation — see [Experiment status](#experiment-status).
 
+## Offline educational example
+
+To understand the lexical retriever before downloading NFCorpus or transformer models:
+
+```bash
+python -m pip install numpy scikit-learn
+PYTHONPATH=src python examples/tfidf_quickstart.py
+```
+
+Run from the repository root in your chosen Python environment. Windows PowerShell: set `$env:PYTHONPATH="src"` before running `python examples/tfidf_quickstart.py`.
+
+The example ranks three hand-written documents for "dietary fiber". It demonstrates the existing TF-IDF API; its scores are not benchmark metrics. The full NFCorpus workflow below requires the full project dependencies and dataset downloads.
+
 ## Research objective
 
 Build and evaluate a modern biomedical IR system that compares classical
