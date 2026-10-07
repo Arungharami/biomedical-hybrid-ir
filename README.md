@@ -1,5 +1,11 @@
 # Hybrid Biomedical Information Retrieval with Lexical, Dense, and Cross-Encoder Reranking
 
+## Start here
+
+Try the [offline TF-IDF example](examples/tfidf_quickstart.py), inspect [recorded results](results/tables/main_results.md), or follow the [full reproduction guide](docs/reproducibility.md). The research portal displays exported experiment results; it does not run arbitrary live model queries.
+
+**Help improve this project:** [Contribution guide](CONTRIBUTING.md) · [Issues](https://github.com/Arungharami/biomedical-hybrid-ir/issues)
+
 **A Reproducible Study on NFCorpus**
 
 Course project for **CAP 6776 — Information Retrieval**. Domain: healthcare /
