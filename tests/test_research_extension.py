@@ -11,8 +11,8 @@ from biomedical_ir.evaluation import ndcg_at_k
 from biomedical_ir.research_data import define_tuning_split, normalize_benchmark
 from biomedical_ir.research_fusion import combine, validate_run, weighted_fusion
 from biomedical_ir.research_pipeline import choose, query_conditions, run_study
+from biomedical_ir.research_reporting import aggregate
 from biomedical_ir.research_stats import comparison_report, holm_adjust, paired_effect
-from scripts.summarize_research import aggregate
 
 
 def fixture():
