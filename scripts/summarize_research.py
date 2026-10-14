@@ -10,7 +10,6 @@ from pathlib import Path
 from biomedical_ir.research_reporting import aggregate
 
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("runs", nargs="+")
