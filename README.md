@@ -236,3 +236,10 @@ that every experiment run must satisfy.
 ## Engineering review
 
 See [the October 4 correctness review](docs/ENGINEERING_REVIEW_2026-10-04.md) for repairs, exact verification results, and the next implementation work.
+
+## Kaggle and sentiment extension
+
+See [the CAP 6776 extension plan](docs/class-project-extension.md) and
+[the Kaggle notebook](notebooks/Kaggle_Biomedical_IR_Sentiment.ipynb).
+Patient-review rating prediction is evaluated separately from biomedical retrieval.
+New remote experiments remain pending; existing IR results retain their original provenance.
