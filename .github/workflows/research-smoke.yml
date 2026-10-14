@@ -1,0 +1,23 @@
+name: Research offline validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [research/multibenchmark-fusion-validation]
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy>=1.26,<2' 'scipy>=1.11' 'scikit-learn>=1.4' 'pyyaml>=6' 'ruff>=0.4'
+      - name: Lint research additions
+        run: ruff check src/biomedical_ir/research*.py scripts/run_research.py scripts/summarize_research.py tests/test_research_extension.py
+      - name: Offline integration and statistical tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -p test_research_extension.py -v

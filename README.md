@@ -236,3 +236,13 @@ that every experiment run must satisfy.
 ## Engineering review
 
 See [the October 4 correctness review](docs/ENGINEERING_REVIEW_2026-10-04.md) for repairs, exact verification results, and the next implementation work.
+
+## Multi-benchmark research extension
+
+Professor Dingding Wang's suggested research direction is implemented on
+`research/multibenchmark-fusion-validation`: NFCorpus/SciFact/TREC-COVID ingestion,
+development-only BM25 and fusion tuning, optional matched-source reranking,
+paired confidence intervals, and dataset/study-wide Holm correction.
+See [the protocol and execution guide](docs/research-extension.md) and
+[the Kaggle research notebook](notebooks/Kaggle_MultiBenchmark_Research.ipynb).
+26 offline checks passed; real new benchmark experiments remain pending.
