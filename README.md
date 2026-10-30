@@ -17,6 +17,20 @@ biomedical information retrieval.
 > An experiment is only marked ✅ once its output artifact exists under
 > `results/` and passes validation — see [Experiment status](#experiment-status).
 
+## CAP 6776 live demo (arbitrary queries, computed live)
+
+```bash
+python scripts/audit_dataset.py         # fetch + validate NFCorpus
+python scripts/evaluate_five.py         # 5 judged test queries: P@10, nDCG@10, MRR@10 -> results/tables/five_query_eval.md
+pip install gradio && python apps/course_demo.py   # add --share on Colab
+```
+
+The Gradio app (`apps/course_demo.py`, engine in `src/biomedical_ir/live_search.py`)
+runs BM25, MedCPT, Hybrid RRF and Hybrid + MedCPT cross-encoder on whatever you
+type, shows each hit's BM25 and MedCPT rank so the fusion is visible, compares
+all four methods side by side, and scores official test queries against the
+qrels live. Colab version: `notebooks/12_course_demo_and_five_query_eval.ipynb`.
+
 ## Offline educational example
 
 To understand the lexical retriever before downloading NFCorpus or transformer models:

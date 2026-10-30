@@ -27,6 +27,7 @@ EXPECTED_NOTEBOOKS = [
     "09_statistical_analysis.ipynb",
     "10_error_analysis.ipynb",
     "11_export_research_results.ipynb",
+    "12_course_demo_and_five_query_eval.ipynb",
     "Biomedical_Hybrid_IR_Full_Pipeline.ipynb",
 ]
 
