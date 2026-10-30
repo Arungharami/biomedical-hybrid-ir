@@ -142,8 +142,8 @@ class LiveSearchEngine:
         elif method == MEDCPT:
             ranked = dense_list
         else:
-            # Fuse RANKS, not raw scores: BM25 scores (~0-30) and MedCPT dot
-            # products (~100-200) live on incomparable scales.
+            # Fuse RANKS, not raw scores: on NFCorpus BM25 top scores are ~5-15
+            # while MedCPT dot products are ~55-65 - incomparable scales.
             ranked = reciprocal_rank_fusion(
                 [[d for d, _ in bm25_list], [d for d, _ in dense_list]], k=self.rrf_k
             )
