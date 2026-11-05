@@ -7,6 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { href: "/", label: "Overview" },
+  { href: "/course", label: "Course Project" },
   { href: "/dataset", label: "Dataset" },
   { href: "/pipeline", label: "Pipeline" },
   { href: "/models", label: "Models" },

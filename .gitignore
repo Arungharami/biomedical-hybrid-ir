@@ -29,7 +29,7 @@ data/cache/*
 *.bin
 *.pt
 *.safetensors
-models/
+/models/
 embeddings/
 !results/**/*.json
 

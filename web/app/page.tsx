@@ -71,6 +71,39 @@ export default function Home() {
       </section>
 
       <section>
+        <Link
+          href="/course"
+          className="group flex flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent sm:flex-row sm:items-center"
+        >
+          <div className="flex shrink-0 -space-x-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/course/people/arun.jpg"
+              alt="Arun Kumar Gharami"
+              className="h-16 w-16 rounded-full border-2 border-surface object-cover object-[50%_25%]"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/course/people/dingding.jpg"
+              alt="Dingding Wang"
+              className="h-16 w-16 rounded-full border-2 border-surface object-cover object-top"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              FAU course project · Arun Kumar Gharami · Instructor: Dingding Wang
+            </p>
+            <p className="mt-1 text-lg font-semibold text-text-primary">
+              Watch the presentation, flip through both slide decks, and follow the project step by step
+            </p>
+          </div>
+          <span className="shrink-0 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white group-hover:opacity-90">
+            Open course project →
+          </span>
+        </Link>
+      </section>
+
+      <section>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <StatCard label="Corpus" value={dataset.corpus_size.toLocaleString()} sublabel="documents" />
           <StatCard label="Test queries" value={String(dataset.qrel_counts.test)} sublabel="with qrels" />
