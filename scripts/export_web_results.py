@@ -112,7 +112,11 @@ RESEARCH_STATUS = [
     {"milestone": "M9", "description": "Colab notebooks", "status": "complete"},
     {"milestone": "M10", "description": "Paper artifacts (figures, BibTeX)", "status": "complete"},
     {"milestone": "M11", "description": "Next.js research portal", "status": "complete"},
-    {"milestone": "M12", "description": "Vercel deployment", "status": "in_progress"},
+    {"milestone": "M12", "description": "Vercel deployment", "status": "complete"},
+    {"milestone": "M13", "description": "Course presentation: videos, slide decks, poster, course page", "status": "complete"},
+    {"milestone": "M14", "description": "Research extension infrastructure: SciFact/TREC-COVID loaders, tuning grids, fusion matrix, Holm + bootstrap CIs", "status": "complete"},
+    {"milestone": "M15", "description": "Run multi-benchmark validation and fusion experiments (NFCorpus, SciFact, TREC-COVID)", "status": "pending"},
+    {"milestone": "M16", "description": "Revise paper with verified multi-benchmark results", "status": "pending"},
 ]
 
 

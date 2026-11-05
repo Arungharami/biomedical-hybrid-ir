@@ -238,6 +238,7 @@ const TOC = [
   ["steps", "How it was built"],
   ["results", "Results"],
   ["findings", "Findings"],
+  ["feedback", "Feedback"],
   ["deliverables", "Deliverables"],
 ] as const;
 
@@ -637,8 +638,70 @@ export default function CoursePage() {
         </blockquote>
       </Section>
 
+      {/* ───────────── FEEDBACK ───────────── */}
+      <Section
+        id="feedback"
+        n="07"
+        eyebrow="Instructor feedback"
+        title="From course project to research paper"
+      >
+        <div className="grid gap-5 lg:grid-cols-[1.1fr_1fr]">
+          <figure className="relative overflow-hidden rounded-2xl border border-border bg-surface p-6 sm:p-8">
+            <span aria-hidden className="absolute -top-6 right-4 text-[120px] font-black leading-none text-accent/10">
+              “
+            </span>
+            <blockquote className="relative text-xl font-medium leading-relaxed text-text-primary">
+              This work is more than good enough for a course project.
+            </blockquote>
+            <p className="relative mt-3 leading-relaxed text-text-secondary">
+              To develop it into a research paper, the suggested directions are more benchmark datasets, a validation
+              study on hyperparameter tuning, a full comparison of fusion and single methods to learn when lexical–dense
+              fusion helps, and stronger evaluation rigor with multiple-testing correction and confidence intervals.
+            </p>
+            <figcaption className="relative mt-5 flex items-center gap-3 border-t border-border pt-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/course/people/dingding.jpg" alt="" className="h-10 w-10 rounded-full object-cover object-top" />
+              <span>
+                <span className="block text-sm font-semibold text-text-primary">Dingding Wang</span>
+                <span className="block text-xs text-text-muted">Course Instructor</span>
+              </span>
+            </figcaption>
+          </figure>
+          <div className="flex flex-col gap-3">
+            {[
+              ["More benchmarks", "NFCorpus + SciFact + TREC-COVID loaders"],
+              ["Hyperparameter validation", "BM25, RRF, weighted-fusion and rerank-pool grids on dev"],
+              ["Fusion vs. single methods", "4 single systems × 2 fusion pairs × 2 fusion rules"],
+              ["Evaluation rigor", "Bootstrap 95% CIs + Holm-corrected randomization tests"],
+            ].map(([t, d], i) => (
+              <div key={t} className="flex items-start gap-4 rounded-2xl border border-border bg-surface p-4">
+                <span className="bg-gradient-to-br from-accent to-[#cc0000] bg-clip-text text-2xl font-black leading-none text-transparent tabular">
+                  0{i + 1}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-text-primary">{t}</p>
+                  <p className="text-sm text-text-secondary">{d}</p>
+                  <span className="mt-2 inline-block rounded-full border border-warn/30 bg-warn/10 px-2 py-0.5 text-[11px] font-medium text-warn sm:hidden">
+                    Code built · runs pending
+                  </span>
+                </div>
+                <span className="hidden shrink-0 rounded-full border border-warn/30 bg-warn/10 px-2 py-0.5 text-[11px] font-medium text-warn sm:inline-block">
+                  Code built · runs pending
+                </span>
+              </div>
+            ))}
+            <Link
+              href="/roadmap"
+              className="mt-1 rounded-xl bg-accent px-4 py-2.5 text-center text-sm font-semibold text-white hover:opacity-90"
+            >
+              Open the full research roadmap →
+            </Link>
+          </div>
+        </div>
+      </Section>
+
       {/* ───────────── DELIVERABLES ───────────── */}
-      <Section id="deliverables" n="07" eyebrow="Deliverables" title="Everything submitted">
+      <Section id="deliverables" n="08" eyebrow="Deliverables" title="Everything submitted">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { t: "Video 1 · Main presentation", d: "MP4 · 9:50", href: TALKS[0].src, icon: "▶" },

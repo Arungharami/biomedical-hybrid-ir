@@ -152,6 +152,10 @@ status and verification details.
 | M10 | Paper artifacts (figures, BibTeX) | ✅ Complete |
 | M11 | Next.js research portal | ✅ Complete |
 | M12 | Vercel deployment | ✅ Complete |
+| M13 | Course presentation: videos, slide decks, poster, course page | ✅ Complete |
+| M14 | Research extension infrastructure (SciFact/TREC-COVID, tuning grids, fusion matrix, Holm + CIs) | ✅ Complete |
+| M15 | Run multi-benchmark validation and fusion experiments | ⚪ Pending |
+| M16 | Revise paper with verified multi-benchmark results | ⚪ Pending |
 
 No experiment is marked complete unless its artifact exists under `results/`
 and passes the validation checks in `tests/`.

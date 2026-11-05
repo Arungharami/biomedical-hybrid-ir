@@ -2,64 +2,127 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
-const LINKS = [
+const PRIMARY = [
   { href: "/", label: "Overview" },
   { href: "/course", label: "Course Project" },
-  { href: "/dataset", label: "Dataset" },
-  { href: "/pipeline", label: "Pipeline" },
-  { href: "/models", label: "Models" },
-  { href: "/experiments", label: "Experiments" },
   { href: "/results", label: "Results" },
-  { href: "/evaluation", label: "Evaluation" },
-  { href: "/error-analysis", label: "Error Analysis" },
-  { href: "/efficiency", label: "Efficiency" },
-  { href: "/search", label: "Search Demo" },
+  { href: "/roadmap", label: "Roadmap" },
   { href: "/paper", label: "Paper" },
-  { href: "/reproducibility", label: "Reproducibility" },
-  { href: "/about", label: "About" },
+];
+
+const EXPLORE = [
+  { href: "/dataset", label: "Dataset", desc: "NFCorpus stats & provenance" },
+  { href: "/pipeline", label: "Pipeline", desc: "Full retrieval architecture" },
+  { href: "/models", label: "Models", desc: "TF-IDF → cross-encoder" },
+  { href: "/experiments", label: "Experiments", desc: "Run manifests" },
+  { href: "/evaluation", label: "Evaluation", desc: "Metrics & significance" },
+  { href: "/error-analysis", label: "Error Analysis", desc: "Query-level wins & losses" },
+  { href: "/efficiency", label: "Efficiency", desc: "Latency & index size" },
+  { href: "/search", label: "Search Demo", desc: "Precomputed rankings" },
+  { href: "/reproducibility", label: "Reproducibility", desc: "Regenerate every number" },
+  { href: "/about", label: "About", desc: "Project & author" },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [explore, setExplore] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const exploreActive = EXPLORE.some((l) => l.href === pathname);
+
+  useEffect(() => {
+    if (!explore) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setExplore(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setExplore(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [explore]);
+
+  const pill = (active: boolean) =>
+    `whitespace-nowrap rounded-full px-3.5 py-1.5 transition-colors ${
+      active
+        ? "bg-accent-soft font-medium text-accent"
+        : "text-text-secondary hover:bg-surface-2 hover:text-text-primary"
+    }`;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border bg-surface/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
+        <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#1d4ed8] to-[#07122b] text-xs font-bold text-white shadow-sm">
             IR
           </span>
-          <span className="hidden text-sm sm:inline">Hybrid Biomedical IR</span>
+          <span className="hidden leading-tight sm:block">
+            <span className="block text-sm">Hybrid Biomedical IR</span>
+            <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted">
+              FAU · CAP 6776
+            </span>
+          </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-start gap-1 overflow-x-auto text-sm lg:flex">
-          {LINKS.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`whitespace-nowrap rounded-md px-2.5 py-1.5 transition-colors ${
-                  active
-                    ? "bg-accent-soft text-accent font-medium"
-                    : "text-text-secondary hover:bg-surface-2 hover:text-text-primary"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+        <nav className="hidden items-center gap-1 text-sm lg:flex">
+          {PRIMARY.map((l) => (
+            <Link key={l.href} href={l.href} className={pill(pathname === l.href)}>
+              {l.label}
+            </Link>
+          ))}
+          <div ref={ref} className="relative">
+            <button
+              onClick={() => setExplore((v) => !v)}
+              aria-expanded={explore}
+              aria-haspopup="true"
+              className={`${pill(exploreActive)} flex items-center gap-1`}
+            >
+              Explore
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={`transition-transform ${explore ? "rotate-180" : ""}`}>
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            {explore && (
+              <div className="absolute right-0 top-full mt-2 grid w-[460px] grid-cols-2 gap-1 rounded-2xl border border-border bg-surface p-2 shadow-2xl shadow-black/15">
+                {EXPLORE.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setExplore(false)}
+                    className={`rounded-xl px-3 py-2 transition-colors ${
+                      pathname === l.href ? "bg-accent-soft" : "hover:bg-surface-2"
+                    }`}
+                  >
+                    <span className={`block text-sm font-medium ${pathname === l.href ? "text-accent" : "text-text-primary"}`}>
+                      {l.label}
+                    </span>
+                    <span className="block text-xs text-text-muted">{l.desc}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-2">
+          <a
+            href="https://github.com/Arungharami/biomedical-hybrid-ir"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden rounded-full border border-border px-3 py-1.5 text-sm font-medium text-text-primary hover:bg-surface-2 md:inline-block"
+          >
+            GitHub ↗
+          </a>
           <ThemeToggle />
           <button
             className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-text-secondary lg:hidden"
             aria-label="Toggle menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -70,25 +133,35 @@ export default function Nav() {
       </div>
 
       {open && (
-        <nav className="border-t border-border bg-surface px-4 py-2 lg:hidden">
+        <nav className="max-h-[75vh] overflow-y-auto border-t border-border bg-surface px-4 py-3 lg:hidden">
           <div className="flex flex-col gap-0.5">
-            {LINKS.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`rounded-md px-3 py-2 text-sm ${
-                    active
-                      ? "bg-accent-soft text-accent font-medium"
-                      : "text-text-secondary hover:bg-surface-2"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {PRIMARY.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-lg px-3 py-2 text-sm ${
+                  pathname === l.href ? "bg-accent-soft font-medium text-accent" : "text-text-primary hover:bg-surface-2"
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-3 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-text-muted">Explore</p>
+          <div className="mt-1 grid grid-cols-2 gap-0.5">
+            {EXPLORE.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-lg px-3 py-2 text-sm ${
+                  pathname === l.href ? "bg-accent-soft font-medium text-accent" : "text-text-secondary hover:bg-surface-2"
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
         </nav>
       )}

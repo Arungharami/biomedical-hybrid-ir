@@ -62,6 +62,26 @@
   {
     "milestone": "M12",
     "description": "Vercel deployment",
-    "status": "in_progress"
+    "status": "complete"
+  },
+  {
+    "milestone": "M13",
+    "description": "Course presentation: videos, slide decks, poster, course page",
+    "status": "complete"
+  },
+  {
+    "milestone": "M14",
+    "description": "Research extension infrastructure: SciFact/TREC-COVID loaders, tuning grids, fusion matrix, Holm + bootstrap CIs",
+    "status": "complete"
+  },
+  {
+    "milestone": "M15",
+    "description": "Run multi-benchmark validation and fusion experiments (NFCorpus, SciFact, TREC-COVID)",
+    "status": "pending"
+  },
+  {
+    "milestone": "M16",
+    "description": "Revise paper with verified multi-benchmark results",
+    "status": "pending"
   }
 ]
