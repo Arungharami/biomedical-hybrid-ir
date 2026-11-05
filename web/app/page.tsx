@@ -1,5 +1,6 @@
 import Link from "next/link";
 import StatusBadge from "@/components/StatusBadge";
+import { AUTHOR } from "@/lib/author";
 import { comparison, dataset, formatMetric, metrics, researchStatus } from "@/lib/data";
 
 const EXPLORE = [
@@ -103,6 +104,21 @@ export default function Home() {
                 Research roadmap
               </Link>
             </div>
+            <a
+              href={AUTHOR.website}
+              target="_blank"
+              rel="noopener"
+              className="group mt-7 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 py-1.5 pl-1.5 pr-4 backdrop-blur transition hover:bg-white/10"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={AUTHOR.photo} alt="" className="h-8 w-8 rounded-full object-cover object-[50%_25%]" />
+              <span className="text-sm leading-tight">
+                <span className="block text-white/60">Built by</span>
+                <span className="block font-semibold">
+                  {AUTHOR.name} <span className="font-normal text-sky-300 group-hover:underline">· {AUTHOR.websiteLabel} ↗</span>
+                </span>
+              </span>
+            </a>
           </div>
 
           {/* Pipeline visual */}
