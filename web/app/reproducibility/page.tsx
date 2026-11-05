@@ -24,7 +24,7 @@ export default function ReproducibilityPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Section 24 of the project spec"
+        eyebrow="Reproducibility"
         title="Reproducibility"
         description="Exact instructions to regenerate every number on this site from scratch."
       />
