@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SlideViewer, { type Deck } from "@/components/SlideViewer";
 import VideoStudio, { type Talk } from "@/components/VideoStudio";
+import { AUTHOR } from "@/lib/author";
 import { MODEL_LABELS, MODEL_ORDER, efficiency, formatMetric, metrics } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -360,6 +361,7 @@ export default function CoursePage() {
                 name: "Arun Kumar Gharami",
                 pos: "object-[50%_30%]",
                 lift: "",
+                link: { href: AUTHOR.website, label: AUTHOR.websiteLabel },
               },
               {
                 src: "/course/people/dingding.jpg",
@@ -368,6 +370,7 @@ export default function CoursePage() {
                 name: "Dingding Wang",
                 pos: "object-top",
                 lift: "lg:translate-y-8",
+                link: null,
               },
             ].map((p) => (
               <figure
@@ -379,6 +382,16 @@ export default function CoursePage() {
                 <figcaption className="px-2 pb-1 pt-3">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/55">{p.role}</p>
                   <p className="mt-0.5 font-semibold leading-tight">{p.name}</p>
+                  {p.link && (
+                    <a
+                      href={p.link.href}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-0.5 text-[11px] font-medium text-sky-200 transition hover:bg-white/25"
+                    >
+                      {p.link.label} ↗
+                    </a>
+                  )}
                 </figcaption>
               </figure>
             ))}
@@ -733,15 +746,26 @@ export default function CoursePage() {
         <div className="mt-6 grid gap-4 rounded-2xl border border-border bg-surface p-6 sm:grid-cols-3">
           {[
             ["Course", "CAP 6776 — Information Retrieval, Florida Atlantic University"],
-            ["Student", "Arun Kumar Gharami"],
+            ["Student", "Arun Kumar Gharami", AUTHOR.website],
             ["Instructor", "Dingding Wang"],
             ["Dataset", "BEIR / NFCorpus"],
             ["Models", "TF-IDF, BM25, BGE-base, MedCPT (query, article, cross-encoder)"],
-            ["Code", "github.com/Arungharami/biomedical-hybrid-ir"],
-          ].map(([k, v]) => (
+            ["Code", "github.com/Arungharami/biomedical-hybrid-ir", "https://github.com/Arungharami/biomedical-hybrid-ir"],
+          ].map(([k, v, href]) => (
             <div key={k}>
               <p className="text-xs uppercase tracking-wider text-text-muted">{k}</p>
-              <p className="mt-0.5 text-sm font-medium text-text-primary">{v}</p>
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-0.5 inline-block text-sm font-medium text-accent hover:underline"
+                >
+                  {v} ↗
+                </a>
+              ) : (
+                <p className="mt-0.5 text-sm font-medium text-text-primary">{v}</p>
+              )}
             </div>
           ))}
         </div>

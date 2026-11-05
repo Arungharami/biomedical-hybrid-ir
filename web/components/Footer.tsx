@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AUTHOR } from "@/lib/author";
 
 const COLS = [
   {
@@ -25,6 +26,7 @@ const COLS = [
       { href: "/reproducibility", label: "Reproducibility" },
       { href: "/search", label: "Search Demo" },
       { href: "https://github.com/Arungharami/biomedical-hybrid-ir", label: "GitHub ↗" },
+      { href: AUTHOR.website, label: "Author website ↗" },
     ],
   },
 ];
@@ -47,7 +49,10 @@ export default function Footer() {
             </p>
             <div className="mt-4 text-sm text-text-secondary">
               <p>
-                <span className="text-text-muted">Student</span> · Arun Kumar Gharami
+                <span className="text-text-muted">Student</span> ·{" "}
+                <a href={AUTHOR.website} target="_blank" rel="noopener" className="text-accent hover:underline">
+                  {AUTHOR.name}
+                </a>
               </p>
               <p>
                 <span className="text-text-muted">Instructor</span> · Dingding Wang

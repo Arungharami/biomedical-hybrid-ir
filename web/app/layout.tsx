@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description:
     "A reproducible study comparing TF-IDF, BM25, BGE, MedCPT, hybrid RRF, and MedCPT cross-encoder reranking on NFCorpus. CAP 6776 Information Retrieval.",
+  authors: [{ name: "Arun Kumar Gharami", url: "https://arungharami.info" }],
+  creator: "Arun Kumar Gharami",
+  metadataBase: new URL("https://biomedical-hybrid-ir.vercel.app"),
 };
 
 const THEME_INIT_SCRIPT = `

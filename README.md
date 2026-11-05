@@ -1,5 +1,9 @@
 # Hybrid Biomedical Information Retrieval with Lexical, Dense, and Cross-Encoder Reranking
 
+**Author:** [Arun Kumar Gharami](https://arungharami.info) — Applied AI Researcher · AI Engineer · Software Engineer  
+**Course:** CAP 6776 Information Retrieval, Florida Atlantic University · **Instructor:** Dingding Wang  
+**Links:** [Live portal](https://biomedical-hybrid-ir.vercel.app) · [Course presentation](https://biomedical-hybrid-ir.vercel.app/course) · [Research roadmap](https://biomedical-hybrid-ir.vercel.app/roadmap) · [Author website](https://arungharami.info)
+
 ## Start here
 
 Try the [offline TF-IDF example](examples/tfidf_quickstart.py), inspect [recorded results](results/tables/main_results.md), or follow the [full reproduction guide](docs/reproducibility.md). The research portal displays exported experiment results; it does not run arbitrary live model queries.
