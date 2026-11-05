@@ -20,7 +20,7 @@ export default function SearchDemoClient() {
           id="query-select"
           value={queryId}
           onChange={(e) => setQueryId(e.target.value)}
-          className="rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-text-primary"
+          className="w-full min-w-0 max-w-full truncate rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-primary sm:w-auto sm:max-w-xl"
         >
           {searchDemo.map((e) => (
             <option key={e.query_id} value={e.query_id}>

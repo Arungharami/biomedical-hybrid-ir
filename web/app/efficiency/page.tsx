@@ -20,7 +20,7 @@ export default function EfficiencyPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="M7 · Section 19"
+        eyebrow="M7 · Efficiency"
         title="Efficiency"
         description="Latency, index size, and the effectiveness/efficiency trade-off, measured on Apple M1 Pro (MPS) — not representative of GPU-optimized production latency, but real measurements on the hardware actually used."
       />

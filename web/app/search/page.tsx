@@ -19,7 +19,7 @@ export default function SearchPage() {
           🔒 <strong>Precomputed experiment output</strong> — not a live model call.
         </p>
         <p className="mt-1 text-sm text-text-secondary leading-relaxed">
-          Per Section 35 of the project spec, transformer models never run inside this Vercel
+          By design, transformer models never run inside this Vercel
           deployment. Every ranking shown below was computed offline by the real pipeline
           (<code className="rounded bg-surface-2 px-1 py-0.5 font-mono text-xs">
             results/runs/*.json
