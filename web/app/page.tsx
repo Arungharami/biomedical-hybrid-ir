@@ -94,7 +94,7 @@ export default function Home() {
               FAU course project · Arun Kumar Gharami · Instructor: Dingding Wang
             </p>
             <p className="mt-1 text-lg font-semibold text-text-primary">
-              Watch the presentation, flip through both slide decks, and follow the project step by step
+              Watch both video presentations, flip through the slide decks, and follow the project step by step
             </p>
           </div>
           <span className="shrink-0 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white group-hover:opacity-90">
