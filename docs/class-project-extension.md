@@ -1,5 +1,5 @@
 # CAP 6776 class-project extension
-Instructor: Juan D. Yepes. Project: Biomedical Hybrid IR + Patient Experience Analysis.
+Author: Arun Kumar Gharami. Instructor: Dingding Wang. Project: Biomedical Hybrid IR + Patient Experience Analysis.
 
 ## Scope and research questions
 Keep NFCorpus TF-IDF, BM25, BGE, MedCPT, RRF and reranking as the graded IR core.
@@ -38,22 +38,22 @@ Do not compare metrics from different subsets or budgets. Sentiment thresholds (
 | ncbi/MedCPT-Cross-Encoder | Reranking | Existing pipeline |
 | lewtun/drug-reviews | Review/rating experiment | New runner |
 | cardiffnlp/twitter-roberta-base-sentiment-latest | General three-class transfer baseline | Optional new runner |
-| BeIR/scifact + BeIR/scifact-qrels | Scientific-claim retrieval replication | Planned; needs generic loader and separate split audit |
+| BeIR/scifact + BeIR/scifact-qrels | Scientific-claim retrieval replication | Loader and split audit implemented in the research extension (`src/biomedical_ir/research_data.py`); runs pending |
 
 Dataset licensing and original-source terms need review before redistribution. Drug-review Hub page lacks an explicit license in the inspected metadata; do not upload raw reviews in this branch. The runner exports only hashes and predictions.
 
 ## Kaggle workflow
-Upload notebooks/Kaggle_Biomedical_IR_Sentiment.ipynb to Kaggle. Enable Internet. CPU is enough for LR; GPU is useful for transformer and dense retrieval. The notebook checks Python compatibility (3.11 or 3.12), clones this branch to /kaggle/working, installs dependencies, and runs reusable scripts. Enable the expensive cells intentionally. Kaggle execution has NOT been performed by this change.
+Upload notebooks/Kaggle_Biomedical_IR_Sentiment.ipynb to Kaggle. Enable Internet. CPU is enough for LR; GPU is useful for transformer and dense retrieval. The notebook checks Python compatibility (3.11 or 3.12), clones `main` to /kaggle/working, installs dependencies, and runs reusable scripts. Enable the expensive cells intentionally. Kaggle execution has NOT been performed by this change.
 
 The existing repo ships historical results, so fresh retrieval experiments MUST use reproduce.py --force. Otherwise the orchestrator skips them. Back up outputs to a zip under /kaggle/working and download after execution. Full retrieval uses existing script configuration; GPU availability is not a guarantee of GPU selection. Read each generated manifest.
 
 ## Data branch and collaboration
-Branch: data/hf-kaggle-sentiment. Store schema/manifest code and notebooks in Git.
+Developed on branch data/hf-kaggle-sentiment and merged into `main`. Store schema/manifest code and notebooks in Git.
 Store downloaded data, embeddings, weights and caches outside Git. Commit only reviewed summaries and plots with provenance; use Kaggle outputs or private storage for large artifacts. Do not overwrite historical NFCorpus results with sentiment outputs.
 
 ## Prioritized additional topics
-1. SciFact replication: adapt ingestion, validate qrels and split availability, run the same six retrieval methods. Do not invent a dev split if unavailable; pre-register hyperparameters or document a training-only holdout.
-2. Ablations: tune BM25 k1/b, RRF k, and reranking pool size only on dev; compare under fixed candidate budgets.
+1. SciFact replication (ingestion and split audit now implemented in the research extension; see docs/research-extension.md): run the same six retrieval methods. Do not invent a dev split if unavailable; pre-register hyperparameters or document a training-only holdout.
+2. Ablations (tuning grids now implemented in the research extension): tune BM25 k1/b, RRF k, and reranking pool size only on dev; compare under fixed candidate budgets.
 3. Entity-aware search: medical condition/drug entity extraction; evaluate entities independently and compare search with/without expansion.
 4. Sentiment facets: query reviews by condition and predicted sentiment. Before claiming retrieval gains, create independently judged queries/qrels with blind human assessment.
 5. RAG: cite retrieved abstracts, measure retrieval and answer grounding separately, include abstention. No diagnosis or treatment recommendations.

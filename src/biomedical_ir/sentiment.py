@@ -5,8 +5,24 @@ from __future__ import annotations
 import hashlib
 import html
 import math
+from importlib.metadata import PackageNotFoundError, version
 
 LABELS = ["negative", "neutral", "positive"]
+
+
+def installed_versions(packages) -> dict[str, str | None]:
+    """Record package versions; optional packages that are absent map to None.
+
+    transformers/torch are only needed with --transformer, so a plain
+    TF-IDF/LR run must not fail just because they are not installed.
+    """
+    versions: dict[str, str | None] = {}
+    for name in packages:
+        try:
+            versions[name] = version(name)
+        except PackageNotFoundError:
+            versions[name] = None
+    return versions
 
 
 def clean_review(text: str) -> str:

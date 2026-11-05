@@ -10,10 +10,9 @@ import subprocess
 import time
 from collections import Counter
 from datetime import datetime, timezone
-from importlib.metadata import version
 from pathlib import Path
 
-from biomedical_ir.sentiment import LABELS, prepare_reviews
+from biomedical_ir.sentiment import LABELS, installed_versions, prepare_reviews
 
 
 def main():
@@ -70,7 +69,8 @@ def main():
             "labels": dict(Counter(r["label"] for r in rows)),
             "hashes": [r["hash"] for r in rows]}
             for name, rows in (("train", fit), ("dev", dev), ("test", test))}
-        manifest["packages"] = {p: version(p) for p in ("datasets", "scikit-learn", "transformers", "torch")}
+        manifest["packages"] = installed_versions(
+            ("datasets", "scikit-learn", "transformers", "torch"))
         git = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True)
         manifest["git_commit"] = git.stdout.strip() if git.returncode == 0 else None
         models = {}

@@ -26,3 +26,11 @@ def test_deduplication_and_official_split_overlap():
     assert len(test) == 1
     assert audit == {"input": 5, "invalid": 2, "duplicate_or_overlap": 2, "kept": 1}
     assert text_hash("Good &amp; helpful") == text_hash("good & helpful")
+
+
+def test_installed_versions_tolerates_missing_optional_packages():
+    from biomedical_ir.sentiment import installed_versions
+
+    found = installed_versions(["pytest", "definitely-not-an-installed-package-xyz"])
+    assert found["pytest"]
+    assert found["definitely-not-an-installed-package-xyz"] is None
