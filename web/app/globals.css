@@ -75,3 +75,96 @@ body {
 .tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/* ---------- /paper reading view ---------- */
+.paper {
+  max-width: 46rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+.paper h2,
+.paper h3 {
+  scroll-margin-top: 6rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.paper h2 { margin: 3.25rem 0 1rem; font-size: 1.6rem; font-weight: 700; line-height: 1.25; }
+.paper h3 { margin: 2.25rem 0 0.75rem; font-size: 1.2rem; font-weight: 600; line-height: 1.35; }
+.paper .paper-anchor { color: inherit; text-decoration: none; }
+.paper .paper-anchor:hover { color: var(--accent); }
+.paper .paper-comment-link {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+}
+.paper h2:hover .paper-comment-link,
+.paper h3:hover .paper-comment-link,
+.paper .paper-comment-link:focus { opacity: 1; }
+.paper .paper-comment-link:hover { color: var(--accent); border-color: var(--accent); }
+@media (hover: none) { .paper .paper-comment-link { opacity: 1; } }
+.paper p { margin: 0 0 1.15rem; }
+.paper strong { color: var(--text-primary); font-weight: 600; }
+.paper a:not(.paper-anchor):not(.paper-comment-link) { color: var(--accent); text-underline-offset: 2px; }
+.paper a:not(.paper-anchor):not(.paper-comment-link):hover { text-decoration: underline; }
+.paper ul, .paper ol { margin: 0 0 1.25rem; padding-left: 1.4rem; }
+.paper ul { list-style: disc; }
+.paper ol { list-style: decimal; }
+.paper li { margin: 0.35rem 0; padding-left: 0.2rem; }
+.paper li::marker { color: var(--text-muted); }
+.paper sub { font-size: 0.75em; }
+.paper code { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* the "Figure N." caption paragraph that follows each figure */
+.paper-figure + div > p:first-child,
+.paper-figure + .paper-figure + div > p:first-child { font-size: 0.92rem; line-height: 1.6; color: var(--text-muted); margin-top: -0.5rem; }
+
+.paper-math {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+.paper-math .katex-display { margin: 0; }
+
+.paper-table {
+  margin: 1.25rem 0 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+.paper table { width: 100%; border-collapse: collapse; font-size: 0.875rem; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.paper th { text-align: left; font-weight: 600; color: var(--text-primary); background: var(--surface-2); }
+.paper th[align="right"], .paper td[align="right"] { text-align: right; }
+.paper th, .paper td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.paper td:not([align]) { white-space: normal; min-width: 9rem; }
+.paper tr:last-child td { border-bottom: none; }
+.paper td strong { color: var(--accent); }
+
+.paper-figure {
+  margin: 2rem 0 1.5rem;
+  padding: 1.25rem 1.25rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+.paper-figure-title { margin: 0 0 0.2rem !important; font-size: 1rem; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
+.paper-figure-sub { margin: 0 0 0.75rem !important; font-size: 0.8125rem; line-height: 1.45; color: var(--text-muted); }
+.paper-figure-scroll { overflow-x: auto; }
+.paper-figure-scroll svg { display: block; width: 100%; min-width: 600px; height: auto; }
+.paper-figure-source { margin: 0.6rem 0 0 !important; font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); }

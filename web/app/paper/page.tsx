@@ -1,86 +1,81 @@
 import type { Metadata } from "next";
+import "katex/dist/katex.min.css";
 import PageHeader from "@/components/PageHeader";
-import Card from "@/components/Card";
+import PaperFigure from "@/components/PaperFigures";
+import PaperToc from "@/components/PaperToc";
+import PaperComments from "@/components/PaperComments";
+import { REPO_URL, issueUrl, loadPaper } from "@/lib/paper";
 
-export const metadata: Metadata = { title: "Paper" };
+const TITLE = "Hybrid Biomedical Retrieval on NFCorpus: Lexical, Dense, Fusion and Cross-Encoder Reranking";
 
-const REPO = "https://github.com/Arungharami/biomedical-hybrid-ir/blob/main/paper";
-
-const SECTIONS = [
-  { file: "abstract.md", label: "Abstract" },
-  { file: "introduction.md", label: "1. Introduction" },
-  { file: "related-work.md", label: "2. Related Work" },
-  { file: "methodology.md", label: "3–5. Research Questions, Hypotheses & Methodology" },
-  { file: "experimental-setup.md", label: "6–7. Experimental Setup & Evaluation Metrics" },
-  { file: "results.md", label: "8–10. Results, Statistical Analysis & Error Analysis" },
-  { file: "discussion.md", label: "12. Discussion" },
-  { file: "limitations.md", label: "13–14. Limitations & Threats to Validity" },
-  { file: "conclusion.md", label: "16. Conclusion" },
-  { file: "references.bib", label: "References (BibTeX)" },
-];
+export const metadata: Metadata = {
+  title: "Paper",
+  description:
+    "Full paper: six retrieval systems on NFCorpus — TF-IDF, BM25, BGE, MedCPT, RRF fusion and cross-encoder reranking — with significance tests, figures and error analysis.",
+};
 
 export default function PaperPage() {
+  const { segments, toc, words } = loadPaper();
+  const minutes = Math.round(words / 230);
+
   return (
     <div>
-      <PageHeader
-        eyebrow="CAP 6776 — Information Retrieval"
-        title="Hybrid Biomedical Information Retrieval with Lexical, Dense, and Cross-Encoder Reranking: A Reproducible Study on NFCorpus"
-      />
+      <PageHeader eyebrow="CAP 6776 — Information Retrieval · Final paper" title={TITLE} />
 
-      <Card title="Abstract" className="mb-6">
-        <p className="text-sm leading-relaxed text-text-secondary">
-          Biomedical information retrieval sits between two demands that are often in tension:
-          exact lexical precision (drug names, gene symbols, precise terminology) and semantic
-          understanding of paraphrased, layperson queries against expert-authored literature. We
-          present a reproducible study on NFCorpus (3,633 documents, 323 test queries, verified
-          against the live Hugging Face Hub) comparing six retrieval systems along the progression
-          classical lexical retrieval (TF-IDF, BM25) → general-purpose dense retrieval (BGE) →
-          biomedical-domain dense retrieval (MedCPT) → hybrid lexical-semantic fusion (Reciprocal
-          Rank Fusion) → biomedical cross-encoder reranking, under one evaluation protocol, one
-          qrels set, and paired query-level significance testing.
-        </p>
-        <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-          Contrary to a common textbook expectation, TF-IDF significantly outperforms BM25 on this
-          corpus. Both dense retrievers significantly and substantially outperform BM25 on every
-          primary metric (p&lt;0.005 each) — the study&apos;s most robust finding — but
-          biomedical-domain training (MedCPT) does not significantly outperform a strong
-          general-purpose embedding model (BGE). Cross-encoder reranking achieves the highest
-          nDCG@10 of all six systems at a real, substantial latency cost, but that specific
-          improvement is not statistically significant. Query-level error analysis surfaces
-          concrete mechanisms behind these aggregate numbers.
-        </p>
-        <a
-          href={`${REPO}/abstract.md`}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-block text-sm text-accent hover:underline"
-        >
-          Read the full abstract on GitHub ↗
+      <div className="mb-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-text-secondary">
+        <span>
+          <a href="https://arungharami.info" className="font-medium text-text-primary hover:text-accent">
+            Arun Kumar Gharami
+          </a>
+        </span>
+        <span>October 30, 2026</span>
+        <span>{minutes} min read · 10 figures</span>
+        <a href="#comments" className="text-accent hover:underline">Comments ↓</a>
+        <a href={`${REPO_URL}/blob/main/web/content/paper.md`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          Source ↗
         </a>
-      </Card>
+      </div>
 
-      <Card title="Full paper sections">
-        <p className="mb-4 text-sm text-text-secondary">
-          Every section is complete and written only from real, completed results — no placeholder
-          language remains. Full text is in the repository (rendered here would duplicate content
-          that&apos;s already maintained as the single source of truth):
-        </p>
-        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {SECTIONS.map((s) => (
-            <li key={s.file}>
-              <a
-                href={`${REPO}/${s.file}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between rounded-md border border-border px-3 py-2 text-sm text-text-primary transition-colors hover:border-accent hover:bg-surface-2"
-              >
-                {s.label}
-                <span className="text-text-muted">↗</span>
-              </a>
+      <details className="mb-8 rounded-xl border border-border bg-surface px-4 py-3 text-sm lg:hidden">
+        <summary className="cursor-pointer font-medium text-text-primary">Contents</summary>
+        <ol className="mt-3 space-y-1.5">
+          {toc.map((t) => (
+            <li key={t.id} className={t.depth === 3 ? "pl-4" : ""}>
+              <a href={`#${t.id}`} className="text-text-secondary hover:text-accent">{t.text}</a>
             </li>
           ))}
-        </ul>
-      </Card>
+          <li>
+            <a href="#comments" className="text-text-secondary hover:text-accent">Comments</a>
+          </li>
+        </ol>
+      </details>
+
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_15rem]">
+        <article id="paper-article" className="paper min-w-0">
+          {segments.map((s, i) =>
+            s.kind === "html" ? (
+              <div key={i} dangerouslySetInnerHTML={{ __html: s.html }} />
+            ) : (
+              <PaperFigure key={i} name={s.name} />
+            ),
+          )}
+
+          <section id="comments" className="mt-16 scroll-mt-24 border-t border-border pt-10">
+            <h2 className="!mt-0">Comments</h2>
+            <p>
+              Questions, corrections or ideas are welcome. Sign in with GitHub to comment below, or use the{" "}
+              <span className="font-medium text-text-primary">Comment</span> link beside any heading to discuss one section.
+            </p>
+            <PaperComments fallbackIssueUrl={issueUrl("General", "comments")} />
+          </section>
+        </article>
+
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
+            <PaperToc toc={toc} />
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
